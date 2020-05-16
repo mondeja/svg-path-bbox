@@ -1,5 +1,7 @@
 # svg-path-bbox
 
+[![NPM version](https://img.shields.io/npm/v/svg-path-bbox)](https://www.npmjs.com/package/svg-path-bbox) [![NPM license](https://img.shields.io/npm/l/svg-path-bbox)](https://github.com/mondeja/svg-path-bbox/blob/master/LICENSE) [![Pull requests welcome!](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/mondeja/svg-path-bbox/pulls)
+
 Compute bounding box of SVG paths. Pure Javascript, only [svg-path-parser](https://github.com/hughsk/svg-path-parser) as dependency.
 
 ## Installation
@@ -70,7 +72,7 @@ Computes the bounding box of SVG path following the [SVG 2 specification](https:
 
 - **d** (`string`) SVG path. 
 - **minAccuracy** (`number`) Minimum accuracy computing curves and arcs. By default is inferred using the number of floating point numbers inside the points of the arc or curve.
-- **minAccuracy** (`number`) Maximum accuracy computing curves and arcs. By default is inferred using the number of floating point numbers inside the points of the arc or curve.
+- **maxAccuracy** (`number`) Maximum accuracy computing curves and arcs. By default is inferred using the number of floating point numbers inside the points of the arc or curve.
 
 <a name="cubicBezierCurveBbox" href="#cubicBezierCurveBbox">#</a> <b>cubicBezierCurveBbox</b>(<i>p0</i>, <i>p1</i>, <i>p2</i>, <i>p3</i>, <i>accuracy</i>)
 
@@ -121,7 +123,7 @@ Computes the coordinate of a point in a line parametrized in the range `t` from 
 Computes the coordinate of a point in a cubic Bezier curve parametrized in the range `t` from 0 to 1.
 
 > Cubic bezier algorithm:
-`B(t) = (1-t)**3 * p0 + 3*(1-t)**2 * t * p1 + 3*(1-t)**2 * p2 + t**3 * p3 , 0 <= t <= 1`
+`B(t) = (1-t)^3 * p0 + 3*(1-t)^2 * t * p1 + 3*(1-t)^2 * p2 + t^3 * p3 , 0 <= t <= 1`
 
 - **p0** (array) Coordinate of the start point.
 - **p1** (array) Coordinate of the first control point.
@@ -134,7 +136,7 @@ Computes the coordinate of a point in a cubic Bezier curve parametrized in the r
 Computes the coordinate of a point in a quadratic Bezier curve parametrized in the range `t` from 0 to 1. 
 
 > Quadratic Bezier algorithm:
-`B(t) = (1-t)**2 * p0 + 2*(1-t)*t *p1 + t**2 * p2`
+`B(t) = (1-t)^2 * p0 + 2*(1-t)*t *p1 + t^2 * p2`
 
 - **p0** (array) Coordinate of the start point.
 - **p1** (array) Coordinate of the control point.
