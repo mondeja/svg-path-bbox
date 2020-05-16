@@ -2,17 +2,38 @@
   "name": "svg-path-bbox",
   "version": "1.0.0",
   "description": "Compute bounding box of SVG paths.",
-  "main": "index.js",
+  "keywords": [
+    "svg",
+    "path",
+    "bbox"
+  ],
+  "main": "src/index.js",
+  "browser": "src/index.js",
   "scripts": {
+    "build": "rimraf build && mkdir build && cp src/index.js build/svg-path-bbox.js && node_modules/.bin/webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Álvaro Mondéjar Rubio",
+  "author": {
+    "name": "Álvaro Mondéjar Rubio",
+    "email": "mondejar1994@gmail.com"
+  },
+  "contributors": [],
   "license": "GPL-3.0",
   "dependencies": {
     "svg-path-parser": "^1.1.0"
   },
+  "devDependencies": {
+    "rimraf": "^3.0.2",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mondeja/svg-path-bbox.git"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/mondeja/svg-path-bbox/issues",
+    "email": "mondejar1994@gmail.com"
+  },
+  "files": "src"
 }
