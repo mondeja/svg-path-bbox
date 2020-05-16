@@ -1,8 +1,12 @@
 # svg-path-bbox
 
-## THIS IS A WORK IN PROGRESS
-
 Compute bounding box of SVG paths. Pure Javascript, only [svg-path-parser](https://github.com/hughsk/svg-path-parser) as dependency.
+
+## Installation
+
+```
+npm install svg-path-bbox
+```
 
 ## Quickstart
 

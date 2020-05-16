@@ -1,6 +1,6 @@
 {
   "name": "svg-path-bbox",
-  "version": "1.0.0",
+  "version": "0.0.3",
   "description": "Compute bounding box of SVG paths.",
   "keywords": [
     "svg",
@@ -10,7 +10,7 @@
   "main": "src/index.js",
   "browser": "src/index.js",
   "scripts": {
-    "build": "rimraf build && mkdir build && cp src/index.js build/svg-path-bbox.js && node_modules/.bin/webpack",
+    "build": "node_modules/.bin/webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": {
