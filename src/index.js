@@ -1,18 +1,15 @@
 "use strict"
 
-const {parseSVG, makeAbsolute} = require('svg-path-parser');
+var {parseSVG, makeAbsolute} = require('svg-path-parser');
 
-/**
- * Returns the coordinates XY of a point in a cubic Bezier curve.
- *   Cubic bezier algorithm:
- *   B(t) = (1-t)**3 * p0 + 3*(1-t)**2 * t * p1 + 3*(1-t)**2 * p2 + t**3 * p3 , 0 <= t <= 1
- **/
-function cubicBezierXY(t, p0x, p0y, p1x, p1y, p2x, p2y, p3x, p3y) {
+// Cubic bezier algorithm:
+// B(t) = (1-t)**3 * p0 + 3*(1-t)**2 * t * p1 + 3*(1-t)**2 * p2 + t**3 * p3 , 0 <= t <= 1
+function cubicBezierXY(p0, p1, p2, p3, t) {
   return [
-    Math.pow(1-t,3) * p0x + 3 * t * Math.pow(1 - t, 2) * p1x
-      + 3 * t * t * (1 - t) * p2x + t * t * t * p3x,
-    Math.pow(1-t,3) * p0y + 3 * t * Math.pow(1 - t, 2) * p1y
-      + 3 * t * t * (1 - t) * p2y + t * t * t * p3y
+    Math.pow(1-t,3) * p0[0] + 3 * t * Math.pow(1 - t, 2) * p1[0]
+      + 3 * t * t * (1 - t) * p2[0] + t * t * t * p3[0],
+    Math.pow(1-t,3) * p0[1] + 3 * t * Math.pow(1 - t, 2) * p1[1]
+      + 3 * t * t * (1 - t) * p2[1] + t * t * t * p3[1]
   ];
 }
 
@@ -21,8 +18,7 @@ var cubicBezierCurveBbox = function(p0, p1, p2, p3, accuracy) {
       max = [-Infinity, -Infinity];
 
   for (var t=0; t<=1; t+=1/10**accuracy) {
-    var xy = cubicBezierXY(
-      t, p0[0], p0[1], p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
+    var xy = cubicBezierXY(p0, p1, p2, p3, t);
     min[0] = Math.min(min[0], xy[0]);
     min[1] = Math.min(min[1], xy[1]);
     max[0] = Math.max(max[0], xy[0]);
@@ -34,10 +30,10 @@ var cubicBezierCurveBbox = function(p0, p1, p2, p3, accuracy) {
 
 // Quadratic Bezier algorithm
 // B(t) = (1-t)**2 * p0 + 2*(1-t)*t *p1 + t**2 * p2
-function quadraticBezierXY(t, p0x, p0y, p1x, p1y, p2x, p2y) {
+function quadraticBezierXY(p0, p1, p2, t) {
   return [
-    Math.pow(1-t,2) * p0x + 2 * (1-t) * t * p1x + t * t * p2x,
-    Math.pow(1-t,2) * p0y + 2 * (1-t) * t * p1y + t * t * p2y
+    Math.pow(1-t,2) * p0[0] + 2 * (1-t) * t * p1[0] + t * t * p2[0],
+    Math.pow(1-t,2) * p0[1] + 2 * (1-t) * t * p1[1] + t * t * p2[1]
   ]
 }
 
@@ -46,8 +42,7 @@ var quadraticBezierCurveBbox = function(p0, p1, p2, accuracy) {
       max = [-Infinity, -Infinity];
 
   for (var t=0; t<=1; t+=1/10**accuracy) {
-    var xy = quadraticBezierXY(
-      t, p0[0], p0[1], p1[0], p1[1], p2[0], p2[1]);
+    var xy = quadraticBezierXY(p0, p1, p2, t);
     min[0] = Math.min(min[0], xy[0]);
     min[1] = Math.min(min[1], xy[1]);
     max[0] = Math.max(max[0], xy[0]);
@@ -57,15 +52,7 @@ var quadraticBezierCurveBbox = function(p0, p1, p2, accuracy) {
   return [min[0], min[1], max[0], max[1]]
 }
 
-/**
- * Returns the maximum number of floating point numbers from an
- *   array of numbers,
- *
- * array {array} - Array of numbers.
- * min {number} - Minimum numbers in response.
- * max {number} - Maximum numbers in response.
- **/
-var maxFloatingNumbers = function(array, min, max) {
+var maxFloatingNumbers = function(numbers, min, max) {
   if (!min) {
     min = 1;
   } else {
@@ -76,8 +63,8 @@ var maxFloatingNumbers = function(array, min, max) {
   }
   max = Math.max(min, max);
   var response = min;
-  for (let n=0; n<array.length; n++) {
-    var _nString = parseFloat(array[n]).toString();
+  for (let n=0; n<numbers.length; n++) {
+    var _nString = parseFloat(numbers[n]).toString();
     if (_nString.indexOf(".") == -1) {
       continue
     }
@@ -86,47 +73,34 @@ var maxFloatingNumbers = function(array, min, max) {
   return Math.min(response, max);
 }
 
-/**
- * Converts angles in degrees to radians.
- *
- * degrees {Number} - Angles in degrees to convert.
- **/
 var toRadians = function(degrees) {
-	return degrees * (Math.PI / 180);
+	return degrees * Math.PI / 180;
 }
 
-var lineXY = function(p0x, p0y, p1x, p1y, t) {
-	function calculateLineParameter(x0, x1, t) {
-		var result = x0 + (x1-x0)*t;
+var angleBetween = function(v0, v1) {
+	var p = v0[0]*v1[0] + v0[1]*v1[1];
+	var n = Math.sqrt((Math.pow(v0[0], 2)+Math.pow(v0[1], 2)) * (Math.pow(v1[0], 2)+Math.pow(v1[1], 2)));
+	var sign = v0[0]*v1[1] - v0[1]*v1[0] < 0 ? -1 : 1;
+	return sign*Math.acos(p/n);
+}
 
-		return result;
-	}
-
-	return [
-    calculateLineParameter(p0x, p1x, t),
-    calculateLineParameter(p0y, p1y, t)
-  ];
+// Line algorithm:
+// B(t) = p0 + (p1 - p0) * t
+var lineXY = function(p0, p1, t) {
+  return [p0[0] + (p0[1] - p0[0]) * t, p1[0] + (p1[1] - p1[0]) * t];
 };
 
-var angleBetween = function(v0x, v0y, v1x, v1y) {
-	var p = v0x*v1x + v0y*v1y;
-	var n = Math.sqrt((Math.pow(v0x, 2)+Math.pow(v0y, 2)) * (Math.pow(v1x, 2)+Math.pow(v1y, 2)));
-	var sign = v0x*v1y - v0y*v1x < 0 ? -1 : 1;
-	var angle = sign*Math.acos(p/n);
-	//var angle = Math.atan2(v0y, v0x) - Math.atan2(v1y,  v1x);
-	return angle;
-}
-
 // https://github.com/MadLittleMods/svg-curve-lib
-var ellipticalArcXY = function(t, p0x, p0y, rx, ry, xAxisRotation, largeArc, sweep, p1x, p1y) {
+var ellipticalArcXY = function(p0, rx, ry, xAxisRotation, largeArc, sweep, p1, t) {
 	// In accordance to: http://www.w3.org/TR/SVG/implnote.html#ArcOutOfRangeParameters
+  // This is not handled by `svg-path-parser`: https://github.com/hughsk/svg-path-parser/issues/13
 	rx = Math.abs(rx);
 	ry = Math.abs(ry);
 	xAxisRotation = (xAxisRotation%360 + 360)%360;
 	var xAxisRotationRadians = toRadians(xAxisRotation);
 	// If the endpoints are identical, then this is equivalent to omitting the elliptical arc segment entirely.
-	if (p0x === p1x && p0x === p1y) {
-		return [p0x, p0y];
+	if (p0[0] === p1[0] && p0[0] === p1[1) {
+		return p0;
 	}
 
 	// If rx = 0 or ry = 0 then this arc is treated as a straight line segment joining the endpoints.
@@ -134,13 +108,12 @@ var ellipticalArcXY = function(t, p0x, p0y, rx, ry, xAxisRotation, largeArc, swe
 		return lineXY(p0, p1, t);
 	}
 
-
 	// Following "Conversion from endpoint to center parameterization"
 	// http://www.w3.org/TR/SVG/implnote.html#ArcConversionEndpointToCenter
 
 	// Step #1: Compute transformedPoint
-	var dx = (p0x-p1x)/2;
-	var dy = (p0y-p1y)/2;
+	var dx = (p0[0]-p1[0])/2;
+	var dy = (p0[1]-p1[1])/2;
 	var transformedPoint = [
 		Math.cos(xAxisRotationRadians)*dx + Math.sin(xAxisRotationRadians)*dy,
 		-Math.sin(xAxisRotationRadians)*dx + Math.cos(xAxisRotationRadians)*dy
@@ -166,8 +139,8 @@ var ellipticalArcXY = function(t, p0x, p0y, rx, ry, xAxisRotation, largeArc, swe
 
 	// Step #3: Compute center
 	var center = [
-		Math.cos(xAxisRotationRadians)*transformedCenter[0] - Math.sin(xAxisRotationRadians)*transformedCenter[1] + ((p0x+p1x)/2),
-		Math.sin(xAxisRotationRadians)*transformedCenter[0] + Math.cos(xAxisRotationRadians)*transformedCenter[1] + ((p0y+p1y)/2)
+		Math.cos(xAxisRotationRadians)*transformedCenter[0] - Math.sin(xAxisRotationRadians)*transformedCenter[1] + ((p0[0]+p1[0])/2),
+		Math.sin(xAxisRotationRadians)*transformedCenter[0] + Math.cos(xAxisRotationRadians)*transformedCenter[1] + ((p0[1]+p1[1])/2)
 	];
 
 
@@ -178,22 +151,21 @@ var ellipticalArcXY = function(t, p0x, p0y, rx, ry, xAxisRotation, largeArc, swe
     (transformedPoint[0]-transformedCenter[0])/rx,
     (transformedPoint[1]-transformedCenter[1])/ry,
   ]
-	var startAngle = angleBetween(1, 0, startVector[0], startVector[1]);
+	var startAngle = angleBetween([1, 0], startVector);
 
 	var endVector = [
     (-transformedPoint[0]-transformedCenter[0])/rx,
     (-transformedPoint[1]-transformedCenter[1])/ry,
   ]
-	var sweepAngle = angleBetween(
-    startVector[0], startVector[1], endVector[0], endVector[1]);
+	var sweepAngle = angleBetween(startVector, endVector);
 
-	if(!sweep && sweepAngle > 0) {
+	if (!sweep && sweepAngle > 0) {
 		sweepAngle -= 2*Math.PI;
-	}
-	else if(sweep && sweepAngle < 0) {
+	} else if (sweep && sweepAngle < 0) {
 		sweepAngle += 2*Math.PI;
 	}
-	// We use % instead of `mod(..)` because we want it to be -360deg to 360deg(but actually in radians)
+	// We use % instead of `mod(..)` because we want it to be
+  //   -360deg to 360deg (but actually in radians)
 	sweepAngle %= 2*Math.PI;
 
 	// From http://www.w3.org/TR/SVG/implnote.html#ArcParameterizationAlternatives
@@ -212,8 +184,7 @@ var ellipticalArcBbox = function(p0, rx, ry, xAxisRotation, largeArc, sweep, p1,
       max = [-Infinity, -Infinity];
 
   for (var t=0; t<=1; t+=1/10**accuracy) {
-    var xy = ellipticalArcXY(
-      t, p0[0], p0[1], rx, ry, xAxisRotation, largeArc, sweep, p1[0], p1[1]);
+    var xy = ellipticalArcXY(p0, rx, ry, xAxisRotation, largeArc, sweep, p1, t);
     min[0] = Math.min(min[0], xy[0]);
     min[1] = Math.min(min[1], xy[1]);
     max[0] = Math.max(max[0], xy[0]);
@@ -230,9 +201,7 @@ const svgPathBbox = function(d, minAccuracy, maxAccuracy) {
 
   var dCommands = makeAbsolute(parseSVG(d));
 
-  // Previous reflection absolute coordinate (2º point of control
-  //   of the last cubic bezier curve). Necessary to calculate the
-  //   first point of control of S commands.
+  // Previous reflection absolute coordinate
   var _lastReflectionAbsCoord = undefined;
 
   for (var dc=0; dc<dCommands.length; dc++) {
@@ -377,7 +346,11 @@ const svgPathBbox = function(d, minAccuracy, maxAccuracy) {
 }
 
 module.exports = {
+  // BBOX functions
   svgPathBbox: svgPathBbox,
+  cubicBezierCurveBbox: cubicBezierCurveBbox,
+  quadraticBezierCurveBbox: quadraticBezierCurveBbox,
+  ellipticalArcBbox: ellipticalArcBbox,
 
   // Point on line functions
   lineXY: lineXY,
@@ -385,13 +358,8 @@ module.exports = {
   quadraticBezierXY: quadraticBezierXY,
   ellipticalArcXY: ellipticalArcXY,
 
-  // BBOX functions
-  cubicBezierCurveBbox: cubicBezierCurveBbox,
-  quadraticBezierCurveBbox: quadraticBezierCurveBbox,
-  ellipticalArcBbox: ellipticalArcBbox,
-
   // Utility functions
-  maxFloatingNumbers: maxFloatingNumbers,
   toRadians: toRadians,
   angleBetween: angleBetween,
+  maxFloatingNumbers: maxFloatingNumbers,
 }
