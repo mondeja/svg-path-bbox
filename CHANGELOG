@@ -1,0 +1,15 @@
+# Changelog
+
+## [Unreleased]
+
+## [1.0.0] - ?
+- [ ] Testing.
+
+## [0.0.5] - ?
+- [ ] Function to obtain an array of numbers from a SVG path.
+
+## [0.0.4] - 2020-05-17
+- Released to NPM.
+- Add documentation.
+- Add changelog.
+- Basic functionalities finished.
