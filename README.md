@@ -73,15 +73,15 @@ ________________________________________________________________________________
 
 ### Bounding box functions
 
-<a name="svgPathBbox" href="#svgPathBbox">#</a> <b>svgPathBbox</b>(<i>d</i>, <i>minAccuracy</i>, <i>maxAccuracy</i>)
+<a name="svgPathBbox" href="#svgPathBbox">#</a> <b>svgPathBbox</b>(<i>d</i>, <i>minAccuracy</i>, <i>maxAccuracy</i>) ⇒ `array`
 
 Computes the bounding box of SVG path following the [SVG 2 specification](https://www.w3.org/TR/SVG/paths.html).
 
-- **d** (`string`) SVG path. 
-- **minAccuracy** (`number`) Minimum accuracy computing curves and arcs. By default is inferred using the number of floating point numbers inside the points of the arc or curve.
-- **maxAccuracy** (`number`) Maximum accuracy computing curves and arcs. By default is inferred using the number of floating point numbers inside the points of the arc or curve.
+- **d** (string) SVG path. 
+- **minAccuracy** (number) Minimum accuracy computing curves and arcs. By default is inferred using the number of floating point numbers inside the points of the arc or curve.
+- **maxAccuracy** (number) Maximum accuracy computing curves and arcs. By default is inferred using the number of floating point numbers inside the points of the arc or curve.
 
-<a name="cubicBezierCurveBbox" href="#cubicBezierCurveBbox">#</a> <b>cubicBezierCurveBbox</b>(<i>p0</i>, <i>p1</i>, <i>p2</i>, <i>p3</i>, <i>accuracy</i>)
+<a name="cubicBezierCurveBbox" href="#cubicBezierCurveBbox">#</a> <b>cubicBezierCurveBbox</b>(<i>p0</i>, <i>p1</i>, <i>p2</i>, <i>p3</i>, <i>accuracy</i>) ⇒ `array`
 
 Approximates the bounding box of a cubic Bézier curve defined as in the [SVG 2 specification](https://www.w3.org/TR/SVG2/paths.html#PathDataCubicBezierCommands).
 
@@ -91,7 +91,7 @@ Approximates the bounding box of a cubic Bézier curve defined as in the [SVG 2 
 - **p3** (array) Coordinate of the end point.
 - **accuracy** (number) Power of ten for number of epochs used computing the result.
 
-<a name="quadraticBezierCurveBbox" href="#quadraticBezierCurveBbox">#</a> <b>quadraticBezierCurveBbox</b>(<i>p0</i>, <i>p1</i>, <i>p2</i>, <i>accuracy</i>)
+<a name="quadraticBezierCurveBbox" href="#quadraticBezierCurveBbox">#</a> <b>quadraticBezierCurveBbox</b>(<i>p0</i>, <i>p1</i>, <i>p2</i>, <i>accuracy</i>) ⇒ `array`
 
 Approximates the bounding box of a quadratic Bézier curve defined as in the [SVG 2 specification](https://www.w3.org/TR/SVG2/paths.html#PathDataQuadraticBezierCommands).
 
@@ -100,7 +100,7 @@ Approximates the bounding box of a quadratic Bézier curve defined as in the [SV
 - **p2** (array) Coordinate of the end point.
 - **accuracy** (number) Power of ten for number of epochs used computing the result.
 
-<a name="ellipticalArcBbox" href="#ellipticalArcBbox">#</a> <b>ellipticalArcBbox</b>(<i>p0</i>, <i>rx</i>, <i>ry</i>, <i>xAxisRotation</i>, <i>largeArc</i>, <i>sweep</i>, <i>p1</i>, <i>accuracy</i>)
+<a name="ellipticalArcBbox" href="#ellipticalArcBbox">#</a> <b>ellipticalArcBbox</b>(<i>p0</i>, <i>rx</i>, <i>ry</i>, <i>xAxisRotation</i>, <i>largeArc</i>, <i>sweep</i>, <i>p1</i>, <i>accuracy</i>) ⇒ `array`
 
 Approximates the bounding box of an elliptical arc defined as in the [SVG 2 specification](https://www.w3.org/TR/SVG2/paths.html#PathDataEllipticalArcCommands).
 
@@ -115,7 +115,7 @@ Approximates the bounding box of an elliptical arc defined as in the [SVG 2 spec
 
 ### Point on line functions
 
-<a name="lineXY" href="#lineXY">#</a> <b>lineXY</b>(<i>p0</i>, <i>p1</i>, <i>t</i>)
+<a name="lineXY" href="#lineXY">#</a> <b>lineXY</b>(<i>p0</i>, <i>p1</i>, <i>t</i>) ⇒ `array`
 
 Computes the coordinate of a point in a line parametrized in the range `t` from 0 to 1.
 
@@ -125,7 +125,7 @@ Computes the coordinate of a point in a line parametrized in the range `t` from 
 - **p1** (array) Coordinate of the end point.
 - **t** (number) Number in the range from 0 to 1 that parametrizes the location on the line.
 
-<a name="cubicBezierXY" href="#cubicBezierXY">#</a> <b>cubicBezierXY</b>(<i>p0</i>, <i>p1</i>, <i>p2</i>, <i>p3</i>, <i>t</i>)
+<a name="cubicBezierXY" href="#cubicBezierXY">#</a> <b>cubicBezierXY</b>(<i>p0</i>, <i>p1</i>, <i>p2</i>, <i>p3</i>, <i>t</i>) ⇒ `array`
 
 Computes the coordinate of a point in a cubic Bézier curve parametrized in the range `t` from 0 to 1.
 
@@ -138,7 +138,7 @@ Computes the coordinate of a point in a cubic Bézier curve parametrized in the 
 - **p3** (array) Coordinate of the end point.
 - **t** (number) Number in the range from 0 to 1 that parametrizes the location on the curve.
 
-<a name="quadraticBezierXY" href="#quadraticBezierXY">#</a> <b>quadraticBezierXY</b>(<i>p0</i>, <i>p1</i>, <i>p2</i>, <i>t</i>)
+<a name="quadraticBezierXY" href="#quadraticBezierXY">#</a> <b>quadraticBezierXY</b>(<i>p0</i>, <i>p1</i>, <i>p2</i>, <i>t</i>) ⇒ `array`
 
 Computes the coordinate of a point in a quadratic Bézier curve parametrized in the range `t` from 0 to 1. 
 
@@ -150,7 +150,7 @@ Computes the coordinate of a point in a quadratic Bézier curve parametrized in 
 - **p2** (array) Coordinate of the end point.
 - **t** (number) Number in the range from 0 to 1 that parametrizes the location on the curve.
 
-<a name="ellipticalArcXY" href="#ellipticalArcXY">#</a> <b>ellipticalArcXY</b>(<i>p0</i>, <i>rx</i>, <i>ry</i>, <i>xAxisRotation</i>, <i>largeArc</i>, <i>sweep</i>, <i>p1</i>, <i>t</i>)
+<a name="ellipticalArcXY" href="#ellipticalArcXY">#</a> <b>ellipticalArcXY</b>(<i>p0</i>, <i>rx</i>, <i>ry</i>, <i>xAxisRotation</i>, <i>largeArc</i>, <i>sweep</i>, <i>p1</i>, <i>t</i>) ⇒ `array`
 
 Computes the coordinate of a point in a elliptical arc parametrized in the range `t` from 0 to 1.
 
@@ -167,7 +167,7 @@ Computes the coordinate of a point in a elliptical arc parametrized in the range
 
 > The next functions are used internally but are public to the API because can be useful along with this library.
 
-<a name="toRadians" href="#toRadians">#</a> <b>toRadians</b>(<i>p0</i>, <i>p1</i>, <i>p2</i>, <i>t</i>)
+<a name="toRadians" href="#toRadians">#</a> <b>toRadians</b>(<i>p0</i>, <i>p1</i>, <i>p2</i>, <i>t</i>) ⇒ `number`
 
 Converts from degrees to radians. Don't checks if input value is in the range from 0 to 360.
 
@@ -175,18 +175,24 @@ Converts from degrees to radians. Don't checks if input value is in the range fr
 
 - **degrees** (number) Degrees to convert.
 
-<a name="angleBetween" href="#angleBetween">#</a> <b>angleBetween</b>(<i>v0</i>, <i>v1</i>)
+<a name="angleBetween" href="#angleBetween">#</a> <b>angleBetween</b>(<i>v0</i>, <i>v1</i>) ⇒ `number`
 
 Computes the angle between two vectors.
 
 - **v0** (array) First vector in comparison.
 - **v1** (array) Second vector in comparison.
 
-<a name="maxFloatingNumbers" href="#maxFloatingNumbers">#</a> <b>maxFloatingNumbers</b>(<i>numbers</i>, <i>min</i>, <i>max</i>)
+<a name="pathNumbers" href="#pathNumbers">#</a> <b>pathNumbers</b>(<i>d</i>) ⇒ `array`
+
+Extract all the numbers defined inside a SVG path.
+
+- **d** (string) Path string.
+
+<a name="maxFloatingNumbers" href="#maxFloatingNumbers">#</a> <b>maxFloatingNumbers</b>(<i>numbers</i>, <i>min</i>, <i>max</i>) ⇒ `number`
 
 Returns the maximum number of floating point numbers from an array of numbers. The result can be limited with `min` and `max` parameters.
 
-- **numbers** (array) Array of numbers
+- **numbers** (array) Array of numbers.
 - **min** (number) - Minimum limit in response.
 - **max** (number) - Maximum limit in response.
 

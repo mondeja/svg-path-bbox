@@ -12,7 +12,12 @@ const {
   quadraticBezierXY,
   ellipticalArcXY,
 } = require('./pol');
-const {toRadians, angleBetween, maxFloatingNumbers} = require('./util');
+const {
+  toRadians,
+  angleBetween,
+  pathNumbers,
+  maxFloatingNumbers,
+} = require('./util');
 
 module.exports = {
   // BBOX functions
@@ -30,5 +35,6 @@ module.exports = {
   // Utility functions
   toRadians,
   angleBetween,
+  pathNumbers,
   maxFloatingNumbers
 };

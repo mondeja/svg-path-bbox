@@ -10,6 +10,35 @@ const angleBetween = function (v0, v1) {
   return (v0[0] * v1[1] - v0[1] * v1[0] < 0 ? -1 : 1) * Math.acos(p / n);
 };
 
+const pathNumbers = function (d) {
+  const dSimp = d.replace(/[^\de.-]|,/g, ' '), response = [];
+  let currentNumber = '';
+
+  for (let c = 0; c < dSimp.length; c++) {
+    if ([' ', '-', '.'].indexOf(dSimp[c]) === -1) {
+      currentNumber += dSimp[c];
+    } else if (dSimp[c] === '.') {
+      if ('.'.indexOf(currentNumber) > -1 && currentNumber !== '') {
+        response.push(parseFloat(currentNumber));
+        currentNumber = '';
+      }
+      currentNumber += dSimp[c];
+    } else if (dSimp[c] === '-') {
+      if (currentNumber !== '') {
+        response.push(parseFloat(currentNumber));
+        currentNumber = '';
+      }
+      currentNumber += dSimp[c];
+    } else {
+      if (currentNumber !== '') {
+        response.push(parseFloat(currentNumber));
+      }
+      currentNumber = '';
+    }
+  }
+  return response;
+};
+
 const maxFloatingNumbers = function (numbers, min, max) {
   if (!min) {
     min = 1;
@@ -34,5 +63,6 @@ const maxFloatingNumbers = function (numbers, min, max) {
 module.exports = {
   toRadians,
   angleBetween,
+  pathNumbers,
   maxFloatingNumbers,
 };
