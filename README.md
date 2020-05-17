@@ -67,6 +67,7 @@ $ svg-path-bbox "M5 10c3 0 3 3 0 3z"
 ### Utility functions [▼](https://github.com/mondeja/svg-path-bbox#utility-functions)
 - [toRadians](https://github.com/mondeja/svg-path-bbox/blob/master/README.md#toRadians)
 - [angleBetween](https://github.com/mondeja/svg-path-bbox/blob/master/README.md#angleBetween)
+- [pathNumbers](https://github.com/mondeja/svg-path-bbox/blob/master/README.md#pathNumbers)
 - [maxFloatingNumbers](https://github.com/mondeja/svg-path-bbox/blob/master/README.md#maxFloatingNumbers)
 
 ________________________________________________________________________________
