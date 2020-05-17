@@ -18,9 +18,9 @@ npm install svg-path-bbox
 [ 5, 10, 7, 13 ]
 ```
 
-The bounding box returned is made up in the same way of `viewBox` SVG attributes: `[x0, y0, x1, y1]`.
+The bounding box returned is an array made up in the same way of `viewBox` SVG attributes: `[x0, y0, x1, y1]`.
 
-If the path contains curves, the result is an approximation. You can control the precission needed calculating bounding box of curves using the parameters `minAccuracy` and `maxAccuracy`, but keep in mind that increasing these numbers will result in a slower execution:
+If the path contains curves, the result is an approximation. You can control the precission needed calculating bounding box of curves using the optional parameters `minAccuracy` and `maxAccuracy`, but keep in mind that increasing these numbers will result in a slower execution:
 
 ```javascript
 const d = "M5 10c3 0 3 3 0 3z";
@@ -76,7 +76,7 @@ Computes the bounding box of SVG path following the [SVG 2 specification](https:
 
 <a name="cubicBezierCurveBbox" href="#cubicBezierCurveBbox">#</a> <b>cubicBezierCurveBbox</b>(<i>p0</i>, <i>p1</i>, <i>p2</i>, <i>p3</i>, <i>accuracy</i>)
 
-Approximates the bounding box of a cubic Bezier curve defined as in the [SVG 2 specification](https://www.w3.org/TR/SVG2/paths.html#PathDataCubicBezierCommands).
+Approximates the bounding box of a cubic Bézier curve defined as in the [SVG 2 specification](https://www.w3.org/TR/SVG2/paths.html#PathDataCubicBezierCommands).
 
 - **p0** (array) Coordinate of the start point.
 - **p1** (array) Coordinate of the first control point.
@@ -86,7 +86,7 @@ Approximates the bounding box of a cubic Bezier curve defined as in the [SVG 2 s
 
 <a name="quadraticBezierCurveBbox" href="#quadraticBezierCurveBbox">#</a> <b>quadraticBezierCurveBbox</b>(<i>p0</i>, <i>p1</i>, <i>p2</i>, <i>accuracy</i>)
 
-Approximates the bounding box of a quadratic Bezier curve defined as in the [SVG 2 specification](https://www.w3.org/TR/SVG2/paths.html#PathDataQuadraticBezierCommands).
+Approximates the bounding box of a quadratic Bézier curve defined as in the [SVG 2 specification](https://www.w3.org/TR/SVG2/paths.html#PathDataQuadraticBezierCommands).
 
 - **p0** (array) Coordinate of the start point.
 - **p1** (array) Coordinate of the control point.
@@ -120,9 +120,9 @@ Computes the coordinate of a point in a line parametrized in the range `t` from 
 
 <a name="cubicBezierXY" href="#cubicBezierXY">#</a> <b>cubicBezierXY</b>(<i>p0</i>, <i>p1</i>, <i>p2</i>, <i>p3</i>, <i>t</i>)
 
-Computes the coordinate of a point in a cubic Bezier curve parametrized in the range `t` from 0 to 1.
+Computes the coordinate of a point in a cubic Bézier curve parametrized in the range `t` from 0 to 1.
 
-> Cubic bezier algorithm:
+> Cubic Bézier algorithm:
 `B(t) = (1-t)^3 * p0 + 3*(1-t)^2 * t * p1 + 3*(1-t)^2 * p2 + t^3 * p3 , 0 <= t <= 1`
 
 - **p0** (array) Coordinate of the start point.
@@ -133,10 +133,10 @@ Computes the coordinate of a point in a cubic Bezier curve parametrized in the r
 
 <a name="quadraticBezierXY" href="#quadraticBezierXY">#</a> <b>quadraticBezierXY</b>(<i>p0</i>, <i>p1</i>, <i>p2</i>, <i>t</i>)
 
-Computes the coordinate of a point in a quadratic Bezier curve parametrized in the range `t` from 0 to 1. 
+Computes the coordinate of a point in a quadratic Bézier curve parametrized in the range `t` from 0 to 1. 
 
-> Quadratic Bezier algorithm:
-`B(t) = (1-t)^2 * p0 + 2*(1-t)*t *p1 + t^2 * p2`
+> Quadratic Bézier algorithm:
+`B(t) = (1-t)2 * p0 + 2*(1-t)*t *p1 + t2 * p2`
 
 - **p0** (array) Coordinate of the start point.
 - **p1** (array) Coordinate of the control point.
