@@ -119,7 +119,7 @@ Approximates the bounding box of an elliptical arc defined as in the [SVG 2 spec
 
 Computes the coordinate of a point in a line parametrized in the range `t` from 0 to 1.
 
-> Algorithm: `B(t) = p0 + (p1 - p0) * t`
+> Algorithm: `B(t) = p0 + (p1 - p0) * t , 0 <= t <= 1`
 
 - **p0** (array) Coordinate of the start point.
 - **p1** (array) Coordinate of the end point.
@@ -143,7 +143,7 @@ Computes the coordinate of a point in a cubic Bézier curve parametrized in the 
 Computes the coordinate of a point in a quadratic Bézier curve parametrized in the range `t` from 0 to 1. 
 
 > Quadratic Bézier algorithm:
-`B(t) = (1-t)2 * p0 + 2*(1-t)*t *p1 + t2 * p2`
+`B(t) = (1-t)2 * p0 + 2*(1-t)*t *p1 + t2 * p2 , 0 <= t <= 1`
 
 - **p0** (array) Coordinate of the start point.
 - **p1** (array) Coordinate of the control point.
