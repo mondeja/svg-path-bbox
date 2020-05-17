@@ -52,19 +52,19 @@ $ svg-path-bbox "M5 10c3 0 3 3 0 3z"
 
 ## Documentation
 
-### Bounding box functions
+### Bounding box functions [▼](https://github.com/mondeja/svg-path-bbox#bounding-box-functions)
 - [svgPathBbox](https://github.com/mondeja/svg-path-bbox/blob/master/README.md#svgPathBbox)
 - [cubicBezierCurveBbox](https://github.com/mondeja/svg-path-bbox/blob/master/README.md#cubicBezierCurveBbox)
 - [quadraticBezierCurveBbox](https://github.com/mondeja/svg-path-bbox/blob/master/README.md#quadraticBezierCurveBbox)
 - [ellipticalArcBbox](https://github.com/mondeja/svg-path-bbox/blob/master/README.md#ellipticalArcBbox)
 
-### Point on line functions
+### Point on line functions [▼](https://github.com/mondeja/svg-path-bbox#point-on-line-functions)
 - [lineXY](https://github.com/mondeja/svg-path-bbox/blob/master/README.md#lineXY)
 - [cubicBezierXY](https://github.com/mondeja/svg-path-bbox/blob/master/README.md#cubicBezierXY)
 - [quadraticBezierXY](https://github.com/mondeja/svg-path-bbox/blob/master/README.md#quadraticBezierXY)
 - [ellipticalArcXY](https://github.com/mondeja/svg-path-bbox/blob/master/README.md#ellipticalArcXY)
 
-### Utility functions
+### Utility functions [▼](https://github.com/mondeja/svg-path-bbox#utility-functions)
 - [toRadians](https://github.com/mondeja/svg-path-bbox/blob/master/README.md#toRadians)
 - [angleBetween](https://github.com/mondeja/svg-path-bbox/blob/master/README.md#angleBetween)
 - [maxFloatingNumbers](https://github.com/mondeja/svg-path-bbox/blob/master/README.md#maxFloatingNumbers)
