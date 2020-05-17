@@ -1,9 +1,9 @@
-"use strict"
+'use strict';
 
 const path = require('path');
 
 const webConfig = {
-  entry: path.resolve(__dirname, "src", 'index.js'),
+  entry: path.resolve(__dirname, 'src', 'index.js'),
   target: 'web',
   mode: 'production',
   output: {
