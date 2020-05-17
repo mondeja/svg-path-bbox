@@ -8,7 +8,8 @@
 ## [0.0.X] - ?
 - [ ] Function to obtain an array of numbers from a SVG path.
 
-## [0.0.6] - 2020-05-17
+## [0.0.7] - 2020-05-17
+- Add linting.
 - Released to NPM.
 - Add documentation.
 - Add changelog.

@@ -1,6 +1,6 @@
 {
   "name": "svg-path-bbox",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Compute bounding box of SVG paths.",
   "keywords": [
     "svg",
@@ -11,6 +11,8 @@
   "browser": "src/index.js",
   "scripts": {
     "build": "node_modules/.bin/webpack",
+    "lint": "node_modules/.bin/eslint src",
+    "lintfix": "npm run lint -- --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": {
@@ -23,6 +25,8 @@
     "svg-path-parser": "^1.1.0"
   },
   "devDependencies": {
+    "eslint": "^7.0.0",
+    "eslint-config-mourner": "^3.0.0",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11"
   },
@@ -34,5 +38,18 @@
     "url": "https://github.com/mondeja/svg-path-bbox/issues",
     "email": "mondejar1994@gmail.com"
   },
-  "files": "src"
+  "files": "src",
+  "eslintConfig": {
+    "env": {
+      "node": true
+    },
+    "extends": "mourner",
+    "rules": {
+      "linebreak-style": [2, "unix"],
+      "no-mixed-spaces-and-tabs": 2,
+      "indent": ["error", 2],
+      "curly": 2,
+      "spaced-comment": 2
+    }
+  }
 }
