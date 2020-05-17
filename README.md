@@ -43,6 +43,13 @@ const d = "M5 10c3 0 3 3 0 3z";
 
 > The number of epochs for curves and arcs bounding box calculations are `Math.pow(10, accuracy)`.
 
+### Command line
+
+```bash
+$ svg-path-bbox "M5 10c3 0 3 3 0 3z"
+5 10 7.25 13
+```
+
 ## Documentation
 
 ### Bounding box functions

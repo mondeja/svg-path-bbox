@@ -1,6 +1,6 @@
 {
   "name": "svg-path-bbox",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Compute bounding box of SVG paths.",
   "keywords": [
     "svg",
@@ -9,12 +9,14 @@
   ],
   "main": "src/index.js",
   "browser": "src/index.js",
+  "bin": {
+    "svg-path-bbox": "src/cli.js"
+  },
   "scripts": {
     "build": "node_modules/.bin/webpack",
     "lint": "node_modules/.bin/eslint src",
     "lintfix": "npm run lint -- --fix",
-    "prepublish": "node_modules/.bin/run-s lint build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "pre:publish": "node_modules/.bin/run-s lint build"
   },
   "author": {
     "name": "Álvaro Mondéjar Rubio",
