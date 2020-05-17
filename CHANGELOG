@@ -5,8 +5,9 @@
 ## [1.0.0] - ?
 - [ ] Testing.
 
-## [0.0.16] - 2020-05-17
+## [0.0.17] - 2020-05-17
 - Add function to obtain an array of numbers from a SVG path.
+- Multiple paths as arguments for command line script.
 
 ## [0.0.13] - 2020-05-17
 - Add command line interface.

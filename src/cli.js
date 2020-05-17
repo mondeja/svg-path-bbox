@@ -11,11 +11,13 @@ if (require.main === module) {
   }
   const args = process.argv.slice(sliceN, process.argv.length);
 
-  if (args.length > 1 || args.length === 0) {
+  if (args.length === 0) {
     console.error('You need to pass a SVG path enclosed between quotes as unique parameter.');
     process.exit(1);
   }
 
   const {svgPathBbox} = require('./index.js');
-  console.log(svgPathBbox(args[0]).join(' '));
+  for (let a = 0; a < args.length; a++) {
+    console.log(svgPathBbox(args[a]).join(' '));
+  }
 }

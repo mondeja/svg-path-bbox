@@ -48,6 +48,10 @@ const d = "M5 10c3 0 3 3 0 3z";
 ```bash
 $ svg-path-bbox "M5 10c3 0 3 3 0 3z"
 5 10 7.25 13
+
+$ svg-path-bbox "M5 10c3 0 3 3 0 3z" "M2 8m5 5z"
+5 10 7.25 13
+2 8 7 13
 ```
 
 ## Documentation
@@ -79,8 +83,8 @@ ________________________________________________________________________________
 Computes the bounding box of SVG path following the [SVG 2 specification](https://www.w3.org/TR/SVG/paths.html).
 
 - **d** (string) SVG path. 
-- **minAccuracy** (number) Minimum accuracy computing curves and arcs. By default is inferred using the number of floating point numbers inside the points of the arc or curve.
-- **maxAccuracy** (number) Maximum accuracy computing curves and arcs. By default is inferred using the number of floating point numbers inside the points of the arc or curve.
+- **minAccuracy** (number) Minimum accuracy computing curves and arcs. By default is inferred using the maximum number of floating point numbers inside the coordinates of the arc or curve.
+- **maxAccuracy** (number) Maximum accuracy computing curves and arcs. By default is inferred using the maximum number of floating point numbers inside the coordinates of the arc or curve.
 
 <a name="cubicBezierCurveBbox" href="#cubicBezierCurveBbox">#</a> <b>cubicBezierCurveBbox</b>(<i>p0</i>, <i>p1</i>, <i>p2</i>, <i>p3</i>, <i>accuracy</i>) ⇒ `array`
 
