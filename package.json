@@ -1,7 +1,7 @@
 {
   "name": "svg-path-bbox",
-  "version": "0.0.19",
-  "description": "Compute bounding box of SVG paths.",
+  "version": "0.0.20",
+  "description": "Compute bounding boxes of SVG paths.",
   "keywords": [
     "svg",
     "path",
@@ -14,7 +14,7 @@
   },
   "scripts": {
     "build": "node_modules/.bin/webpack",
-    "lint": "node_modules/.bin/eslint src",
+    "lint": "node_modules/.bin/eslint src webpack.config.js",
     "lintfix": "npm run lint -- --fix",
     "pre:publish": "node_modules/.bin/run-s lint build"
   },
