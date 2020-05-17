@@ -13,9 +13,9 @@ const {
   ellipticalArcXY,
 } = require('./pol');
 const {
+  pathNumbers,
   toRadians,
   angleBetween,
-  pathNumbers,
   maxFloatingNumbers,
 } = require('./util');
 
@@ -33,8 +33,8 @@ module.exports = {
   ellipticalArcXY,
 
   // Utility functions
+  pathNumbers,
   toRadians,
   angleBetween,
-  pathNumbers,
   maxFloatingNumbers
 };
