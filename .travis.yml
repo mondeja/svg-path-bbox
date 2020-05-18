@@ -14,3 +14,4 @@ jobs:
       node_js: 10
       script:
         - npm run test
+        - npm run coveralls

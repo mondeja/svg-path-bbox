@@ -13,6 +13,7 @@
     "svg-path-bbox": "src/cli.js"
   },
   "scripts": {
+    "coveralls": "cat ./tests/coverage/lcov.info | coveralls",
     "build": "node_modules/.bin/webpack",
     "lint": "node_modules/.bin/eslint src tests webpack.config.js",
     "lintfix": "npm run lint -- --fix",
@@ -29,6 +30,7 @@
     "svg-path-parser": "^1.1.0"
   },
   "devDependencies": {
+    "coveralls": "^3.1.0",
     "eslint": "^7.0.0",
     "eslint-config-mourner": "^3.0.0",
     "jest": "26.0.1",
@@ -70,6 +72,6 @@
   },
   "jest": {
     "collectCoverage": true,
-    "coverageReporters": ["json", "html"]
+    "coverageDirectory": "<rootDir>/tests/coverage"
   }
 }
