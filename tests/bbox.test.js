@@ -50,7 +50,7 @@ const svgPathBbboxLinealCases = [
 
 describe('svgPathBbox(d, minAccuracy, maxAccuracy) [Lineal examples]', () => {
   test.each(svgPathBbboxLinealCases)(
-    'svgPathBbox(%p, %p, %p)  ⇢  %p',
+    'svgPathBbox(%p, %p, %p) ⇢ %p',
     (d, minAccuracy, maxAccuracy, bbox) => {
       expect(svgPathBbox(d, minAccuracy, maxAccuracy)).toEqual(bbox);
     }
@@ -63,19 +63,19 @@ const svgPathBbboxCurveCases = [
     // Relative path
     'M1 1c1 0 1 1 0 1z', null, null, [1, 1, 1.75, 2],
     // Absolute points with accuracy 1
-    () => { return cubicBezierCurveBbox([1, 1], [2, 1], [2, 2], [1, 2], 1); },
+    () => cubicBezierCurveBbox([1, 1], [2, 1], [2, 2], [1, 2], 1),
   ],
   [
     // Absolute path
     'M1 1C2 1 2 2 1 2z', null, null, [1, 1, 1.75, 2],
     // Absolute points with accuracy 5
-    () => { return cubicBezierCurveBbox([1, 1], [2, 1], [2, 2], [1, 2], 5); },
+    () => cubicBezierCurveBbox([1, 1], [2, 1], [2, 2], [1, 2], 5),
   ],
 ];
 
 describe('svgPathBbox(d, minAccuracy, maxAccuracy) [Curve examples]', () => {
   test.each(svgPathBbboxCurveCases)(
-    'svgPathBbox(%p, %p, %p)  ⇢  %p',
+    'svgPathBbox(%p, %p, %p) ⇢ %p',
     (d, minAccuracy, maxAccuracy, bbox, curveTest) => {
       expect(svgPathBbox(d, minAccuracy, maxAccuracy)).toEqual(bbox);
       expect(curveTest()).toEqual(bbox);
