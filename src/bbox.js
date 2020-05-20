@@ -2,8 +2,10 @@
 
 const {parseSVG, makeAbsolute} = require('svg-path-parser');
 
-const {quadraticBezierXY, ellipticalArcXY} = require('./pol');
+const {ellipticalArcXY} = require('./pol');
 const {maxFloatingNumbers} = require('./util');
+
+const TWO_THIRDS = 2.0 / 3.0;
 
 // https://github.com/adobe-webplatform/Snap.svg/blob/b242f49e6798ac297a3dad0dfb03c0893e394464/src/path.js#L856
 function cubicBezierCurveBbox(p0, p1, p2, p3) {
@@ -66,21 +68,6 @@ function cubicBezierCurveBbox(p0, p1, p2, p3) {
     Math.max.apply(0, bounds[1])
   ];
 }
-
-const quadraticBezierCurveBbox = function (p0, p1, p2, accuracy) {
-  const min = [Infinity, Infinity], max = [-Infinity, -Infinity];
-  let xy;
-
-  for (let t = 0; t <= 1; t += 1 / Math.pow(10, accuracy)) {
-    xy = quadraticBezierXY(p0, p1, p2, t);
-    min[0] = Math.min(min[0], xy[0]);
-    min[1] = Math.min(min[1], xy[1]);
-    max[0] = Math.max(max[0], xy[0]);
-    max[1] = Math.max(max[1], xy[1]);
-  }
-
-  return [min[0], min[1], max[0], max[1]];
-};
 
 const ellipticalArcBbox = function (p0, rx, ry, xAxisRotation, largeArc, sweep, p1, accuracy) {
   const min = [Infinity, Infinity], max = [-Infinity, -Infinity];
@@ -174,13 +161,12 @@ const svgPathBbox = function (d, minAccuracy, maxAccuracy) {
       _lastReflectionAbsCoord = [cmd.x2, cmd.y2];
       break;
     case 'Q':
-      cBbox = quadraticBezierCurveBbox(
+      // Quadratic to cubic
+      cBbox = cubicBezierCurveBbox(
         [cmd.x0, cmd.y0],
-        [cmd.x1, cmd.y1],
-        [cmd.x, cmd.y],
-        maxFloatingNumbers(
-          [cmd.x0, cmd.y0, cmd.x1, cmd.y1, cmd.x, cmd.y],
-          minAccuracy, maxAccuracy));
+        [cmd.x0 + TWO_THIRDS * (cmd.x1 - cmd.x0), cmd.y0 + TWO_THIRDS * (cmd.y1 - cmd.y0)],
+        [cmd.x2 + TWO_THIRDS * (cmd.x1 - cmd.x2), cmd.y2 + TWO_THIRDS * (cmd.y1 - cmd.y2)],
+        [cmd.x, cmd.y]);
 
       min[0] = Math.min(cBbox[0], min[0]);
       min[1] = Math.min(cBbox[1], min[1]);
@@ -199,13 +185,12 @@ const svgPathBbox = function (d, minAccuracy, maxAccuracy) {
       } else {
         p1 = [_lastReflectionAbsCoord[0], _lastReflectionAbsCoord[1]];
       }
-      cBbox = quadraticBezierCurveBbox(
+
+      cBbox = cubicBezierCurveBbox(
         [cmd.x0, cmd.y0],
-        p1,
-        [cmd.x, cmd.y],
-        maxFloatingNumbers(
-          [cmd.x0, cmd.y0, p1[0], p1[1], cmd.x, cmd.y],
-          minAccuracy, maxAccuracy));
+        [cmd.x0 + TWO_THIRDS * (p1[0] - cmd.x0), cmd.y0 + TWO_THIRDS * (p1[1] - cmd.y0)],
+        [cmd.x2 + TWO_THIRDS * (p1[0] - cmd.x2), cmd.y2 + TWO_THIRDS * (p1[1] - cmd.y2)],
+        [cmd.x, cmd.y]);
 
       min[0] = Math.min(cBbox[0], min[0]);
       min[1] = Math.min(cBbox[1], min[1]);
@@ -242,6 +227,5 @@ const svgPathBbox = function (d, minAccuracy, maxAccuracy) {
 module.exports = {
   svgPathBbox,
   cubicBezierCurveBbox,
-  quadraticBezierCurveBbox,
   ellipticalArcBbox,
 };

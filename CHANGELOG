@@ -5,8 +5,10 @@
 ## [1.0.0] - ?
 - [ ] Testing.
 
-## [0.0.23] - 2020-05-20
-- Improved and optimized cubic Bézier curve bounding box algoritm.
+## [0.0.24] - 2020-05-20
+- Removed `quadraticBezierCurveBbox` function.
+- Optimized quatratic Bézier curve bounding box computation.
+- Optimized cubic Bézier curve bounding box algoritm.
 - Fixed error on V and H commands computing SVG path bbox.
 
 ## [0.0.20] - 2020-05-17

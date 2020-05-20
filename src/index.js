@@ -3,7 +3,6 @@
 const {
   svgPathBbox,
   cubicBezierCurveBbox,
-  quadraticBezierCurveBbox,
   ellipticalArcBbox,
 } = require('./bbox');
 const {
@@ -23,7 +22,6 @@ module.exports = {
   // BBOX functions
   svgPathBbox,
   cubicBezierCurveBbox,
-  quadraticBezierCurveBbox,
   ellipticalArcBbox,
 
   // Point on line functions
