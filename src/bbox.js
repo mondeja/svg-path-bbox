@@ -80,13 +80,13 @@ const svgPathBbox = function (d, minAccuracy, maxAccuracy) {
       _lastReflectionAbsCoord = [cmd.x, cmd.y];
       break;
     case 'V':
-      min[1] = Math.max(min[1], cmd.y);
+      min[1] = Math.min(min[1], cmd.y);
       max[1] = Math.max(max[1], cmd.y);
 
       _lastReflectionAbsCoord = [cmd.x, cmd.y];
       break;
     case 'H':
-      min[0] = Math.max(min[0], cmd.x);
+      min[0] = Math.min(min[0], cmd.x);
       max[0] = Math.max(max[0], cmd.x);
 
       _lastReflectionAbsCoord = [cmd.x, cmd.y];
