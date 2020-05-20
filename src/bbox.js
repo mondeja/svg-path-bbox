@@ -2,23 +2,70 @@
 
 const {parseSVG, makeAbsolute} = require('svg-path-parser');
 
-const {cubicBezierXY, quadraticBezierXY, ellipticalArcXY} = require('./pol');
+const {quadraticBezierXY, ellipticalArcXY} = require('./pol');
 const {maxFloatingNumbers} = require('./util');
 
-const cubicBezierCurveBbox = function (p0, p1, p2, p3, accuracy) {
-  const min = [Infinity, Infinity], max = [-Infinity, -Infinity];
-  let xy;
-
-  for (let t = 0; t <= 1; t += 1 / Math.pow(10, accuracy)) {
-    xy = cubicBezierXY(p0, p1, p2, p3, t);
-    min[0] = Math.min(min[0], xy[0]);
-    min[1] = Math.min(min[1], xy[1]);
-    max[0] = Math.max(max[0], xy[0]);
-    max[1] = Math.max(max[1], xy[1]);
+// https://github.com/adobe-webplatform/Snap.svg/blob/b242f49e6798ac297a3dad0dfb03c0893e394464/src/path.js#L856
+function cubicBezierCurveBbox(p0, p1, p2, p3) {
+  const tvalues = [], bounds = [[], []];
+  let a, b, c, t, t1, t2, b2ac, sqrtb2ac;
+  for (let i = 0; i < 2; ++i) {
+    if (i === 0) {
+      b = 6 * p0[0] - 12 * p1[0] + 6 * p2[0];
+      a = -3 * p0[0] + 9 * p1[0] - 9 * p2[0] + 3 * p3[0];
+      c = 3 * p1[0] - 3 * p0[0];
+    } else {
+      b = 6 * p0[1] - 12 * p1[1] + 6 * p2[1];
+      a = -3 * p0[1] + 9 * p1[1] - 9 * p2[1] + 3 * p3[1];
+      c = 3 * p1[1] - 3 * p0[1];
+    }
+    if (Math.abs(a) < 1e-12) {
+      if (Math.abs(b) < 1e-12) {
+        continue;
+      }
+      t = -c / b;
+      if (t > 0 && t < 1) {
+        tvalues.push(t);
+      }
+      continue;
+    }
+    b2ac = b * b - 4 * c * a;
+    sqrtb2ac = Math.sqrt(b2ac);
+    if (b2ac < 0) {
+      continue;
+    }
+    t1 = (-b + sqrtb2ac) / (2 * a);
+    if (t1 > 0 && t1 < 1) {
+      tvalues.push(t1);
+    }
+    t2 = (-b - sqrtb2ac) / (2 * a);
+    if (t2 > 0 && t2 < 1) {
+      tvalues.push(t2);
+    }
   }
 
-  return [min[0], min[1], max[0], max[1]];
-};
+  let j = tvalues.length, mt;
+  const jlen = j;
+  while (j--) {
+    t = tvalues[j];
+    mt = 1 - t;
+    bounds[0][j] = mt * mt * mt * p0[0] + 3 * mt * mt * t * p1[0] + 3 * mt * t * t * p2[0] + t * t * t * p3[0];
+    bounds[1][j] = mt * mt * mt * p0[1] + 3 * mt * mt * t * p1[1] + 3 * mt * t * t * p2[1] + t * t * t * p3[1];
+  }
+
+  bounds[0][jlen] = p0[0];
+  bounds[1][jlen] = p0[1];
+  bounds[0][jlen + 1] = p3[0];
+  bounds[1][jlen + 1] = p3[1];
+  bounds[0].length = bounds[1].length = jlen + 2;
+
+  return [
+    Math.min.apply(0, bounds[0]),
+    Math.min.apply(0, bounds[1]),
+    Math.max.apply(0, bounds[0]),
+    Math.max.apply(0, bounds[1])
+  ];
+}
 
 const quadraticBezierCurveBbox = function (p0, p1, p2, accuracy) {
   const min = [Infinity, Infinity], max = [-Infinity, -Infinity];
@@ -96,10 +143,7 @@ const svgPathBbox = function (d, minAccuracy, maxAccuracy) {
         [cmd.x0, cmd.y0],
         [cmd.x1, cmd.y1],
         [cmd.x2, cmd.y2],
-        [cmd.x, cmd.y],
-        maxFloatingNumbers([cmd.x0, cmd.y0, cmd.x1, cmd.y1,
-          cmd.x2, cmd.y2, cmd.x, cmd.y],
-        minAccuracy, maxAccuracy));
+        [cmd.x, cmd.y]);
 
       min[0] = Math.min(cBbox[0], min[0]);
       min[1] = Math.min(cBbox[1], min[1]);
@@ -120,10 +164,7 @@ const svgPathBbox = function (d, minAccuracy, maxAccuracy) {
       }
 
       cBbox = cubicBezierCurveBbox(
-        [cmd.x0, cmd.y0], p1, [cmd.x2, cmd.y2], [cmd.x, cmd.y],
-        maxFloatingNumbers(
-          [cmd.x0, cmd.y0, p1[0], p1[1], cmd.x2, cmd.y2, cmd.x, cmd.y],
-          minAccuracy, maxAccuracy));
+        [cmd.x0, cmd.y0], p1, [cmd.x2, cmd.y2], [cmd.x, cmd.y]);
 
       min[0] = Math.min(cBbox[0], min[0]);
       min[1] = Math.min(cBbox[1], min[1]);

@@ -1,6 +1,6 @@
 # svg-path-bbox
 
-[![NPM version](https://img.shields.io/npm/v/svg-path-bbox)](https://www.npmjs.com/package/svg-path-bbox) [![Tests](https://img.shields.io/travis/mondeja/svg-path-bbox?label=tests)](https://travis-ci.com/github/mondeja/svg-path-bbox) [![Coverage Status](https://coveralls.io/repos/github/mondeja/svg-path-bbox/badge.svg?branch=master)](https://coveralls.io/github/mondeja/svg-path-bbox?branch=master) [![Node versions](https://img.shields.io/node/v/svg-path-bbox)](https://www.npmjs.com/package/svg-path-bbox) [![NPM license](https://img.shields.io/npm/l/svg-path-bbox)](https://github.com/mondeja/svg-path-bbox/blob/master/LICENSE) [![Pull requests welcome!](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/mondeja/svg-path-bbox/pulls) 
+[![NPM version](https://img.shields.io/npm/v/svg-path-bbox)](https://www.npmjs.com/package/svg-path-bbox) [![Tests](https://img.shields.io/travis/mondeja/svg-path-bbox?label=tests)](https://travis-ci.com/github/mondeja/svg-path-bbox) [![Coverage Status](https://coveralls.io/repos/github/mondeja/svg-path-bbox/badge.svg?branch=master)](https://coveralls.io/github/mondeja/svg-path-bbox?branch=master) [![Dependencies](https://img.shields.io/librariesio/release/npm/svg-path-bbox)](https://libraries.io/npm/svg-path-bbox/tree) [![NPM license](https://img.shields.io/npm/l/svg-path-bbox?color=brightgreen)](https://github.com/mondeja/svg-path-bbox/blob/master/LICENSE) [![Node versions](https://img.shields.io/node/v/svg-path-bbox)](https://www.npmjs.com/package/svg-path-bbox)
 
 Compute bounding box of SVG paths. Pure Javascript, only [svg-path-parser](https://github.com/hughsk/svg-path-parser) as dependency.
 
@@ -204,4 +204,5 @@ Returns the maximum number of floating point numbers from an array of numbers. T
 ## Thanks to
 - [hughsk/svg-path-parser](https://github.com/hughsk/svg-path-parser) for the awesome SVG path parser.
 - [MadLittleMods/svg-curve-lib](https://github.com/MadLittleMods/svg-curve-lib) for elliptical arc point on line algorithm.
+- [adobe-webplatform/Snap.svg](https://github.com/adobe-webplatform/Snap.svg) for cubic Bezier curve bounding box algorithm.
 - [simple-icons/simple-icons](https://github.com/simple-icons/simple-icons) for reference dataset.
