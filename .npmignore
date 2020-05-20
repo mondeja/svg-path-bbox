@@ -2,3 +2,5 @@ webpack.config.js
 .editorconfig
 __dev__.js
 tests
+.travis.yml
+webpack.config.js

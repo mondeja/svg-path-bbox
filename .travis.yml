@@ -1,17 +1,15 @@
 os: linux
+dist: focal
 language: node_js
+node_js: 10
 
 jobs:
   include:
     - stage: "Lint"
       name: "Lint"
-      language: node_js
-      node_js: 10
       script:
         - npm run lint
     - name: "Test"
-      language: node_js
-      node_js: 10
       script:
         - npm run test
         - npm run coveralls
