@@ -4,3 +4,4 @@ __dev__.js
 tests
 .travis.yml
 webpack.config.js
+.gitattributes
