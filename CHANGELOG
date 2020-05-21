@@ -5,7 +5,7 @@
 ## [1.0.0] - ?
 - [ ] Testing.
 
-## [0.0.24] - 2020-05-20
+## [0.0.25] - 2020-05-21
 - Removed `quadraticBezierCurveBbox` function.
 - Optimized quatratic Bézier curve bounding box computation.
 - Optimized cubic Bézier curve bounding box algoritm.

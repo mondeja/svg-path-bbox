@@ -94,7 +94,6 @@ Approximates the bounding box of a cubic Bézier curve defined as in the [SVG 2 
 - **p1** (array) Coordinate of the first control point.
 - **p2** (array) Coordinate of the second control point.
 - **p3** (array) Coordinate of the end point.
-- **accuracy** (number) Power of ten for number of epochs used computing the result.
 
 <a name="ellipticalArcBbox" href="#ellipticalArcBbox">#</a> <b>ellipticalArcBbox</b>(<i>p0</i>, <i>rx</i>, <i>ry</i>, <i>xAxisRotation</i>, <i>largeArc</i>, <i>sweep</i>, <i>p1</i>, <i>accuracy</i>) ⇒ `array`
 
