@@ -58,19 +58,37 @@ describe('svgPathBbox(d, minAccuracy, maxAccuracy) [Lineal examples]', () => {
 });
 
 const svgPathBbboxCurveCases = [
-  // Mcz
   [
-    // Relative path
+    // Mcz
     'M1 1c1 0 1 1 0 1z', null, null, [1, 1, 1.75, 2],
     // Absolute points with accuracy 1
     () => cubicBezierCurveBbox([1, 1], [2, 1], [2, 2], [1, 2], 1),
   ],
   [
-    // Absolute path
+    // MCZ
     'M1 1C2 1 2 2 1 2z', null, null, [1, 1, 1.75, 2],
     // Absolute points with accuracy 5
     () => cubicBezierCurveBbox([1, 1], [2, 1], [2, 2], [1, 2], 5),
   ],
+
+  [
+    // Mqz
+    'M1 1q1 1 0 2z', null, null, [1, 1, 1.5, 3],
+    () => cubicBezierCurveBbox(
+      [1, 1],
+      [1.6666666666666665, 1.6666666666666665],
+      [1.6666666666666665, 2.3333333333333335],
+      [1, 3]),
+  ],
+  [
+    // MQZ
+    'M1 1Q2 2 1 3z', null, null, [1, 1, 1.5, 3],
+    () => cubicBezierCurveBbox(
+      [1, 1],
+      [1.6666666666666665, 1.6666666666666665],
+      [1.6666666666666665, 2.3333333333333335],
+      [1, 3]),
+  ]
 ];
 
 describe('svgPathBbox(d, minAccuracy, maxAccuracy) [Curve examples]', () => {

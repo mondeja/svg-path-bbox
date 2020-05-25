@@ -13,3 +13,5 @@ jobs:
       script:
         - npm run test
         - npm run coveralls
+after_success:
+  - coveralls

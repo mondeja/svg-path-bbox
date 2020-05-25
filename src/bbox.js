@@ -165,7 +165,7 @@ const svgPathBbox = function (d, minAccuracy, maxAccuracy) {
       cBbox = cubicBezierCurveBbox(
         [cmd.x0, cmd.y0],
         [cmd.x0 + TWO_THIRDS * (cmd.x1 - cmd.x0), cmd.y0 + TWO_THIRDS * (cmd.y1 - cmd.y0)],
-        [cmd.x2 + TWO_THIRDS * (cmd.x1 - cmd.x2), cmd.y2 + TWO_THIRDS * (cmd.y1 - cmd.y2)],
+        [cmd.x + TWO_THIRDS * (cmd.x1 - cmd.x), cmd.y + TWO_THIRDS * (cmd.y1 - cmd.y)],
         [cmd.x, cmd.y]);
 
       min[0] = Math.min(cBbox[0], min[0]);
@@ -189,7 +189,7 @@ const svgPathBbox = function (d, minAccuracy, maxAccuracy) {
       cBbox = cubicBezierCurveBbox(
         [cmd.x0, cmd.y0],
         [cmd.x0 + TWO_THIRDS * (p1[0] - cmd.x0), cmd.y0 + TWO_THIRDS * (p1[1] - cmd.y0)],
-        [cmd.x2 + TWO_THIRDS * (p1[0] - cmd.x2), cmd.y2 + TWO_THIRDS * (p1[1] - cmd.y2)],
+        [cmd.x + TWO_THIRDS * (p1[0] - cmd.x), cmd.y + TWO_THIRDS * (p1[1] - cmd.y)],
         [cmd.x, cmd.y]);
 
       min[0] = Math.min(cBbox[0], min[0]);
