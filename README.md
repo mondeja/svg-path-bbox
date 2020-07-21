@@ -124,8 +124,7 @@ Computes the coordinate of a point in a line parametrized in the range `t` from 
 
 Computes the coordinate of a point in a cubic Bézier curve parametrized in the range `t` from 0 to 1.
 
-> Cubic Bézier algorithm:
-`B(t) = (1-t)^3 * p0 + 3*(1-t)^2 * t * p1 + 3*(1-t)^2 * p2 + t^3 * p3 , 0 <= t <= 1`
+> Algorithm: `B(t) = (1-t)^3 * p0 + 3*(1-t)^2 * t * p1 + 3*(1-t)^2 * p2 + t^3 * p3 , 0 <= t <= 1`
 
 - **p0** (array) Coordinate of the start point.
 - **p1** (array) Coordinate of the first control point.
@@ -137,8 +136,7 @@ Computes the coordinate of a point in a cubic Bézier curve parametrized in the 
 
 Computes the coordinate of a point in a quadratic Bézier curve parametrized in the range `t` from 0 to 1. 
 
-> Quadratic Bézier algorithm:
-`B(t) = (1-t)2 * p0 + 2*(1-t)*t *p1 + t2 * p2 , 0 <= t <= 1`
+> Algorithm: `B(t) = (1-t)2 * p0 + 2*(1-t)*t *p1 + t2 * p2 , 0 <= t <= 1`
 
 - **p0** (array) Coordinate of the start point.
 - **p1** (array) Coordinate of the control point.
