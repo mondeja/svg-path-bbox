@@ -18,7 +18,7 @@ npm install svg-path-bbox
 [ 5, 10, 7, 13 ]
 ```
 
-The bounding box returned is an array made up in the same way of `viewBox` SVG attributes: `[x0, x1, y0, y1]`.
+The bounding box returned is an array made up in the same way of `viewBox` SVG attributes: `[x0, y0, x1, y1]`.
 
 If the path contains curves, the result is an approximation. You can control the precission needed calculating bounding box of curves using the optional parameters `minAccuracy` and `maxAccuracy`, but keep in mind that increasing these numbers will result in a slower execution:
 
