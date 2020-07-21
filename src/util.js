@@ -8,7 +8,7 @@ const pathNumbers = function (d) {
     if ([' ', '-', '.'].indexOf(dSimp[c]) === -1) {
       currentNumber += dSimp[c];
     } else if (dSimp[c] === '.') {
-      if ('.'.indexOf(currentNumber) > -1 && currentNumber !== '') {
+      if (currentNumber.indexOf('.') > -1 && currentNumber !== '') {
         response.push(parseFloat(currentNumber));
         currentNumber = '';
       }

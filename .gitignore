@@ -1,3 +1,4 @@
 /node_modules/
 __dev__.js
 /tests/coverage/
+build/
