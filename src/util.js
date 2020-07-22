@@ -25,6 +25,9 @@ const pathNumbers = function (d) {
       }
       currentNumber = '';
     }
+    if (c === dSimp.length - 1 && currentNumber !== '') {
+      response.push(parseFloat(currentNumber));
+    }
   }
   return response;
 };
