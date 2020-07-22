@@ -43,22 +43,15 @@ const angleBetween = function (v0, v1) {
 };
 
 const maxFloatingNumbers = function (numbers, min, max) {
-  if (!min) {
-    min = 1;
-  } else {
-    min = Math.max(1, min);
-  }
-  if (!max) {
-    max = 3;
-  }
-  max = Math.max(min, max);
+  min = !min ? 0 : Math.max(0, min);
+  max = !max ? Infinity : Math.max(min, max);
   let response = min, _nString;
   for (let n = 0; n < numbers.length; n++) {
     _nString = parseFloat(numbers[n]).toString();
     if (_nString.indexOf('.') === -1) {
       continue;
     }
-    response = Math.max(_nString.replace(/\d+\./, '').length, response);
+    response = Math.max(_nString.replace(/[0-9-]+\./, '').length, response);
   }
   return Math.min(response, max);
 };

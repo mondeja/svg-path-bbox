@@ -2,6 +2,7 @@
 
 const {
   pathNumbers,
+  maxFloatingNumbers,
 } = require('./../src/util.js');
 
 const pathNumbersCases = [
@@ -41,6 +42,33 @@ describe('pathNumbers(d)', () => {
     'pathNumbers(%p) ⇢  %p',
     (d, result) => {
       expect(pathNumbers(d)).toEqual(result);
+    }
+  );
+});
+
+const maxFloatingNumberCases = [
+  // Simple
+  [[5, -.6, .7, 1], null, null, 1],
+  [[5, .6, -.754, 1.32], null, null, 3],
+  [[-5, .01010101], null, null, 8],
+
+  // Maximum limit
+  [[5, -.01010101], null, 5, 5],
+  [[5, -.01010101], null, 10, 8],
+  //   (0 is the minimum maximum limit)
+  [[5, .01010101], null, -5, 0],
+
+  // Minimum limit
+  [[5, .01010101], 5, null, 8],
+  [[-5, .01010101], -5, null, 8],
+  [[-5, .01010101], 10, null, 10],
+];
+
+describe('maxFloatingNumbers(d)', () => {
+  test.each(maxFloatingNumberCases)(
+    'maxFloatingNumbers(%p, %p, %p) ⇢  %p',
+    (d, min, max, result) => {
+      expect(maxFloatingNumbers(d, min, max)).toEqual(result);
     }
   );
 });
