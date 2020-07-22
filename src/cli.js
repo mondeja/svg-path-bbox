@@ -12,7 +12,7 @@ if (require.main === module) {
   const args = process.argv.slice(sliceN, process.argv.length);
 
   if (args.length === 0) {
-    console.error('You need to pass a SVG path enclosed between quotes as unique parameter.');
+    console.error('You must pass SVG paths enclosed between quotes as parameters.');
     process.exit(1);
   }
 
