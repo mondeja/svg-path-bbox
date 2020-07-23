@@ -6,12 +6,6 @@ const {
   ellipticalArcBbox,
 } = require('./bbox');
 const {
-  lineXY,
-  cubicBezierXY,
-  quadraticBezierXY,
-  ellipticalArcXY,
-} = require('./pol');
-const {
   pathNumbers,
   angleBetween,
   maxFloatingNumbers,
@@ -22,12 +16,6 @@ module.exports = {
   svgPathBbox,
   cubicBezierCurveBbox,
   ellipticalArcBbox,
-
-  // Point on line functions
-  lineXY,
-  cubicBezierXY,
-  quadraticBezierXY,
-  ellipticalArcXY,
 
   // Utility functions
   pathNumbers,

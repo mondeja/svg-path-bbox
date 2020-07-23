@@ -2,7 +2,7 @@
 
 const svgPath = require('svgpath');
 
-const {ellipticalArcXY} = require('./pol');
+const ellipticalArcXY = require('polf/src/elliptical-arc').default;
 
 const TWO_THIRDS = 2.0 / 3.0;
 

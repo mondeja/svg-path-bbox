@@ -5,7 +5,8 @@
 ## [1.0.0] - ?
 - [ ] Testing with 100% coverage.
 
-## [0.0.43] - 2020-07-23
+## [0.0.47] - 2020-07-23
+- Separate point on line functions in another package.
 - Replaced svg-path-parser dependency with svgpath to optimize parsing time.
 - Removed dregrees to radians converter function.
 - Fix error in point on line function.
