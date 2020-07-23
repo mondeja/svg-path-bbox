@@ -5,18 +5,23 @@
 ## [1.0.0] - ?
 - [ ] Testing with 100% coverage.
 
+## [0.0.35] - 2020-07-22
+- Fix errors in utility functions.
+- Add tests for utilities and command line client.
+
 ## [0.0.28] - 2020-05-22
 - Update LICENSE.
-- Fix error coverting quaratic to Bézier coordinates.
+- Fix error converting quaratic to Bézier coordinates.
+- Add tests for some bounding boxes functions.
 
 ## [0.0.26] - 2020-05-21
 - Removed `quadraticBezierCurveBbox` function.
-- Optimized quatratic Bézier curve bounding box computation.
-- Optimized cubic Bézier curve bounding box algoritm.
+- Optimized quadratic Bézier curve bounding box computation.
+- Optimized cubic Bézier curve bounding box algorithm.
 - Fixed error on V and H commands computing SVG path bbox.
 
 ## [0.0.20] - 2020-05-17
-- Add function to obtain an array of numbers from a SVG path.
+- Add function to obtain an array of numbers from SVG path.
 - Multiple paths as arguments for command line script.
 
 ## [0.0.13] - 2020-05-17

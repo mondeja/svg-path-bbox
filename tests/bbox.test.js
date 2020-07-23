@@ -3,7 +3,7 @@
 const {
   svgPathBbox,
   cubicBezierCurveBbox,
-} = require('./../src/bbox.js');
+} = require('./../src/bbox');
 
 const svgPathBbboxLinealCases = [
   // Mz

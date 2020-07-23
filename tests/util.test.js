@@ -3,7 +3,7 @@
 const {
   pathNumbers,
   maxFloatingNumbers,
-} = require('./../src/util.js');
+} = require('./../src/util');
 
 const pathNumbersCases = [
   // Simple positive
