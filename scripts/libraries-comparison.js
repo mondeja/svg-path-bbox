@@ -1,7 +1,6 @@
 'use strict';
 
 const {svgPathBbox} = require('./../src/index');
-const svgPathBounds = require('svg-path-bounds');
 const svgPathBoundingBox = require('svg-path-bounding-box');
 
 const LIBRARIES = {
@@ -25,13 +24,13 @@ const PATHS = [
 const EPOCHS = [10000, 100000];
 
 const runLibrariesBenchmarkComparison = function (paths, epochs) {
-  let _paths = [];
-  if (typeof paths === "object") {
-    for (let key in paths) {
-      _paths.push([paths[key], key])
+  const _paths = [];
+  if (typeof paths === 'object') {
+    for (const key in paths) {
+      _paths.push([paths[key], key]);
     }
   } else {
-    for (let _p=0; _p<paths.length; _p++) {
+    for (let _p = 0; _p < paths.length; _p++) {
       _paths.push([paths[_p], null]);
     }
   }
@@ -50,11 +49,11 @@ const runLibrariesBenchmarkComparison = function (paths, epochs) {
       }
 
       console.log(`${pathSub} (type ${pathType}) [${epochs[e]} epochs]`);
-      for (let library in LIBRARIES) {
+      for (const library in LIBRARIES) {
         console.time(library);
         const func = LIBRARIES[library]['func'];
         let _errorRaised = false, result;
-        for (let r=0; r<epochs[e]; r++) {
+        for (let r = 0; r < epochs[e]; r++) {
           try {
             result = func(path[0]);
           } catch (Error) {

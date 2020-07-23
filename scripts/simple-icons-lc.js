@@ -9,8 +9,8 @@ const EPOCHS = [1000];
 const main = function () {
   const paths = {};
 
-  for (let iconSlug in simpleIcons) {
-    let path = simpleIcons[iconSlug].path;
+  for (const iconSlug in simpleIcons) {
+    const path = simpleIcons[iconSlug].path;
     paths[iconSlug] = path;
   }
 

@@ -7,8 +7,6 @@
 
 ## [0.0.43] - 2020-07-23
 - Replaced svg-path-parser dependency with svgpath to optimize parsing time.
-
-## [0.0.39] - 2020-07-23
 - Removed dregrees to radians converter function.
 - Fix error in point on line function.
 - Fix errors in utility functions.
