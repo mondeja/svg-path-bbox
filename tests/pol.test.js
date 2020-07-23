@@ -3,6 +3,7 @@
 const {
   lineXY,
   cubicBezierXY,
+  quadraticBezierXY,
 } = require('./../src/pol');
 
 
@@ -37,6 +38,24 @@ describe('cubicBezierXY(p0, p1, p2, p3, t)', () => {
     'cubicBezierXY(%p, %p, %p, %p, %p) ⇢ %p',
     (p0, p1, p2, p3, t, result) => {
       expect(cubicBezierXY(p0, p1, p2, p3, t)).toEqual(result);
+    }
+  );
+});
+
+
+const pointOnQuadraticBezierCases = [
+  [[0, 0], [0, 10], [10, 10], .5, [2.5, 7.5]],
+  [[0, 0], [0, 10], [10, 10], .25, [0.625, 4.375]],
+
+  [[0, 0], [10, 0], [10, 10], .5, [7.5, 2.5]],
+  [[0, 0], [-10, 0], [-10, -10], .25, [-4.375, -0.625]],
+];
+
+describe('quadraticBezierXY(p0, p1, p2, t)', () => {
+  test.each(pointOnQuadraticBezierCases)(
+    'quadraticBezierXY(%p, %p, %p, %p) ⇢ %p',
+    (p0, p1, p2, t, result) => {
+      expect(quadraticBezierXY(p0, p1, p2, t)).toEqual(result);
     }
   );
 });
