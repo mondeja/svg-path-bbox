@@ -13,7 +13,6 @@ const {
 } = require('./pol');
 const {
   pathNumbers,
-  toRadians,
   angleBetween,
   maxFloatingNumbers,
 } = require('./util');
@@ -32,7 +31,6 @@ module.exports = {
 
   // Utility functions
   pathNumbers,
-  toRadians,
   angleBetween,
   maxFloatingNumbers
 };

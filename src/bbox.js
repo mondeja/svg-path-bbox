@@ -129,7 +129,7 @@ const svgPathBbox = function (d) {
       max[1] = Math.max(cBbox[3], max[1]);
       break;
     }
-  });
+  }, true);
 
   return [min[0], min[1], max[0], max[1]];
 };

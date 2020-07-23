@@ -4,7 +4,7 @@ const {svgPathBbox} = require('./../src/index');
 const svgPathBounds = require('svg-path-bounds');
 const svgPathBoundingBox = require('svg-path-bounding-box');
 
-const LIBARIES = {
+const LIBRARIES = {
   'svg-path-bbox': {
     func: svgPathBbox,
   },
@@ -36,8 +36,8 @@ const runLibrariesBenchmarkComparison = function (paths, epochs) {
         `${path.substring(0, 25)}...` : path;
 
       console.log(`${pathSub} (type ${pathType}) [${epochs[e]} epochs]`);
-      for (const library in LIBARIES) {
-        const func = LIBARIES[library]['func'];
+      for (const library in LIBRARIES) {
+        const func = LIBRARIES[library]['func'];
         console.time(library);
         let result;
         try {
@@ -47,11 +47,12 @@ const runLibrariesBenchmarkComparison = function (paths, epochs) {
           console.error(Error);
         }
 
-        if (LIBARIES[library]['resultParser']) {
-          result = LIBARIES[library]['resultParser'](result);
+        if (LIBRARIES[library]['resultParser']) {
+          result = LIBRARIES[library]['resultParser'](result);
         }
+        process.stdout.write('  ');
         console.timeEnd(library);
-        console.log('  - result:', result);
+        console.log('    - result:', result);
       }
       console.log();
     }
