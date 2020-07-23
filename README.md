@@ -89,22 +89,22 @@ Computes the bounding box of SVG path following the [SVG 2 specification](https:
 
 Approximates the bounding box of a cubic Bézier curve defined as in the [SVG 2 specification](https://www.w3.org/TR/SVG2/paths.html#PathDataCubicBezierCommands).
 
-- **p0** (array) Coordinate of the start point.
-- **p1** (array) Coordinate of the first control point.
-- **p2** (array) Coordinate of the second control point.
-- **p3** (array) Coordinate of the end point.
+- **p0** (array) Start point coordinate.
+- **p1** (array) First control point coordinate.
+- **p2** (array) Second control point coordinate.
+- **p3** (array) End point coordinate.
 
 <a name="ellipticalArcBbox" href="#ellipticalArcBbox">#</a> <b>ellipticalArcBbox</b>(<i>p0</i>, <i>rx</i>, <i>ry</i>, <i>xAxisRotation</i>, <i>largeArc</i>, <i>sweep</i>, <i>p1</i>, <i>accuracy</i>) ⇒ `array`
 
 Approximates the bounding box of an elliptical arc defined as in the [SVG 2 specification](https://www.w3.org/TR/SVG2/paths.html#PathDataEllipticalArcCommands).
 
-- **p0** (array) Coordinate of the start point.
+- **p0** (array) Start point coordinate.
 - **rx** (number) X radius of the arc.
 - **ry** (number) Y radius of the arc.
 - **xAxisRotation** (number) Rotation in X of the arc in degrees.
 - **largeArc** (boolean) `large-arc` flag that specifies how the arc is drawn.
 - **sweep** (boolean) `sweep` flag that specifies how the arc is drawn.
-- **p1** (array) Coordinate of the end point.
+- **p1** (array) End point coordinate.
 - **accuracy** (number) Power of ten for number of epochs used computing the result.
 
 ### Point on line functions
@@ -115,8 +115,8 @@ Computes the coordinate of a point in a line parametrized in the range `t` from 
 
 > Algorithm: `B(t) = p0 + (p1 - p0) * t , 0 <= t <= 1`
 
-- **p0** (array) Coordinate of the start point.
-- **p1** (array) Coordinate of the end point.
+- **p0** (array) Start point coordinate.
+- **p1** (array) End point coordinate.
 - **t** (number) Number in the range from 0 to 1 that parametrizes the location on the line.
 
 <a name="cubicBezierXY" href="#cubicBezierXY">#</a> <b>cubicBezierXY</b>(<i>p0</i>, <i>p1</i>, <i>p2</i>, <i>p3</i>, <i>t</i>) ⇒ `array`
@@ -125,10 +125,10 @@ Computes the coordinate of a point in a cubic Bézier curve parametrized in the 
 
 > Algorithm: `B(t) = (1-t)^3 * p0 + 3*(1-t)^2 * t * p1 + 3*(1-t)^2 * p2 + t^3 * p3 , 0 <= t <= 1`
 
-- **p0** (array) Coordinate of the start point.
-- **p1** (array) Coordinate of the first control point.
-- **p2** (array) Coordinate of the second control point.
-- **p3** (array) Coordinate of the end point.
+- **p0** (array) Start point coordinate.
+- **p1** (array) First control point coordinate.
+- **p2** (array) Second control point coordinate.
+- **p3** (array) End point coordinate.
 - **t** (number) Number in the range from 0 to 1 that parametrizes the location on the curve.
 
 <a name="quadraticBezierXY" href="#quadraticBezierXY">#</a> <b>quadraticBezierXY</b>(<i>p0</i>, <i>p1</i>, <i>p2</i>, <i>t</i>) ⇒ `array`
@@ -137,22 +137,22 @@ Computes the coordinate of a point in a quadratic Bézier curve parametrized in 
 
 > Algorithm: `B(t) = (1-t)2 * p0 + 2*(1-t)*t *p1 + t2 * p2 , 0 <= t <= 1`
 
-- **p0** (array) Coordinate of the start point.
+- **p0** (array) Start point coordinate.
 - **p1** (array) Coordinate of the control point.
-- **p2** (array) Coordinate of the end point.
+- **p2** (array) End point coordinate.
 - **t** (number) Number in the range from 0 to 1 that parametrizes the location on the curve.
 
 <a name="ellipticalArcXY" href="#ellipticalArcXY">#</a> <b>ellipticalArcXY</b>(<i>p0</i>, <i>rx</i>, <i>ry</i>, <i>xAxisRotation</i>, <i>largeArc</i>, <i>sweep</i>, <i>p1</i>, <i>t</i>) ⇒ `array`
 
 Computes the coordinate of a point in a elliptical arc parametrized in the range `t` from 0 to 1.
 
-- **p0** (array) Coordinate of the start point.
+- **p0** (array) Start point coordinate.
 - **rx** (number) X radius of the arc.
 - **ry** (number) Y radius of the arc.
 - **xAxisRotation** (number) Rotation in X of the arc in degrees.
 - **largeArc** (boolean) `large-arc` flag that specifies how the arc is drawn.
 - **sweep** (boolean) `sweep` flag that specifies how the arc is drawn.
-- **p1** (array) Coordinate of the end point.
+- **p1** (array) End point coordinate.
 - **t** (number) Number in the range from 0 to 1 that parametrizes the location on the arc.
 
 ### Utility functions
