@@ -5,7 +5,9 @@
 ## [1.0.0] - ?
 - [ ] Testing with 100% coverage.
 
-## [0.0.35] - 2020-07-22
+## [0.0.39] - 2020-07-22
+- Removed dregrees to radians converter function.
+- Fix error in point on line function.
 - Fix errors in utility functions.
 - Add tests for utilities and command line client.
 

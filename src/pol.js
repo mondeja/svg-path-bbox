@@ -1,6 +1,6 @@
 'use strict';
 
-const {angleBetween, toRadians} = require('./util');
+const {angleBetween} = require('./util');
 
 // Line algorithm:
 // B(t) = p0 + (p1 - p0) * t
@@ -35,7 +35,7 @@ const ellipticalArcXY = function (p0, rx, ry, xAxisRotation, largeArc, sweep, p1
   rx = Math.abs(rx);
   ry = Math.abs(ry);
   xAxisRotation = (xAxisRotation % 360 + 360) % 360;
-  const xAxisRotationRadians = toRadians(xAxisRotation);
+  const xAxisRotationRadians = xAxisRotation * Math.PI / 180;
   // If the endpoints are identical, then this is equivalent to omitting the elliptical arc segment entirely.
   if (p0[0] === p1[0] && p0[0] === p1[1]) {
     return p0;

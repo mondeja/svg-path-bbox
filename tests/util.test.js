@@ -3,7 +3,6 @@
 const {
   maxFloatingNumbers,
   pathNumbers,
-  toRadians,
 } = require('./../src/util');
 
 
@@ -72,21 +71,6 @@ describe('maxFloatingNumbers(d, min, max)', () => {
     'maxFloatingNumbers(%p, %p, %p) ⇢  %p',
     (d, min, max, result) => {
       expect(maxFloatingNumbers(d, min, max)).toEqual(result);
-    }
-  );
-});
-
-
-const degreesToRadiansCases = [
-  [180, 3.141592653589793],
-  [90, 1.5707963267948966],
-];
-
-describe('toRadians(d)', () => {
-  test.each(degreesToRadiansCases)(
-    'toRadians(%p) ⇢  %p',
-    (degrees, radians) => {
-      expect(toRadians(degrees)).toEqual(radians);
     }
   );
 });

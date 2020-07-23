@@ -70,7 +70,6 @@ $ svg-path-bbox "M5 10c3 0 3 3 0 3z" "M2 8m5 5z"
 
 ### Utility functions [▼](https://github.com/mondeja/svg-path-bbox#utility-functions)
 - [pathNumbers](https://github.com/mondeja/svg-path-bbox/blob/master/README.md#pathNumbers)
-- [toRadians](https://github.com/mondeja/svg-path-bbox/blob/master/README.md#toRadians)
 - [angleBetween](https://github.com/mondeja/svg-path-bbox/blob/master/README.md#angleBetween)
 - [maxFloatingNumbers](https://github.com/mondeja/svg-path-bbox/blob/master/README.md#maxFloatingNumbers)
 
@@ -165,14 +164,6 @@ Computes the coordinate of a point in a elliptical arc parametrized in the range
 Extract all the numbers defined inside a SVG path.
 
 - **d** (string) Path string.
-
-<a name="toRadians" href="#toRadians">#</a> <b>toRadians</b>(<i>p0</i>, <i>p1</i>, <i>p2</i>, <i>t</i>) ⇒ `number`
-
-Converts from degrees to radians. Don't checks if input value is in the range from 0 to 360.
-
-> Algorithm: `degrees * PI / 180`
-
-- **degrees** (number) Degrees to convert.
 
 <a name="angleBetween" href="#angleBetween">#</a> <b>angleBetween</b>(<i>v0</i>, <i>v1</i>) ⇒ `number`
 
