@@ -41,7 +41,7 @@ const d = "M5 10c3 0 3 3 0 3z";
 [ 5, 10, 7.25, 13 ]
 ```
 
-> The number of epochs for curves and arcs bounding box calculations are `Math.pow(10, accuracy)`.
+> The number of epochs for curves and arcs bounding box calculations is `Math.pow(10, accuracy)`.
 
 ### Command line
 
