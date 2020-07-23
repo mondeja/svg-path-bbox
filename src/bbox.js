@@ -1,9 +1,8 @@
 'use strict';
 
-const {parseSVG, makeAbsolute} = require('svg-path-parser');
+const svgPath = require('svgpath');
 
 const {ellipticalArcXY} = require('./pol');
-const {maxFloatingNumbers} = require('./util');
 
 const TWO_THIRDS = 2.0 / 3.0;
 
@@ -83,144 +82,55 @@ const ellipticalArcBbox = function (p0, rx, ry, xAxisRotation, largeArc, sweep, 
   return [min[0], min[1], max[0], max[1]];
 };
 
-const svgPathBbox = function (d, minAccuracy, maxAccuracy) {
-  minAccuracy = Math.max(1, minAccuracy);
-
+const svgPathBbox = function (d) {
   const min = [Infinity, Infinity], max = [-Infinity, -Infinity];
-  let cBbox, p1;
+  let cBbox;
 
-  const dCommands = makeAbsolute(parseSVG(d));
-
-  // Previous reflection absolute coordinate
-  let _lastReflectionAbsCoord;
-
-  for (let dc = 0; dc < dCommands.length; dc++) {
-    // Command letter
-    const cmd = dCommands[dc];
-
-    if (['z', 'Z'].indexOf(cmd.code) > -1) {
-      continue;
-    }
-
-    // Extent bounding box
-    switch (cmd.code) {
+  svgPath(d).abs().unarc().unshort().iterate((seg, dc, x, y) => {
+    switch (seg[0]) {
     case 'M':
     case 'L':
-      min[0] = Math.min(min[0], cmd.x);
-      min[1] = Math.min(min[1], cmd.y);
-      max[0] = Math.max(max[0], cmd.x);
-      max[1] = Math.max(max[1], cmd.y);
-
-      _lastReflectionAbsCoord = [cmd.x, cmd.y];
+      min[0] = Math.min(min[0], seg[1]);
+      min[1] = Math.min(min[1], seg[2]);
+      max[0] = Math.max(max[0], seg[1]);
+      max[1] = Math.max(max[1], seg[2]);
       break;
     case 'V':
-      min[1] = Math.min(min[1], cmd.y);
-      max[1] = Math.max(max[1], cmd.y);
-
-      _lastReflectionAbsCoord = [cmd.x, cmd.y];
+      min[1] = Math.min(min[1], seg[1]);
+      max[1] = Math.max(max[1], seg[1]);
       break;
     case 'H':
-      min[0] = Math.min(min[0], cmd.x);
-      max[0] = Math.max(max[0], cmd.x);
-
-      _lastReflectionAbsCoord = [cmd.x, cmd.y];
+      min[0] = Math.min(min[0], seg[1]);
+      max[0] = Math.max(max[0], seg[1]);
       break;
     case 'C':
       cBbox = cubicBezierCurveBbox(
-        [cmd.x0, cmd.y0],
-        [cmd.x1, cmd.y1],
-        [cmd.x2, cmd.y2],
-        [cmd.x, cmd.y]);
+        [x, y],
+        [seg[1], seg[2]],
+        [seg[3], seg[4]],
+        [seg[5], seg[6]]);
 
       min[0] = Math.min(cBbox[0], min[0]);
       min[1] = Math.min(cBbox[1], min[1]);
       max[0] = Math.max(cBbox[2], max[0]);
       max[1] = Math.max(cBbox[3], max[1]);
-
-      _lastReflectionAbsCoord = [cmd.x2, cmd.y2];
-      break;
-    case 'S':
-      // Compute reflection
-      // SVG spec: If there is no previous command or if the previous
-      //   command was not an C, c, S or s, assume the first control
-      //   point is coincident with the current point
-      if (dc === 0 || ['C', 'S'].indexOf(dCommands[dc - 1].code) === -1) {
-        p1 = [cmd.x0, cmd.y0];
-      } else {
-        p1 = [_lastReflectionAbsCoord[0], _lastReflectionAbsCoord[1]];
-      }
-
-      cBbox = cubicBezierCurveBbox(
-        [cmd.x0, cmd.y0], p1, [cmd.x2, cmd.y2], [cmd.x, cmd.y]);
-
-      min[0] = Math.min(cBbox[0], min[0]);
-      min[1] = Math.min(cBbox[1], min[1]);
-      max[0] = Math.max(cBbox[2], max[0]);
-      max[1] = Math.max(cBbox[3], max[1]);
-
-      _lastReflectionAbsCoord = [cmd.x2, cmd.y2];
       break;
     case 'Q':
       // Quadratic to cubic
       cBbox = cubicBezierCurveBbox(
-        [cmd.x0, cmd.y0],
-        [cmd.x0 + TWO_THIRDS * (cmd.x1 - cmd.x0), cmd.y0 + TWO_THIRDS * (cmd.y1 - cmd.y0)],
-        [cmd.x + TWO_THIRDS * (cmd.x1 - cmd.x), cmd.y + TWO_THIRDS * (cmd.y1 - cmd.y)],
-        [cmd.x, cmd.y]);
+        [x, y],
+        [x + TWO_THIRDS * (seg[1] - x), y + TWO_THIRDS * (seg[2] - y)],
+        [seg[3] + TWO_THIRDS * (seg[1] - seg[3]), seg[4] + TWO_THIRDS * (seg[1] - seg[4])],
+        [seg[3], seg[4]]);
 
       min[0] = Math.min(cBbox[0], min[0]);
       min[1] = Math.min(cBbox[1], min[1]);
       max[0] = Math.max(cBbox[2], max[0]);
       max[1] = Math.max(cBbox[3], max[1]);
-
-      _lastReflectionAbsCoord = [cmd.x1, cmd.y1];
-      break;
-    case 'T':
-      // Compute reflection
-      // SVG spec: If there is no previous command or if the previous
-      //   command was not a Q, q, T or t, assume the control point
-      //   is coincident with the current point.
-      if (dc === 0 || ['Q', 'T'].indexOf(dCommands[dc - 1].code) === -1) {
-        p1 = [cmd.x0, cmd.y0];
-      } else {
-        p1 = [_lastReflectionAbsCoord[0], _lastReflectionAbsCoord[1]];
-      }
-
-      cBbox = cubicBezierCurveBbox(
-        [cmd.x0, cmd.y0],
-        [cmd.x0 + TWO_THIRDS * (p1[0] - cmd.x0), cmd.y0 + TWO_THIRDS * (p1[1] - cmd.y0)],
-        [cmd.x + TWO_THIRDS * (p1[0] - cmd.x), cmd.y + TWO_THIRDS * (p1[1] - cmd.y)],
-        [cmd.x, cmd.y]);
-
-      min[0] = Math.min(cBbox[0], min[0]);
-      min[1] = Math.min(cBbox[1], min[1]);
-      max[0] = Math.max(cBbox[2], max[0]);
-      max[1] = Math.max(cBbox[3], max[1]);
-
-      _lastReflectionAbsCoord = p1;
-      break;
-    case 'A':
-      cBbox = ellipticalArcBbox(
-        [cmd.x0, cmd.y0],
-        cmd.rx,
-        cmd.ry,
-        cmd.xAxisRotation,
-        cmd.largeArc,
-        cmd.sweep,
-        [cmd.x, cmd.y],
-        maxFloatingNumbers(
-          [cmd.x0, cmd.y0, cmd.x, cmd.y],
-          minAccuracy, maxAccuracy));
-
-      min[0] = Math.min(cBbox[0], min[0]);
-      min[1] = Math.min(cBbox[1], min[1]);
-      max[0] = Math.max(cBbox[2], max[0]);
-      max[1] = Math.max(cBbox[3], max[1]);
-
-      _lastReflectionAbsCoord = [cmd.x, cmd.y];
       break;
     }
-  }
+  });
+
   return [min[0], min[1], max[0], max[1]];
 };
 

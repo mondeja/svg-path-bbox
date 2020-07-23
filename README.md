@@ -16,32 +16,11 @@ npm install svg-path-bbox
 > const { svgPathBbox } = require("svg-path-bbox")
 > svgPathBbox("M5 10l2 3z")
 [ 5, 10, 7, 13 ]
+> svgPathBbox("M5 10c3 0 3 3 0 3z")
+[ 5, 10, 7.25, 13 ]
 ```
 
 The bounding box is an array made up in the same way of `viewBox` SVG attributes `[x0, y0, x1, y1]`.
-
-If the path contains curves, the result is an approximation. You can control the precission needed calculating bounding box of curves using the optional parameters `minAccuracy` and `maxAccuracy`, but keep in mind that increasing these numbers will result in a slower execution:
-
-```javascript
-const d = "M5 10c3 0 3 3 0 3z";
-
-> svgPathBbox(d) // accuracy is inferred by default
-[ 5, 10, 7.25, 13 ]
-
-> svgPathBbox(d, 2) // lower values might produce inaccurate results
-[ 5, 10, 7.25, 12.999106 ]
-
-> svgPathBbox(d, 3)
-[ 5, 10, 7.249999999999999, 12.999991006 ]
-
-> svgPathBbox(d, 4)
-[ 5, 10, 7.249999999999999, 13 ]
-
-> svgPathBbox(d, 5)
-[ 5, 10, 7.25, 13 ]
-```
-
-> The number of epochs for curves and arcs bounding box calculations is `Math.pow(10, accuracy)`.
 
 ### Command line
 
@@ -77,13 +56,11 @@ ________________________________________________________________________________
 
 ### Bounding box functions
 
-<a name="svgPathBbox" href="#svgPathBbox">#</a> <b>svgPathBbox</b>(<i>d</i>, <i>minAccuracy</i>, <i>maxAccuracy</i>) ⇒ `array`
+<a name="svgPathBbox" href="#svgPathBbox">#</a> <b>svgPathBbox</b>(<i>d</i>) ⇒ `array`
 
 Computes the bounding box of SVG path following the [SVG 2 specification](https://www.w3.org/TR/SVG/paths.html).
 
 - **d** (string) SVG path. 
-- **minAccuracy** (number) Minimum accuracy computing curves and arcs. By default is inferred using the maximum number of floating point numbers inside the coordinates of the arc or curve.
-- **maxAccuracy** (number) Maximum accuracy computing curves and arcs. By default is inferred using the maximum number of floating point numbers inside the coordinates of the arc or curve.
 
 <a name="cubicBezierCurveBbox" href="#cubicBezierCurveBbox">#</a> <b>cubicBezierCurveBbox</b>(<i>p0</i>, <i>p1</i>, <i>p2</i>, <i>p3</i>, <i>accuracy</i>) ⇒ `array`
 
@@ -181,7 +158,6 @@ Returns the maximum number of floating point numbers from an array of numbers. T
 - **max** (number) - Maximum limit in response.
 
 ## Thanks to
-- [hughsk/svg-path-parser](https://github.com/hughsk/svg-path-parser) for the awesome SVG path parser.
 - [MadLittleMods/svg-curve-lib](https://github.com/MadLittleMods/svg-curve-lib) for elliptical arc point on line algorithm.
 - [adobe-webplatform/Snap.svg](https://github.com/adobe-webplatform/Snap.svg) for cubic Bezier curve bounding box algorithm.
 - [simple-icons/simple-icons](https://github.com/simple-icons/simple-icons) for reference dataset.
