@@ -8,9 +8,6 @@ const LIBRARIES = {
   'svg-path-bbox': {
     func: svgPathBbox,
   },
-  'svg-path-bounds': {
-    func: svgPathBounds,
-  },
   'svg-path-bounding-box': {
     func: svgPathBoundingBox,
     resultParser(result) {
@@ -28,31 +25,54 @@ const PATHS = [
 const EPOCHS = [10000, 100000];
 
 const runLibrariesBenchmarkComparison = function (paths, epochs) {
-  for (let p = 0; p < paths.length; p++) {
+  let _paths = [];
+  if (typeof paths === "object") {
+    for (let key in paths) {
+      _paths.push([paths[key], key])
+    }
+  } else {
+    for (let _p=0; _p<paths.length; _p++) {
+      _paths.push([paths[_p], null]);
+    }
+  }
+
+  for (let p = 0; p < _paths.length; p++) {
     for (let e = 0; e < epochs.length; e++) {
-      const path = paths[p];
-      const pathType = path.replace(/[0-9\-.\s,]/g, '');
-      const pathSub = path.length > 25 ?
-        `${path.substring(0, 25)}...` : path;
+      const path = _paths[p];
+      let pathType = path[0].replace(/[0-9\-.\s,]/g, '');
+      pathType = pathType.length > 25 ?
+        `${pathType.substring(0, 25)}...` : pathType;
+      const pathSub = path[0].length > 25 ?
+        `${path[0].substring(0, 25)}...` : path;
+
+      if (_paths[p][1]) {
+        process.stdout.write(`${_paths[p][1]} - `);
+      }
 
       console.log(`${pathSub} (type ${pathType}) [${epochs[e]} epochs]`);
-      for (const library in LIBRARIES) {
-        const func = LIBRARIES[library]['func'];
+      for (let library in LIBRARIES) {
         console.time(library);
-        let result;
-        try {
-          result = func(path);
-        } catch (Error) {
-          console.error(`Error computing bbox with library ${library}:`);
-          console.error(Error);
+        const func = LIBRARIES[library]['func'];
+        let _errorRaised = false, result;
+        for (let r=0; r<epochs[e]; r++) {
+          try {
+            result = func(path[0]);
+          } catch (Error) {
+            if (!_errorRaised) {
+              console.error(`Error computing bbox with library ${library}:`);
+              console.error(Error);
+            }
+            _errorRaised = true;
+          }
         }
-
         if (LIBRARIES[library]['resultParser']) {
           result = LIBRARIES[library]['resultParser'](result);
         }
         process.stdout.write('  ');
         console.timeEnd(library);
-        console.log('    - result:', result);
+        if (result) {
+          console.log('    + result:', result);
+        }
       }
       console.log();
     }
