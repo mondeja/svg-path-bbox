@@ -1,6 +1,6 @@
 # svg-path-bbox
 
-[![NPM version](https://img.shields.io/npm/v/svg-path-bbox)](https://www.npmjs.com/package/svg-path-bbox) [![Tests](https://img.shields.io/travis/mondeja/svg-path-bbox?label=tests)](https://travis-ci.com/github/mondeja/svg-path-bbox) [![Coverage Status](https://coveralls.io/repos/github/mondeja/svg-path-bbox/badge.svg?branch=master)](https://coveralls.io/github/mondeja/svg-path-bbox?branch=master) [![Dependencies](https://img.shields.io/librariesio/release/npm/svg-path-bbox)](https://libraries.io/npm/svg-path-bbox/tree) [![NPM license](https://img.shields.io/npm/l/svg-path-bbox?color=brightgreen)](https://github.com/mondeja/svg-path-bbox/blob/master/LICENSE) [![Node versions](https://img.shields.io/node/v/svg-path-bbox)](https://www.npmjs.com/package/svg-path-bbox)
+[![NPM version](https://img.shields.io/npm/v/svg-path-bbox)](https://www.npmjs.com/package/svg-path-bbox) [![Tests](https://img.shields.io/travis/mondeja/svg-path-bbox?label=tests)](https://travis-ci.com/github/mondeja/svg-path-bbox) [![Coverage Status](https://coveralls.io/repos/github/mondeja/svg-path-bbox/badge.svg?branch=master)](https://coveralls.io/github/mondeja/svg-path-bbox?branch=master) [![NPM license](https://img.shields.io/npm/l/svg-path-bbox?color=brightgreen)](https://github.com/mondeja/svg-path-bbox/blob/master/LICENSE) [![Node versions](https://img.shields.io/node/v/svg-path-bbox)](https://www.npmjs.com/package/svg-path-bbox)
 
 Compute bounding box of SVG paths. Pure Javascript, only [svgpath](https://github.com/fontello/svgpath) as dependency.
 
@@ -112,7 +112,7 @@ Computes the coordinate of a point in a cubic Bézier curve parametrized in the 
 
 Computes the coordinate of a point in a quadratic Bézier curve parametrized in the range `t` from 0 to 1. 
 
-> Algorithm: `B(t) = (1-t)2 * p0 + 2*(1-t)*t *p1 + t2 * p2 , 0 <= t <= 1`
+> Algorithm: `B(t) = (1-t) * 2 * p0 + 2*(1-t)*t * p1 + t2 * p2 , 0 <= t <= 1`
 
 - **p0** (array) Start point coordinate.
 - **p1** (array) Coordinate of the control point.
