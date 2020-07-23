@@ -1,9 +1,11 @@
 'use strict';
 
 const {
-  pathNumbers,
   maxFloatingNumbers,
+  pathNumbers,
+  toRadians,
 } = require('./../src/util');
+
 
 const pathNumbersCases = [
   // Simple positive
@@ -46,6 +48,7 @@ describe('pathNumbers(d)', () => {
   );
 });
 
+
 const maxFloatingNumberCases = [
   // Simple
   [[5, -.6, .7, 1], null, null, 1],
@@ -64,11 +67,26 @@ const maxFloatingNumberCases = [
   [[-5, .01010101], 10, null, 10],
 ];
 
-describe('maxFloatingNumbers(d)', () => {
+describe('maxFloatingNumbers(d, min, max)', () => {
   test.each(maxFloatingNumberCases)(
     'maxFloatingNumbers(%p, %p, %p) ⇢  %p',
     (d, min, max, result) => {
       expect(maxFloatingNumbers(d, min, max)).toEqual(result);
+    }
+  );
+});
+
+
+const degreesToRadiansCases = [
+  [180, 3.141592653589793],
+  [90, 1.5707963267948966],
+];
+
+describe('toRadians(d)', () => {
+  test.each(degreesToRadiansCases)(
+    'toRadians(%p) ⇢  %p',
+    (degrees, radians) => {
+      expect(toRadians(degrees)).toEqual(radians);
     }
   );
 });

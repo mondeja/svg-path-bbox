@@ -5,6 +5,7 @@ const {
   cubicBezierXY,
 } = require('./../src/pol');
 
+
 const pointOnLineCases = [
   [[0, 0], [2, 0], .5, [1, 0]],
   [[0, 0], [2, 0], 0, [0, 0]],
@@ -23,6 +24,7 @@ describe('lineXY(p0, p1, t)', () => {
     }
   );
 });
+
 
 const pointOnCubicBezierCases = [
   [[0, 0], [0, 10], [10, 10], [10, 0], .5, [5, 7.5]],

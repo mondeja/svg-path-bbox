@@ -5,6 +5,7 @@ const {
   cubicBezierCurveBbox,
 } = require('./../src/bbox');
 
+
 const svgPathBbboxLinealCases = [
   // Mz
   ['M5 3z', null, null, [5, 3, 5, 3]],
@@ -56,6 +57,7 @@ describe('svgPathBbox(d, minAccuracy, maxAccuracy) [Lineal examples]', () => {
     }
   );
 });
+
 
 const svgPathBbboxCurveCases = [
   [
