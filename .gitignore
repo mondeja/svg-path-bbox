@@ -1,3 +1,4 @@
-/node_modules/
+node_modules
 __dev__.js
-/tests/coverage/
+tests/coverage
+deps.txt
