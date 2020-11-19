@@ -18,7 +18,7 @@
     "lint": "node_modules/.bin/eslint src tests webpack.config.js scripts",
     "lintfix": "npm run lint -- --fix",
     "pre:publish": "node_modules/.bin/run-s lint build",
-    "test": "jest"
+    "test": "node_modules/.bin/jest"
   },
   "author": {
     "name": "Álvaro Mondéjar Rubio",
@@ -27,8 +27,7 @@
   "contributors": [],
   "license": "GPL-3.0",
   "dependencies": {
-    "polf": "^0.0.3",
-    "svgpath": "^2.3.0"
+    "polf": "^0.0.3"
   },
   "devDependencies": {
     "coveralls": "^3.1.0",

@@ -3,8 +3,23 @@
 const svgPath = require('svgpath');
 
 const ellipticalArcXY = require('polf/src/elliptical-arc').default;
+const quadraticBezierXY = require('polf/src/quadratic-bezier').default;
 
-const TWO_THIRDS = 2.0 / 3.0;
+
+const quadraticBezierCurveBbox = function (p0, p1, p2, accuracy) {
+  const min = [Infinity, Infinity], max = [-Infinity, -Infinity];
+  let xy;
+
+  for (let t = 0; t <= 1; t += 1 / Math.pow(10, accuracy)) {
+    xy = quadraticBezierXY(p0, p1, p2, t);
+    min[0] = Math.min(min[0], xy[0]);
+    min[1] = Math.min(min[1], xy[1]);
+    max[0] = Math.max(max[0], xy[0]);
+    max[1] = Math.max(max[1], xy[1]);
+  }
+
+  return [min[0], min[1], max[0], max[1]];
+};
 
 // https://github.com/adobe-webplatform/Snap.svg/blob/b242f49e6798ac297a3dad0dfb03c0893e394464/src/path.js#L856
 function cubicBezierCurveBbox(p0, p1, p2, p3) {
@@ -117,12 +132,10 @@ const svgPathBbox = function (d) {
       break;
     case 'Q':
       // Quadratic to cubic
-      cBbox = cubicBezierCurveBbox(
-        [x, y],
-        [x + TWO_THIRDS * (seg[1] - x), y + TWO_THIRDS * (seg[2] - y)],
-        [seg[3] + TWO_THIRDS * (seg[1] - seg[3]), seg[4] + TWO_THIRDS * (seg[1] - seg[4])],
-        [seg[3], seg[4]]);
-
+      cBbox = quadraticBezierCurveBbox(
+        [seg[1], seg[2]],
+        [seg[3], seg[4]],
+        [x, y], 5);
       min[0] = Math.min(cBbox[0], min[0]);
       min[1] = Math.min(cBbox[1], min[1]);
       max[0] = Math.max(cBbox[2], max[0]);

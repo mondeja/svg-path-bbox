@@ -72,25 +72,6 @@ const svgPathBbboxCurveCases = [
     // Absolute points with accuracy 5
     () => cubicBezierCurveBbox([1, 1], [2, 1], [2, 2], [1, 2], 5),
   ],
-
-  [
-    // Mqz
-    'M1 1q1 1 0 2z', [1, 1, 1.5, 3],
-    () => cubicBezierCurveBbox(
-      [1, 1],
-      [1.6666666666666665, 1.6666666666666665],
-      [1.6666666666666665, 2.3333333333333335],
-      [1, 3]),
-  ],
-  [
-    // MQZ
-    'M1 1Q2 2 1 3z', [1, 1, 1.5, 3],
-    () => cubicBezierCurveBbox(
-      [1, 1],
-      [1.6666666666666665, 1.6666666666666665],
-      [1.6666666666666665, 2.3333333333333335],
-      [1, 3]),
-  ]
 ];
 
 describe('svgPathBbox(d) [Curve examples]', () => {
