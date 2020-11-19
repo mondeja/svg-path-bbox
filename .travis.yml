@@ -1,7 +1,10 @@
 os: linux
 dist: focal
 language: node_js
-node_js: 10
+node_js: 14
+cache:
+  npm: false
+
 
 jobs:
   include:
