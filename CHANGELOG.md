@@ -5,7 +5,7 @@
 ## [1.0.0] - ?
 - [ ] Testing with 100% coverage.
 
-## [0.1.0] - 2020-11-19
+## [0.1.1] - 2020-11-19
 - Fix error computing bounding boxes for Q commands.
 
 ## [0.0.47] - 2020-07-23
