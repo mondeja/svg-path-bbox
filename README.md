@@ -42,8 +42,8 @@ $ svg-path-bbox "M5 10c3 0 3 3 0 3z" "M2 8m5 5z"
 ### Bounding box functions [▼](https://github.com/mondeja/svg-path-bbox#bounding-box-functions)
 - [svgPathBbox](https://github.com/mondeja/svg-path-bbox/blob/master/README.md#svgPathBbox)
 - [cubicBezierCurveBbox](https://github.com/mondeja/svg-path-bbox/blob/master/README.md#cubicBezierCurveBbox)
-- [quadraticBezierCurveBbox](https://github.com/mondeja/svg-path-bbox/blob/master/README.md#quadraticBezierCurveBbox)
 - [ellipticalArcBbox](https://github.com/mondeja/svg-path-bbox/blob/master/README.md#ellipticalArcBbox)
+- [quadraticBezierCurveBbox](https://github.com/mondeja/svg-path-bbox/blob/master/README.md#quadraticBezierCurveBbox)
 
 ### Utility functions [▼](https://github.com/mondeja/svg-path-bbox#utility-functions)
 - [pathNumbers](https://github.com/mondeja/svg-path-bbox/blob/master/README.md#pathNumbers)
@@ -81,6 +81,16 @@ Approximates the bounding box of an elliptical arc defined as in the [SVG 2 spec
 - **p1** (array) End point coordinate.
 - **accuracy** (number) Power of ten for number of epochs used computing the result.
 
+
+<a name="quadraticBezierCurveBbox" href="#quadraticBezierCurveBbox">#</a> <b>quadraticBezierCurveBbox</b>(<i>p0</i>, <i>p1</i>, <i>p2</i>, <i>accuracy</i>) ⇒ `array`
+
+Approximates the bounding box of an quadratic Bézier curve defined as in the [SVG 2 specification](https://www.w3.org/TR/SVG2/paths.html#PathDataQuadraticBezierCommands).
+
+- **p0** (array) Start point coordinate.
+- **p1** (array) Control point coordinate.
+- **p1** (array) End point coordinate.
+- **accuracy** (number) Power of ten for number of epochs used computing the result.
+
 ### Utility functions
 
 > The next functions are used internally but are public to the API because can be useful along with this library.
@@ -91,12 +101,6 @@ Extract all the numbers defined inside a SVG path.
 
 - **d** (string) Path string.
 
-<a name="angleBetween" href="#angleBetween">#</a> <b>angleBetween</b>(<i>v0</i>, <i>v1</i>) ⇒ `number`
-
-Computes the angle between two vectors.
-
-- **v0** (array) First vector in comparison.
-- **v1** (array) Second vector in comparison.
 
 <a name="maxFloatingNumbers" href="#maxFloatingNumbers">#</a> <b>maxFloatingNumbers</b>(<i>numbers</i>, <i>min</i>, <i>max</i>) ⇒ `number`
 

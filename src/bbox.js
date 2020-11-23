@@ -151,4 +151,5 @@ module.exports = {
   svgPathBbox,
   cubicBezierCurveBbox,
   ellipticalArcBbox,
+  quadraticBezierCurveBbox,
 };

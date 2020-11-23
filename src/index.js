@@ -4,6 +4,7 @@ const {
   svgPathBbox,
   cubicBezierCurveBbox,
   ellipticalArcBbox,
+  quadraticBezierCurveBbox,
 } = require('./bbox');
 const {
   pathNumbers,
@@ -16,6 +17,7 @@ module.exports = {
   svgPathBbox,
   cubicBezierCurveBbox,
   ellipticalArcBbox,
+  quadraticBezierCurveBbox,
 
   // Utility functions
   pathNumbers,
