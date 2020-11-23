@@ -112,5 +112,8 @@ Returns the maximum number of floating point numbers from an array of numbers. T
 
 ## Thanks to
 - [MadLittleMods/svg-curve-lib](https://github.com/MadLittleMods/svg-curve-lib) for elliptical arc point on line algorithm.
-- [adobe-webplatform/Snap.svg](https://github.com/adobe-webplatform/Snap.svg) for cubic Bezier curve bounding box algorithm.
+- [adobe-webplatform/Snap.svg](https://github.com/adobe-webplatform/Snap.svg) for cubic Bézier curve bounding box algorithm.
 - [simple-icons/simple-icons](https://github.com/simple-icons/simple-icons) for reference dataset.
+- [kpym/SVGPathy](https://github.com/kpym/SVGPathy) for reference implementation.
+- [icons8/svg-path-bounding-box](https://github.com/icons8/svg-path-bounding-box) because [their bug](https://github.com/icons8/svg-path-bounding-box/issues/3) has been the source of this library.
+- [mathandy/svgpathtools](https://github.com/mathandy/svgpathtools/) for reference implementation to compare with.
