@@ -6,3 +6,4 @@ tests
 webpack.config.js
 .gitattributes
 scripts
+deps.txt

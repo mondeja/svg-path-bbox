@@ -5,9 +5,12 @@
 ## [1.0.0] - ?
 - [ ] Testing with 100% coverage.
 
-## [0.1.2] - 2020-11-19
-- Fix error computing bounding boxes for Q, T and some C commands.
+## [0.1.3] - 2020-11-23
 - Document and export `quadraticBezierCurveBbox` function.
+- Remove development file from NPM package.
+
+## [0.1.1] - 2020-11-19
+- Fix error computing bounding boxes for Q, T and some C commands.
 
 ## [0.0.47] - 2020-07-23
 - Separate point on line functions in another package.
