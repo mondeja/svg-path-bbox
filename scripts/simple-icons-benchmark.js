@@ -2,16 +2,16 @@
 
 const simpleIcons = require('simple-icons');
 
-const {runLibrariesBenchmarkComparison} = require('./libraries-comparison.js');
+const {runLibrariesBenchmarkComparison} = require('./benchmark.js');
 
 const EPOCHS = [1000];
 
 const main = function () {
   const paths = {};
 
-  for (const iconSlug in simpleIcons) {
-    const path = simpleIcons[iconSlug].path;
-    paths[iconSlug] = path;
+  for (const iconName in simpleIcons) {
+    const path = simpleIcons[iconName].path;
+    paths[iconName] = path;
   }
 
   runLibrariesBenchmarkComparison(paths, EPOCHS);
