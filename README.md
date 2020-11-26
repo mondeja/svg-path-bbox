@@ -1,8 +1,15 @@
-# svg-path-bbox
+# 📦 svg-path-bbox
 
-[![NPM version](https://img.shields.io/npm/v/svg-path-bbox)](https://www.npmjs.com/package/svg-path-bbox) [![Tests](https://img.shields.io/travis/mondeja/svg-path-bbox?label=tests)](https://travis-ci.com/github/mondeja/svg-path-bbox) [![Coverage Status](https://coveralls.io/repos/github/mondeja/svg-path-bbox/badge.svg?branch=master)](https://coveralls.io/github/mondeja/svg-path-bbox?branch=master) [![NPM license](https://img.shields.io/npm/l/svg-path-bbox?color=brightgreen)](https://github.com/mondeja/svg-path-bbox/blob/master/LICENSE) [![Node versions](https://img.shields.io/node/v/svg-path-bbox)](https://www.npmjs.com/package/svg-path-bbox)
+[![NPM version][npm-version-image]][npm-link]
+[![License][license-image]][license-link]
+[![NodeJS versions][npm-versions-image]][npm-link]
 
 SVG paths bounding box calculator.
+
+## Status
+
+[![Tests][tests-image]][tests-link]
+[![Coverage status][coverage-image]][coverage-link]
 
 ## Installation
 
@@ -49,13 +56,11 @@ $ svg-path-bbox "M5 10c3 0 3 3 0 3z" "M2 8m5 5z"
 - [pathNumbers](https://github.com/mondeja/svg-path-bbox/blob/master/README.md#pathNumbers)
 - [maxFloatingNumbers](https://github.com/mondeja/svg-path-bbox/blob/master/README.md#maxFloatingNumbers)
 
-________________________________________________________________________________
-
 ### Bounding box functions
 
 <a name="svgPathBbox" href="#svgPathBbox">#</a> <b>svgPathBbox</b>(<i>d</i>) ⇒ `array`
 
-Computes the bounding box of SVG path following the [SVG 2 specification](https://www.w3.org/TR/SVG/paths.html).
+Computes the bounding box of SVG path following the [SVG 1.1 specification](https://www.w3.org/TR/SVG/paths.html).
 
 - **d** (string) SVG path. 
 
@@ -117,3 +122,14 @@ Returns the maximum number of floating point numbers from an array of numbers. T
 - [kpym/SVGPathy](https://github.com/kpym/SVGPathy) for reference implementation.
 - [icons8/svg-path-bounding-box](https://github.com/icons8/svg-path-bounding-box) because [their bug](https://github.com/icons8/svg-path-bounding-box/issues/3) has been the source of this library.
 - [mathandy/svgpathtools](https://github.com/mathandy/svgpathtools/) for reference implementation to compare with.
+
+
+[npm-link]: https://www.npmjs.com/package/svg-path-bbox
+[npm-version-image]: https://img.shields.io/npm/v/svg-path-bbox
+[tests-image]: https://img.shields.io/github/workflow/status/mondeja/svg-path-bbox/Test
+[tests-link]: https://github.com/mondeja/svg-path-bbox/actions?query=workflow%3ATest
+[coverage-image]: https://coveralls.io/repos/github/mondeja/svg-path-bbox/badge.svg?branch=master
+[coverage-link]: https://coveralls.io/github/mondeja/svg-path-bbox?branch=master
+[license-image]: https://img.shields.io/npm/l/svg-path-bbox?color=brightgreen
+[license-link]: https://github.com/mondeja/svg-path-bbox/blob/master/LICENSE
+[npm-versions-image]: https://img.shields.io/node/v/svg-path-bbox

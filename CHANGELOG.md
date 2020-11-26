@@ -5,6 +5,10 @@
 ## [1.0.0] - ?
 - [ ] Testing with 100% coverage.
 
+## [0.1.5] - 2020-11-26
+- Documentation improved.
+- Switch CI to Github Actions.
+
 ## [0.1.4] - 2020-11-23
 - Document and export `quadraticBezierCurveBbox` function.
 - Remove development file from NPM package.
