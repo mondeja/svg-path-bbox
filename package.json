@@ -26,7 +26,7 @@
   "contributors": [],
   "license": "GPL-3.0",
   "dependencies": {
-    "polf": "^0.0.7",
+    "polf": "^0.0.10",
     "svgpath": "^2.3.0"
   },
   "devDependencies": {
