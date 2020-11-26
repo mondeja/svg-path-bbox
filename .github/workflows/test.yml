@@ -23,15 +23,3 @@ jobs:
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         path-to-lcov: ./tests/coverage/lcov.info
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Use NodeJS v14
-        uses: actions/setup-node@v1
-        with:
-          node-version: 14.x
-      - name: Install
-        run: npm install
-      - name: Lint
-        run: npm run lint
