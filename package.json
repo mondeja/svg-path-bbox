@@ -14,7 +14,7 @@
   },
   "scripts": {
     "coveralls": "cat ./tests/coverage/lcov.info | coveralls",
-    "lint": "node_modules/.bin/eslint src tests webpack.config.js scripts",
+    "lint": "node_modules/.bin/eslint src tests scripts",
     "lintfix": "npm run lint -- --fix",
     "pre:publish": "node_modules/.bin/run-s lint build",
     "test": "node_modules/.bin/jest"
