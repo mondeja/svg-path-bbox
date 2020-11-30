@@ -4,10 +4,9 @@ on:
   push:
     branches:
       - master
+    tags:
+      - v*
   pull_request:
-  release:
-    types:
-      - published
   workflow_dispatch:
 
 jobs:
@@ -48,7 +47,7 @@ jobs:
         run: npm run lint
 
   npm:
-    if: github.event_name == 'release' && github.event.action == 'published'
+    if: startsWith(github.ref, 'refs/tags/')
     needs:
       - test
       - lint
@@ -71,3 +70,34 @@ jobs:
       uses: JS-DevTools/npm-publish@v1.4.0
       with:
         token: ${{ secrets.NPM_TOKEN }}
+
+  release:
+    name: Release
+    needs: npm
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Get tag metadata
+        id: tag
+        run: |
+          TAG_TITLE=${GITHUB_REF#refs/*/}
+          echo ::set-output name=title::$TAG_TITLE
+          git -c protocol.version=2 fetch --prune --progress \
+            --no-recurse-submodules origin \
+            +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/*
+          TAG_BODY="$(git tag -l --format='%(contents)' $TAG_TITLE)"
+          TAG_BODY="${TAG_BODY//'%'/'%25'}"
+          TAG_BODY="${TAG_BODY//$'\n'/'%0A'}"
+          TAG_BODY="${TAG_BODY//$'\r'/'%0D'}"
+          echo ::set-output name=body::$TAG_BODY
+      - name: Create Release
+        uses: actions/create-release@v1.1.4
+        id: create-release
+        with:
+          tag_name: ${{ steps.tag.outputs.title }}
+          release_name: ${{ steps.tag.outputs.title }}
+          body: ${{ steps.tag.outputs.body }}
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
