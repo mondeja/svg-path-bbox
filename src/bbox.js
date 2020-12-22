@@ -21,6 +21,20 @@ const quadraticBezierCurveBbox = function (p0, p1, p2, accuracy) {
   return [min[0], min[1], max[0], max[1]];
 };
 
+// https://github.com/kpym/SVGPathy/blob/acd1a50c626b36d81969f6e98e8602e128ba4302/lib/box.js#L89
+function minmaxQ(A) {
+  const min = Math.min(A[0], A[2]), max = Math.max(A[0], A[2]);
+
+  if (A[1] > A[0] ? A[2] >= A[1] : A[2] <= A[1]) {
+    // if no extremum in ]0,1[
+    return [min, max];
+  }
+
+  // check if the extremum E is min or max
+  const E = (A[0] * A[2] - A[1] * A[1]) / (A[0] - 2 * A[1] + A[2]);
+  return E < min ? [E, max] : [min, E];
+}
+
 // https://github.com/adobe-webplatform/Snap.svg/blob/b242f49e6798ac297a3dad0dfb03c0893e394464/src/path.js#L856
 function cubicBezierCurveBbox(p0, p1, p2, p3) {
   const tvalues = [], bounds = [[], []];
@@ -104,21 +118,24 @@ const svgPathBbox = function (d) {
   svgPath(d).abs().unarc().unshort().iterate((seg, dc, x, y) => {
     switch (seg[0]) {
     case 'M':
-    case 'L':
+    case 'L': {
       min[0] = Math.min(min[0], seg[1]);
       min[1] = Math.min(min[1], seg[2]);
       max[0] = Math.max(max[0], seg[1]);
       max[1] = Math.max(max[1], seg[2]);
       break;
-    case 'V':
+    }
+    case 'V': {
       min[1] = Math.min(min[1], seg[1]);
       max[1] = Math.max(max[1], seg[1]);
       break;
-    case 'H':
+    }
+    case 'H': {
       min[0] = Math.min(min[0], seg[1]);
       max[0] = Math.max(max[0], seg[1]);
       break;
-    case 'C':
+    }
+    case 'C': {
       cBbox = cubicBezierCurveBbox(
         [x, y],
         [seg[1], seg[2]],
@@ -130,17 +147,17 @@ const svgPathBbox = function (d) {
       max[0] = Math.max(cBbox[2], max[0]);
       max[1] = Math.max(cBbox[3], max[1]);
       break;
-    case 'Q':
-      // Quadratic to cubic
-      cBbox = quadraticBezierCurveBbox(
-        [seg[1], seg[2]],
-        [seg[3], seg[4]],
-        [x, y], 5);
-      min[0] = Math.min(cBbox[0], min[0]);
-      min[1] = Math.min(cBbox[1], min[1]);
-      max[0] = Math.max(cBbox[2], max[0]);
-      max[1] = Math.max(cBbox[3], max[1]);
+    }
+    case 'Q': {
+      const xMinMax = minmaxQ([x, seg[1], seg[3]]);
+      min[0] = Math.min(xMinMax[0], min[0]);
+      max[0] = Math.max(xMinMax[1], max[0]);
+
+      const yMinMax = minmaxQ([y, seg[2], seg[4]]);
+      min[1] = Math.min(yMinMax[0], min[1]);
+      max[1] = Math.max(yMinMax[1], max[1]);
       break;
+    }
     }
   }, true);
 

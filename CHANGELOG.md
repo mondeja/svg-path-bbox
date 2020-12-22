@@ -5,6 +5,9 @@
 ## [1.0.0] - ?
 - [ ] Testing with 100% coverage.
 
+## [0.1.6] - 2020-12-22
+- Optimized quadratic curves minimum and maximum values computation.
+
 ## [0.1.5] - 2020-11-26
 - Documentation improved.
 - Switch CI to Github Actions.
