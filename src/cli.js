@@ -16,7 +16,7 @@ if (require.main === module) {
     process.exit(1);
   }
 
-  const {svgPathBbox} = require('./bbox');
+  const {svgPathBbox} = require('./index');
   for (let a = 0; a < args.length; a++) {
     console.log(svgPathBbox(args[a]).join(' '));
   }

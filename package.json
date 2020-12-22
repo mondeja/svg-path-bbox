@@ -1,6 +1,6 @@
 {
   "name": "svg-path-bbox",
-  "version": "0.1.6",
+  "version": "0.2.0",
   "description": "Compute bounding boxes of SVG paths.",
   "keywords": [
     "svg",
@@ -26,7 +26,6 @@
   "contributors": [],
   "license": "GPL-3.0",
   "dependencies": {
-    "polf": "^0.0.10",
     "svgpath": "^2.3.0"
   },
   "devDependencies": {

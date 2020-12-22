@@ -5,8 +5,12 @@
 ## [1.0.0] - ?
 - [ ] Testing with 100% coverage.
 
-## [0.1.6] - 2020-12-22
-- Optimized quadratic curves minimum and maximum values computation.
+## [0.2.0] - 2020-12-22
+- Removed almost all public API functions (only keep `svgPathBbox` function).
+- Removed `polf` dependency.
+- Optimized quadratic Bézier curves minimum and maximum values computation.
+- Optimized cubic Bézier curves minimum and maximum values computation.
+- Optimized lineal segments minimum and maximum values computation.
 
 ## [0.1.5] - 2020-11-26
 - Documentation improved.
