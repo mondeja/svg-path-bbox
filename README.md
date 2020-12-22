@@ -17,7 +17,9 @@ SVG paths bounding box calculator.
 npm install svg-path-bbox
 ```
 
-## Usage
+## Documentation
+
+### Usage
 
 ```javascript
 > const { svgPathBbox } = require("svg-path-bbox")
@@ -44,7 +46,7 @@ $ svg-path-bbox "M5 10c3 0 3 3 0 3z" "M2 8m5 5z"
 2 8 7 13
 ```
 
-## Documentation
+### Reference
 
 <a name="svgPathBbox" href="#svgPathBbox">#</a> <b>svgPathBbox</b>(<i>d</i>) ⇒ `Array`
 
