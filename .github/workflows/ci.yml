@@ -67,7 +67,7 @@ jobs:
         npm run lint
         npm test
     - name: Deploy to NPM
-      uses: JS-DevTools/npm-publish@v1.4.0
+      uses: JS-DevTools/npm-publish@v1.4.3
       with:
         token: ${{ secrets.NPM_TOKEN }}
 
