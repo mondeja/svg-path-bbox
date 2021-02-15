@@ -32,7 +32,7 @@
     "eslint": "7.19.0",
     "eslint-config-mourner": "3.0.0",
     "jest": "26.6.3",
-    "simple-icons": "4.10.0",
+    "simple-icons": "4.11.0",
     "svg-path-bounding-box": "1.0.4"
   },
   "repository": {
