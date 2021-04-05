@@ -5,13 +5,13 @@ updates:
     schedule:
       interval: daily
       time: "04:00"
+    assignees:
+      - mondeja
   - package-ecosystem: npm
     directory: "/"
     schedule:
       interval: daily
       time: "04:00"
     open-pull-requests-limit: 10
-    reviewers:
-      - mondeja
     assignees:
       - mondeja
