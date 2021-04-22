@@ -11,7 +11,7 @@ SVG paths bounding box calculator.
 [![Tests][tests-image]][tests-link]
 [![Coverage status][coverage-image]][coverage-link]
 
-## Installation
+## Install
 
 ```
 npm install svg-path-bbox
