@@ -2,7 +2,7 @@
 
 const simpleIcons = require('simple-icons');
 
-const {runLibrariesBenchmarkComparison} = require('./benchmark.js');
+const runLibrariesBenchmarkComparison = require('./benchmark.js');
 
 const EPOCHS = [1000];
 

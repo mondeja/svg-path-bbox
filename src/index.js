@@ -139,4 +139,4 @@ const svgPathBbox = function (d) {
   return [min[0], min[1], max[0], max[1]];
 };
 
-module.exports = {svgPathBbox};
+module.exports = svgPathBbox;

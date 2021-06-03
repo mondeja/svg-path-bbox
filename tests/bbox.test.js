@@ -1,6 +1,6 @@
 'use strict';
 
-const {svgPathBbox} = require('./../src/index.js');
+const svgPathBbox = require('./../src/index.js');
 
 
 const svgPathBboxLinealCases = [

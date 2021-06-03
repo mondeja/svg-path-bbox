@@ -4,3 +4,4 @@ tests
 .gitattributes
 scripts
 .github
+*.c

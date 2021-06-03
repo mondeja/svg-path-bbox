@@ -1,6 +1,6 @@
 {
   "name": "svg-path-bbox",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "Compute bounding boxes of SVG paths.",
   "keywords": [
     "svg",
@@ -16,7 +16,7 @@
     "coveralls": "cat ./tests/coverage/lcov.info | coveralls",
     "lint": "node_modules/.bin/eslint src tests scripts",
     "lintfix": "npm run lint -- --fix",
-    "test": "node_modules/.bin/jest"
+    "test": "node_modules/.bin/jest tests"
   },
   "author": {
     "name": "Álvaro Mondéjar Rubio",

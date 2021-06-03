@@ -2,8 +2,9 @@
 
 ## [Unreleased]
 
-## [1.0.0] - ?
-- [ ] Testing with 100% coverage.
+## [1.0.0] - 2021-06-03
+- Testing with 100% coverage.
+- Make `svgPathBbox` function the default export.
 
 ## [0.2.0] - 2020-12-22
 - Removed almost all public API functions (only keep `svgPathBbox` function).

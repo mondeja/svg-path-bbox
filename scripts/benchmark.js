@@ -1,6 +1,6 @@
 'use strict';
 
-const {svgPathBbox} = require('./../src/index');
+const svgPathBbox = require('./../src/index');
 const svgPathBoundingBox = require('svg-path-bounding-box');
 
 const LIBRARIES = {
@@ -85,5 +85,5 @@ const main = function () {
 if (require.main === module) {
   main();
 } else {
-  module.exports = {runLibrariesBenchmarkComparison};
+  module.exports = runLibrariesBenchmarkComparison;
 }

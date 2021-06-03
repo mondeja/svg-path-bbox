@@ -2,3 +2,5 @@ node_modules
 __dev__.js
 tests/coverage
 deps.txt
+emsdk
+*.wasm
