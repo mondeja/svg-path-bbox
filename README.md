@@ -62,7 +62,7 @@ Computes the bounding box of SVG path following the [SVG 1.1 specification](http
 
 [npm-link]: https://www.npmjs.com/package/svg-path-bbox
 [npm-version-image]: https://img.shields.io/npm/v/svg-path-bbox
-[tests-image]: https://img.shields.io/github/workflow/status/mondeja/svg-path-bbox/Test
+[tests-image]: https://img.shields.io/github/workflow/status/mondeja/svg-path-bbox/Test?logo=github&label=tests
 [tests-link]: https://github.com/mondeja/svg-path-bbox/actions?query=workflow%3ATest
 [coverage-image]: https://coveralls.io/repos/github/mondeja/svg-path-bbox/badge.svg?branch=master
 [coverage-link]: https://coveralls.io/github/mondeja/svg-path-bbox?branch=master

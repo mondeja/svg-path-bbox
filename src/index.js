@@ -23,6 +23,11 @@ function minmaxQ(A) {
 function minmaxC(A) {
   // if the polynomial is (almost) quadratic and not cubic
   const K = A[0] - 3 * A[1] + 3 * A[2] - A[3];
+
+  if (K === 0 && A[0] === A[1] && A[0] === A[3]) {
+    // no curve, point targeting same location
+    return [A[0], A[3]];
+  }
   if (Math.abs(K) < CBEZIER_MINMAX_EPSILON) {
     return minmaxQ([A[0], -0.5 * A[0] + 1.5 * A[1], A[0] - 3 * A[1] + 3 * A[2]]);
   }
