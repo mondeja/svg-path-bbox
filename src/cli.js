@@ -5,7 +5,7 @@
 /* eslint global-require: 0 */
 
 function help() {
-  const packageJson = require("../package.json");
+  const packageJson = require('../package.json');
 
   return `${packageJson.description}
   Output is redirected to STDOUT.
@@ -15,7 +15,7 @@ Usage:
 
 Options:
   -h, --help     Display this help text and exit.
-  -v, --version  Show this program version number (${packageJson.version}).`
+  -v, --version  Show this program version number (${packageJson.version}).`;
 }
 
 if (require.main === module) {
@@ -28,12 +28,12 @@ if (require.main === module) {
   if (args.length === 0) {
     console.error('You must pass SVG paths enclosed between quotes as parameters.');
     process.exit(1);
-  } else if (args.includes("--version") || args.includes("-v")) {
-    console.log(require("../package.json").version)
-    process.exit(1)
-  } else if (args.includes("--help") || args.includes("-h")) {
-    console.error(help())
-    process.exit(1)
+  } else if (args.includes('--version') || args.includes('-v')) {
+    console.log(require('../package.json').version);
+    process.exit(1);
+  } else if (args.includes('--help') || args.includes('-h')) {
+    console.error(help());
+    process.exit(1);
   }
 
   const svgPathBbox = require('./index');
