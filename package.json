@@ -16,7 +16,8 @@
     "coveralls": "cat ./tests/coverage/lcov.info | coveralls",
     "lint": "node_modules/.bin/eslint src tests scripts",
     "lintfix": "npm run lint -- --fix",
-    "test": "node_modules/.bin/jest tests"
+    "test": "node_modules/.bin/jest tests",
+    "prepare": "is-ci || husky install"
   },
   "author": {
     "name": "Álvaro Mondéjar Rubio",
@@ -25,14 +26,17 @@
   "contributors": [],
   "license": "BSD-3-Clause",
   "dependencies": {
-    "svgpath": "^2.3.0"
+    "svgpath": "*"
   },
   "devDependencies": {
+    "@babel/core": "7.16.7",
+    "@babel/eslint-parser": "7.16.5",
     "coveralls": "3.1.1",
     "eslint": "7.29.0",
-    "eslint-config-mourner": "3.0.0",
+    "husky": "7.0.4",
+    "is-ci": "3.0.1",
     "jest": "27.0.6",
-    "simple-icons": "5.4.0",
+    "simple-icons": "6.6.0",
     "svg-path-bounding-box": "1.0.4"
   },
   "repository": {
@@ -43,16 +47,23 @@
     "url": "https://github.com/mondeja/svg-path-bbox/issues",
     "email": "mondejar1994@gmail.com"
   },
-  "files": "src",
+  "files": [
+    "src"
+  ],
   "engines": {
     "node": ">=6.17.1"
   },
   "eslintConfig": {
     "env": {
       "node": true,
-      "jest": true
+      "jest": true,
+      "es6": true
     },
-    "extends": "mourner",
+    "parser": "@babel/eslint-parser",
+    "parserOptions": {
+      "requireConfigFile": false
+    },
+    "extends": "eslint:recommended",
     "rules": {
       "linebreak-style": [
         2,
