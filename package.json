@@ -25,14 +25,15 @@
   "contributors": [],
   "license": "BSD-3-Clause",
   "dependencies": {
-    "svgpath": "^2.3.0"
+    "svgpath": "*"
   },
   "devDependencies": {
+    "@babel/eslint-parser": "7.16.5",
     "coveralls": "3.1.1",
     "eslint": "7.29.0",
     "eslint-config-mourner": "3.0.0",
     "jest": "27.0.6",
-    "simple-icons": "5.4.0",
+    "simple-icons": "6.6.0",
     "svg-path-bounding-box": "1.0.4"
   },
   "repository": {
@@ -43,7 +44,9 @@
     "url": "https://github.com/mondeja/svg-path-bbox/issues",
     "email": "mondejar1994@gmail.com"
   },
-  "files": "src",
+  "files": [
+    "src"
+  ],
   "engines": {
     "node": ">=6.17.1"
   },
@@ -53,6 +56,7 @@
       "jest": true
     },
     "extends": "mourner",
+    "parser": "babel-eslint",
     "rules": {
       "linebreak-style": [
         2,
