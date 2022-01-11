@@ -32,7 +32,7 @@ npm install svg-path-bbox
 Returned bounding box is an array made up like `viewBox` SVG attributes `[x0, y0, x1, y1]` of unrounded values:
 
 <p align="center">
-  <img width="256" height="256" src="svg-path-bbox.png">
+  <img width="256" height="256" src="https://raw.githubusercontent.com/mondeja/svg-path-bbox/update-image/svg-path-bbox.svg">
 </p>
 
 ### Command line
