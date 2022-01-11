@@ -4,3 +4,4 @@ tests/coverage
 deps.txt
 emsdk
 *.wasm
+*.tgz

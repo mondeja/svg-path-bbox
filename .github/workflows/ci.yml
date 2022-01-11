@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [10.x, 12.x, 14.x]
+        node-version: [14.x, 16.x]
     steps:
     - uses: actions/checkout@v2
     - name: Use NodeJS v${{ matrix.node-version }}
@@ -37,10 +37,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Use NodeJS v14
+      - name: Use NodeJS v16
         uses: actions/setup-node@v2.2.0
         with:
-          node-version: 14.x
+          node-version: 16.x
       - name: Install
         run: npm ci
       - name: Lint
@@ -56,10 +56,10 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-    - name: Use NodeJS v14
+    - name: Use NodeJS v16
       uses: actions/setup-node@v2.2.0
       with:
-        node-version: 14.x
+        node-version: 16.x
     - name: Install dependencies
       run: npm ci
     - name: Sanity check

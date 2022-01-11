@@ -1,6 +1,7 @@
 # CHANGELOG
 
-## [Unreleased]
+## [1.0.1] - 2021-06-021
+- Fixed error computing limits for cubic Bèzier curves of length 0.
 
 ## [1.0.0] - 2021-06-03
 - Testing with 100% coverage.

@@ -1,3 +1,2 @@
 * text=auto
-build/svg-path-bbox.min.js -diff
 package-lock.json -diff
