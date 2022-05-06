@@ -22,7 +22,7 @@ npm install svg-path-bbox
 ### Usage
 
 ```javascript
-> const svgPathBbox = require("svg-path-bbox")
+> import svgPathBbox from "svg-path-bbox";
 > svgPathBbox("M5 10l2 3z")
 [ 5, 10, 7, 13 ]
 > svgPathBbox("M5 10c3 0 3 3 0 3z")
