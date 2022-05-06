@@ -10,7 +10,7 @@
   "main": "dist/index.js",
   "browser": "dist/index.js",
   "module": "dist/index.js",
-  "types": "src/index.d.ts",
+  "types": "dist/index.d.ts",
   "bin": {
     "svg-path-bbox": "src/cli.js"
   },
@@ -18,7 +18,7 @@
     "coveralls": "cat ./tests/coverage/lcov.info | coveralls",
     "prebuild": "run-s lint:fix format",
     "build": "run-s build:index clean build:index:covfix",
-    "build:index": "tsc src/index.ts --outDir dist --esModuleInterop",
+    "build:index": "tsc src/index.ts --outDir dist --esModuleInterop --declaration",
     "build:index:covfix": "node -e 'require(\"shelljs\").sed(\"-i\", \"\\\"use strict\\\";\", \"\\\"use strict\\\"; /* istanbul ignore next */\", \"dist/index.js\")'",
     "examples": "run-s example:cjs example:esm example:ts",
     "example:cjs": "node examples/common.js",
