@@ -60,7 +60,7 @@ console.log(svgPathBbox(cases[0]));
 
 ### Reference
 
-<a name="svgPathBbox" href="#svgPathBbox">#</a> <b>svgPathBbox</b>(d : <em>string</em>) ⇒ [minX: <em>number</em>, maxX: <em>number</em>, minY: <em>number</em>, maxY: <em>number</em>]
+<a name="svgPathBbox" href="#svgPathBbox">#</a> <b>svgPathBbox</b>(d : <em>string</em>) ⇒ [minX: <em>number</em>, minY: <em>number</em>, maxX: <em>number</em>, maxY: <em>number</em>]
 
 Computes the bounding box of SVG path following the [SVG 1.1 specification](https://www.w3.org/TR/SVG/paths.html).
 
