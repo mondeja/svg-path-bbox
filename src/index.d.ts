@@ -1,2 +1,7 @@
-export type BBox = [minX: number, minX: number, maxX: number, maxY: number];
-export default function svgPathBbox(svgPath: string): BBox;
+import svgPathBbox from ".";
+import "./BBox";
+
+declare module "svg-path-bbox" {
+  export default svgPathBbox;
+  export type { BBox } from "./BBox";
+}

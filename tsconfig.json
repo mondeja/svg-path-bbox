@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "strict": true,
+    "module": "commonjs",
+    "esModuleInterop": true
+  },
+  "include": ["./tests/index.ts", "./src/index.ts"],
+  "exclude": ["./node_modules"]
+}

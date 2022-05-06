@@ -17,13 +17,17 @@ jobs:
       matrix:
         node-version: [14.x, 16.x]
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Use NodeJS v${{ matrix.node-version }}
-      uses: actions/setup-node@v2.2.0
+      uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
     - name: Install
       run: npm ci
+    - name: Build
+      run: npm run build
+    - name: Run examples
+      run: npm run examples
     - name: Test
       run: npm test
     - name: Coverage
@@ -36,9 +40,9 @@ jobs:
     name: Lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Use NodeJS v16
-        uses: actions/setup-node@v2.2.0
+        uses: actions/setup-node@v3
         with:
           node-version: 16.x
       - name: Install
@@ -55,17 +59,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
     - name: Use NodeJS v16
-      uses: actions/setup-node@v2.2.0
+      uses: actions/setup-node@v3
       with:
         node-version: 16.x
     - name: Install dependencies
       run: npm ci
     - name: Sanity check
-      run: |
-        npm run lint
-        npm test
+      run: run-s build examples test
     - name: Deploy to NPM
       uses: JS-DevTools/npm-publish@v1.4.3
       with:
@@ -76,7 +78,7 @@ jobs:
     needs: npm
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Get tag metadata
         id: tag
         run: |

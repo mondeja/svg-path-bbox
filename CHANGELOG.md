@@ -1,6 +1,9 @@
 # CHANGELOG
 
-## [1.0.1] - 2021-06-021
+## [1.0.2] - 2022-01-11
+- Added basic options `--version` and `--help` to CLI.
+
+## [1.0.1] - 2021-06-21
 - Fixed error computing limits for cubic Bèzier curves of length 0.
 
 ## [1.0.0] - 2021-06-03
