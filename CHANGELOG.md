@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## [1.1.1] - 2022-06-06
+
+- Fix documentation generation in type declarations.
+
 ## [1.1.0] - 2022-05-06
 
 - Add support for Typescript.
