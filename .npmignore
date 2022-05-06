@@ -1,6 +1,7 @@
 *
 !LICENSE
 !src/
+!dist/
 !package.json
 !CHANGELOG.md
 !README.md

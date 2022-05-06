@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 . "$(dirname $0)/_/husky.sh"
 
-npm run lintfix
-npm test
+set -e
+
+run-s build examples test
 git add .

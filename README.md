@@ -22,7 +22,7 @@ npm install svg-path-bbox
 ### Usage
 
 ```javascript
-> const svgPathBbox = require("svg-path-bbox")
+> import svgPathBbox from "svg-path-bbox";
 > svgPathBbox("M5 10l2 3z")
 [ 5, 10, 7, 13 ]
 > svgPathBbox("M5 10c3 0 3 3 0 3z")
@@ -46,15 +46,28 @@ $ svg-path-bbox "M5 10c3 0 3 3 0 3z" "M2 8m5 5z"
 2 8 7 13
 ```
 
+### Typescript usage
+
+```typescript
+import svgPathBbox from "svg-path-bbox";
+import type { BBox } from "svg-path-bbox";
+
+type CasesTuple = Array<[string, BBox]>;
+
+const cases: CasesTuple = [["M0 0H3V6Z", [0, 0, 3, 6]]];
+console.log(svgPathBbox(cases[0]));
+```
+
 ### Reference
 
-<a name="svgPathBbox" href="#svgPathBbox">#</a> <b>svgPathBbox</b>(<i>d</i>) ⇒ `Array`
+<a name="svgPathBbox" href="#svgPathBbox">#</a> <b>svgPathBbox</b>(d : <em>string</em>) ⇒ [minX: <em>number</em>, maxX: <em>number</em>, minY: <em>number</em>, maxY: <em>number</em>]
 
 Computes the bounding box of SVG path following the [SVG 1.1 specification](https://www.w3.org/TR/SVG/paths.html).
 
-- **d** (string) SVG path. 
+- **d** (_string_) SVG path.
 
 ## Thanks to
+
 - [simple-icons/simple-icons](https://github.com/simple-icons/simple-icons) for reference dataset.
 - [kpym/SVGPathy](https://github.com/kpym/SVGPathy) for reference implementation.
 - [icons8/svg-path-bounding-box](https://github.com/icons8/svg-path-bounding-box) because [their bug](https://github.com/icons8/svg-path-bounding-box/issues/3) has been the source of this library.
