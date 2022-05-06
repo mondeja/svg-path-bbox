@@ -16,7 +16,7 @@
   },
   "scripts": {
     "coveralls": "cat ./tests/coverage/lcov.info | coveralls",
-    "prebuild": "run-s lint:fix",
+    "prebuild": "run-s lint:fix format",
     "build": "run-s build:index clean build:index:covfix",
     "build:index": "tsc src/index.ts --outDir dist --esModuleInterop",
     "build:index:covfix": "node -e 'require(\"shelljs\").sed(\"-i\", \"\\\"use strict\\\";\", \"\\\"use strict\\\"; /* istanbul ignore next */\", \"dist/index.js\")'",
@@ -24,9 +24,10 @@
     "example:cjs": "node examples/common.js",
     "example:esm": "node examples/esm/index.js",
     "example:ts": "ts-node examples/typescript.ts",
-    "lint": "eslint 'src/*.ts'",
+    "lint": "eslint '{src,examples}/*.ts'",
     "lint:fix": "npm run lint -- --fix",
-    "test": "node_modules/.bin/jest tests",
+    "format": "prettier -w .",
+    "test": "jest tests",
     "clean": "rimraf *.tgz dist/BBox.js",
     "prepare": "is-ci || husky install"
   },

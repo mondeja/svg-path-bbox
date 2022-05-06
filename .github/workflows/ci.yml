@@ -17,24 +17,24 @@ jobs:
       matrix:
         node-version: [14.x, 16.x]
     steps:
-    - uses: actions/checkout@v3
-    - name: Use NodeJS v${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: Install
-      run: npm ci
-    - name: Build
-      run: npm run build
-    - name: Run examples
-      run: npm run examples
-    - name: Test
-      run: npm test
-    - name: Coverage
-      uses: coverallsapp/github-action@v1.1.2
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        path-to-lcov: ./tests/coverage/lcov.info
+      - uses: actions/checkout@v3
+      - name: Use NodeJS v${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install
+        run: npm ci
+      - name: Build
+        run: npm run build
+      - name: Run examples
+        run: npm run examples
+      - name: Test
+        run: npm test
+      - name: Coverage
+        uses: coverallsapp/github-action@v1.1.2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path-to-lcov: ./tests/coverage/lcov.info
 
   lint:
     name: Lint
@@ -58,20 +58,20 @@ jobs:
     name: NPM Package
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-    - name: Use NodeJS v16
-      uses: actions/setup-node@v3
-      with:
-        node-version: 16.x
-    - name: Install dependencies
-      run: npm ci
-    - name: Sanity check
-      run: run-s build examples test
-    - name: Deploy to NPM
-      uses: JS-DevTools/npm-publish@v1.4.3
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Use NodeJS v16
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+      - name: Install dependencies
+        run: npm ci
+      - name: Sanity check
+        run: run-s build examples test
+      - name: Deploy to NPM
+        uses: JS-DevTools/npm-publish@v1.4.3
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
 
   release:
     name: Release
