@@ -27,6 +27,7 @@
     "lint": "eslint '{src,examples}/*.ts'",
     "lint:fix": "npm run lint -- --fix",
     "format": "prettier -w .",
+    "format:check": "prettier .",
     "test": "jest tests",
     "clean": "rimraf *.tgz dist/BBox.js",
     "prepare": "is-ci || husky install"

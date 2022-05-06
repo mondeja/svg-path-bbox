@@ -49,6 +49,8 @@ jobs:
         run: npm ci
       - name: Lint
         run: npm run lint
+      - name: Check format
+        run: npm run format:check
 
   npm:
     if: startsWith(github.ref, 'refs/tags/')
