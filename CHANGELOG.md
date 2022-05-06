@@ -1,7 +1,10 @@
 # CHANGELOG
 
+## [1.1.0] - 2022-05-06
+- Add support for Typescript.
+
 ## [1.0.2] - 2022-01-11
-- Added basic options `--version` and `--help` to CLI.
+- Add basic options `--version` and `--help` to CLI.
 
 ## [1.0.1] - 2021-06-21
 - Fixed error computing limits for cubic Bèzier curves of length 0.
