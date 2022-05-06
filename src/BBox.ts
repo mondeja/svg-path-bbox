@@ -1,1 +1,1 @@
-export type BBox = [minX: number, minX: number, maxX: number, maxY: number];
+export type BBox = [minX: number, minY: number, maxX: number, maxY: number];
