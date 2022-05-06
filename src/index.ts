@@ -86,7 +86,7 @@ function minmaxC(A: [number, number, number, number]): minMax {
  * @param {String} d SVG path for which their bounding box will be computed.
  * @returns {BBox}
  */
-export = function svgPathBbox(d: string): BBox {
+export default function svgPathBbox(d: string): BBox {
   const min = [Infinity, Infinity],
     max = [-Infinity, -Infinity];
   svgPath(d)
