@@ -1,5 +1,3 @@
-// from root folder: `ts-node examples/typescript.ts`
-
 import svgPathBbox from "../src";
 import type { BBox } from "../src";
 

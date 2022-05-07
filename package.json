@@ -23,7 +23,7 @@
     "examples": "run-s example:cjs example:esm example:ts",
     "example:cjs": "node examples/common.js",
     "example:esm": "node examples/esm/index.js",
-    "example:ts": "ts-node examples/typescript.ts",
+    "example:ts": "cd examples && ts-node typescript.ts",
     "lint": "eslint '{src,examples}/*.ts'",
     "lint:fix": "npm run lint -- --fix",
     "format": "prettier -w .",
