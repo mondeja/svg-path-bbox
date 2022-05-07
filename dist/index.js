@@ -1,8 +1,6 @@
-"use strict"; /* istanbul ignore next */
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-var svgpath_1 = __importDefault(require("svgpath"));
+"use strict";
+exports.__esModule = true;
+var svgPath = require("svgpath");
 // Precision for consider cubic polynom as quadratic one
 var CBEZIER_MINMAX_EPSILON = 0.00000001;
 // https://github.com/kpym/SVGPathy/blob/acd1a50c626b36d81969f6e98e8602e128ba4302/lib/box.js#L89
@@ -64,9 +62,14 @@ function minmaxC(A) {
     }
     return [min, max];
 }
-module.exports = function svgPathBbox(d) {
+/**
+ * Compute bounding boxes of SVG paths.
+ * @param {String} d SVG path for which their bounding box will be computed.
+ * @returns {BBox}
+ */
+function svgPathBbox(d) {
     var min = [Infinity, Infinity], max = [-Infinity, -Infinity];
-    (0, svgpath_1["default"])(d)
+    svgPath(d)
         .abs()
         .unarc()
         .unshort()
@@ -143,4 +146,5 @@ module.exports = function svgPathBbox(d) {
         }
     }, true);
     return [min[0], min[1], max[0], max[1]];
-};
+}
+exports["default"] = svgPathBbox;

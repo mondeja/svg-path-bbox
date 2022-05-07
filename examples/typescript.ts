@@ -1,7 +1,7 @@
 // from root folder: `ts-node examples/typescript.ts`
 
 import svgPathBbox from "../src";
-import type { BBox } from "../src/BBox";
+import type { BBox } from "../src";
 
 type CasesTuple = Array<[string, BBox]>;
 

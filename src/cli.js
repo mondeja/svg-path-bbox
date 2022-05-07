@@ -41,7 +41,7 @@ if (require.main === module) {
     process.exit(1);
   }
 
-  const svgPathBbox = require("../dist");
+  const svgPathBbox = require("../dist/cjs");
   for (let a = 0; a < args.length; a++) {
     console.log(svgPathBbox(args[a]).join(" "));
   }
