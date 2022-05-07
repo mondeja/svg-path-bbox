@@ -1,35 +1,34 @@
 {
   "name": "svg-path-bbox",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Compute bounding boxes of SVG paths.",
   "keywords": [
     "svg",
     "path",
     "bbox"
   ],
-  "main": "dist/index.js",
-  "browser": "dist/index.js",
-  "module": "dist/index.js",
-  "types": "src/index.d.ts",
+  "main": "dist/cjs.js",
+  "browser": "dist/cjs.js",
+  "module": "dist/cjs.js",
+  "types": "dist/index.d.ts",
   "bin": {
     "svg-path-bbox": "src/cli.js"
   },
   "scripts": {
     "coveralls": "cat ./tests/coverage/lcov.info | coveralls",
     "prebuild": "run-s lint:fix format",
-    "build": "run-s build:index clean build:index:covfix",
-    "build:index": "tsc src/index.ts --outDir dist --esModuleInterop",
-    "build:index:covfix": "node -e 'require(\"shelljs\").sed(\"-i\", \"\\\"use strict\\\";\", \"\\\"use strict\\\"; /* istanbul ignore next */\", \"dist/index.js\")'",
+    "build": "run-s build:ts build:cjs",
+    "build:ts": "tsc",
+    "build:cjs": "node scripts/build-cjs.js",
     "examples": "run-s example:cjs example:esm example:ts",
     "example:cjs": "node examples/common.js",
     "example:esm": "node examples/esm/index.js",
-    "example:ts": "ts-node examples/typescript.ts",
+    "example:ts": "cd examples && ts-node typescript.ts",
     "lint": "eslint '{src,examples}/*.ts'",
     "lint:fix": "npm run lint -- --fix",
     "format": "prettier -w .",
     "format:check": "prettier .",
     "test": "jest tests",
-    "clean": "rimraf *.tgz dist/BBox.js",
     "prepare": "is-ci || husky install"
   },
   "author": {
@@ -53,8 +52,6 @@
     "jest": "28.0.3",
     "npm-run-all": "4.1.5",
     "prettier": "2.6.2",
-    "rimraf": "3.0.2",
-    "shelljs": "0.8.5",
     "simple-icons": "6.20.0",
     "svg-path-bounding-box": "1.0.4",
     "ts-node": "10.7.0",

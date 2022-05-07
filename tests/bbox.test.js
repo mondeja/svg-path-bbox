@@ -1,6 +1,6 @@
 "use strict";
 
-const svgPathBbox = require("../dist");
+const svgPathBbox = require("../dist/cjs");
 
 const svgPathBboxLinealCases = [
   // Mz
