@@ -1,10 +1,10 @@
 # CHANGELOG
 
-## [1.2.0] - 2022-06-06
+## [1.2.0] - 2022-05-07
 
 - Use default export for better interoperability.
 
-## [1.1.0] - 2022-05-06
+## [1.1.0] - 2022-05-05
 
 - Add support for Typescript.
 
