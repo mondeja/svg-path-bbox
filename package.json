@@ -17,7 +17,7 @@
   },
   "scripts": {
     "coveralls": "cat ./tests/coverage/lcov.info | coveralls",
-    "prebuild": "run-s lint:fix format dist:prepare",
+    "prebuild": "run-s lint:fix dist:prepare",
     "build": "run-p build:ts build:cjs:wrapper",
     "build:ts": "tsc",
     "build:cjs:wrapper": "ts-node scripts/build-cjs-wrapper.ts",
@@ -27,8 +27,6 @@
     "example:ts": "ts-node examples/typescript.ts",
     "lint": "eslint src/index.ts tests scripts examples/typescript.ts",
     "lint:fix": "npm run lint -- --fix",
-    "format": "prettier -w .",
-    "format:check": "prettier .",
     "dist:prepare": "run-s dist:clean dist:create",
     "dist:create": "mkdir dist",
     "dist:clean": "rimraf dist",
