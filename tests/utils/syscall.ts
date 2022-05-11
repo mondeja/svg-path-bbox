@@ -27,7 +27,7 @@ export default (args: SysCallArgs, program: SysCallProgram = "node") =>
     });
 
     if (child.stderr === null) {
-      return reject("'stdout' object of ChildProcess is null");
+      return reject("'stderr' object of ChildProcess is null");
     }
     child.stderr.on("data", (data: string) => {
       stderrChunks.push(data);
