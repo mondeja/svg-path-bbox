@@ -7,28 +7,30 @@
     "path",
     "bbox"
   ],
-  "main": "dist/cjs.js",
-  "browser": "dist/cjs.js",
-  "module": "dist/cjs.js",
+  "main": "dist/wrapper.js",
+  "browser": "dist/wrapper.js",
+  "module": "dist/index.js",
   "types": "dist/index.d.ts",
+  "type": "commonjs",
   "bin": {
-    "svg-path-bbox": "src/cli.js"
+    "svg-path-bbox": "src/cli.cjs"
   },
   "scripts": {
     "coveralls": "cat ./tests/coverage/lcov.info | coveralls",
-    "prebuild": "run-s lint:fix format",
-    "build": "run-s build:ts build:cjs",
+    "prebuild": "run-s lint:fix dist:prepare",
+    "build": "run-p build:ts build:cjs:wrapper",
     "build:ts": "tsc",
-    "build:cjs": "node scripts/build-cjs.js",
-    "examples": "run-s example:cjs example:esm example:ts",
+    "build:cjs:wrapper": "ts-node scripts/build-cjs-wrapper.ts",
+    "examples": "run-s example:*",
     "example:cjs": "node examples/common.js",
-    "example:esm": "node examples/esm/index.js",
-    "example:ts": "cd examples && ts-node typescript.ts",
-    "lint": "eslint '{src,examples}/*.ts'",
+    "example:esm": "node examples/esm.mjs",
+    "example:ts": "ts-node examples/typescript.ts",
+    "lint": "eslint src/index.ts tests scripts examples/typescript.ts",
     "lint:fix": "npm run lint -- --fix",
-    "format": "prettier -w .",
-    "format:check": "prettier .",
-    "test": "jest tests",
+    "dist:prepare": "run-s dist:clean dist:create",
+    "dist:create": "mkdir dist",
+    "dist:clean": "rimraf dist",
+    "test": "jest",
     "prepare": "is-ci || husky install"
   },
   "author": {
@@ -41,6 +43,8 @@
     "svgpath": "^2.2.0"
   },
   "devDependencies": {
+    "@types/jest": "27.5.0",
+    "@types/svg-path-bounding-box": "1.0.0",
     "@typescript-eslint/eslint-plugin": "5.22.0",
     "@typescript-eslint/parser": "5.22.0",
     "coveralls": "3.1.1",
@@ -52,8 +56,10 @@
     "jest": "28.0.3",
     "npm-run-all": "4.1.5",
     "prettier": "2.6.2",
+    "rimraf": "3.0.2",
     "simple-icons": "6.20.0",
     "svg-path-bounding-box": "1.0.4",
+    "ts-jest": "28.0.2",
     "ts-node": "10.7.0",
     "typescript": "4.6.4"
   },

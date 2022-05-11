@@ -22,7 +22,8 @@ if (require.main === module) {
   let sliceN = 1;
   if (
     process.argv.indexOf(module.filename) > -1 ||
-    require("path").basename(process.argv[1]) === "svg-path-bbox"
+    require("path").basename(process.argv[1]) === "svg-path-bbox" ||
+    process.argv.indexOf(module.filename.slice(0, -3)) > -1 // rstrip '.js'
   ) {
     sliceN = 2;
   }
@@ -41,7 +42,7 @@ if (require.main === module) {
     process.exit(1);
   }
 
-  const svgPathBbox = require("../dist/cjs");
+  const svgPathBbox = require("../dist/wrapper");
   for (let a = 0; a < args.length; a++) {
     console.log(svgPathBbox(args[a]).join(" "));
   }
