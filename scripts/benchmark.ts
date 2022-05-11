@@ -3,12 +3,10 @@ import * as svgPathBoundingBox from "svg-path-bounding-box";
 import type { BBox } from "../src";
 import type { BoundingBoxView } from "svg-path-bounding-box";
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 type LibraryAdapter = {
   func: typeof svgPathBbox | typeof svgPathBoundingBox;
-  resultParser?: (result: any) => BBox;
+  resultParser?: (result: BoundingBoxView) => BBox;
 };
-/* eslint-enable @typescript-eslint/no-explicit-any */
 
 /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
 const LIBRARIES: {
