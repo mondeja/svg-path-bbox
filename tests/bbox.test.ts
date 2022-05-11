@@ -1,8 +1,9 @@
-"use strict";
+import svgPathBbox from "../src";
+import type { BBox } from "../src";
 
-const svgPathBbox = require("../dist/cjs");
+type CasesTuple = [string, BBox][];
 
-const svgPathBboxLinealCases = [
+const svgPathBboxLinealCases: CasesTuple = [
   // Mz
   ["M5 3z", [5, 3, 5, 3]],
   // Mz negative
@@ -46,15 +47,12 @@ const svgPathBboxLinealCases = [
 ];
 
 describe("svgPathBbox(d) [Lineal cases]", () => {
-  test.each(svgPathBboxLinealCases)(
-    "svgPathBbox(%p, %p, %p) ⇢ %p",
-    (d, bbox) => {
-      expect(svgPathBbox(d)).toEqual(bbox);
-    }
-  );
+  test.each(svgPathBboxLinealCases)("svgPathBbox(%p) ⇢ %p", (d, bbox) => {
+    expect(svgPathBbox(d)).toEqual(bbox);
+  });
 });
 
-const svgPathBboxPathologicalCases = [
+const svgPathBboxPathologicalCases: CasesTuple = [
   // Pathological tests (https://github.com/simple-icons/simple-icons/issues/3960)
   //   These paths proves the bug existent in `svg-path-bounding-box`
   //   that exists in `svg-path-bbox` before v0.1.1
@@ -162,10 +160,7 @@ const svgPathBboxPathologicalCases = [
 ];
 
 describe("svgPathBbox(d) [Pathological cases]", () => {
-  test.each(svgPathBboxPathologicalCases)(
-    "svgPathBbox(%p, %p, %p) ⇢ %p",
-    (d, bbox) => {
-      expect(svgPathBbox(d)).toEqual(bbox);
-    }
-  );
+  test.each(svgPathBboxPathologicalCases)("svgPathBbox(%p) ⇢ %p", (d, bbox) => {
+    expect(svgPathBbox(d)).toEqual(bbox);
+  });
 });
