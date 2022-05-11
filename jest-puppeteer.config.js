@@ -1,6 +1,6 @@
 const path = require("path");
 
-const PAGE_DIR = path.join("tests", "e2e");
+const PAGE_DIR = path.join("tests", "browser");
 const PORT = 8080;
 
 module.exports = {

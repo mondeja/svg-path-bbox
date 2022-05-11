@@ -27,7 +27,7 @@ jobs:
       - name: Build
         run: npm run build
       - name: Test
-        run: npm run test:all
+        run: npm t
       - name: Coverage
         uses: coverallsapp/github-action@v1.1.2
         with:

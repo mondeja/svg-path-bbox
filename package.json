@@ -30,10 +30,7 @@
     "dist:prepare": "run-s dist:clean dist:create",
     "dist:create": "mkdir dist",
     "dist:clean": "rimraf dist",
-    "test": "run-s test:unit",
-    "test:unit": "cross-env TEST_UNIT=true jest",
-    "test:e2e": "cross-env TEST_E2E=true jest",
-    "test:all": "jest",
+    "test": "jest",
     "prepare": "is-ci || husky install"
   },
   "author": {
@@ -54,7 +51,6 @@
     "@typescript-eslint/parser": "5.23.0",
     "anywhere": "1.6.0",
     "coveralls": "3.1.1",
-    "cross-env": "7.0.3",
     "eslint": "8.15.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-prettier": "4.0.0",

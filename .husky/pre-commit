@@ -3,5 +3,5 @@
 
 set -e
 
-run-s build test:all
+run-s build test
 git add .
