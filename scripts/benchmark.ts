@@ -3,6 +3,7 @@ import * as svgPathBoundingBox from "svg-path-bounding-box";
 import type { BBox } from "../src";
 import type { BoundingBoxView } from "svg-path-bounding-box";
 
+type Library = "svg-path-bbox" | "svg-path-bounding-box";
 type LibraryAdapter = {
   func: typeof svgPathBbox | typeof svgPathBoundingBox;
   resultParser?: (result: BoundingBoxView) => BBox;
@@ -10,14 +11,14 @@ type LibraryAdapter = {
 
 /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
 const LIBRARIES: {
-  [key: string]: LibraryAdapter;
+  [key: Library]: LibraryAdapter;
 } = {
   "svg-path-bbox": {
     func: svgPathBbox,
   },
   "svg-path-bounding-box": {
     func: svgPathBoundingBox,
-    resultParser(result: BoundingBoxView) {
+    resultParser(result) {
       return [result.minX, result.minY, result.maxX, result.maxY];
     },
   },
