@@ -11,7 +11,7 @@ type LibraryAdapter = {
 
 /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
 const LIBRARIES: {
-  [key: Library]: LibraryAdapter;
+  [key in Library]: LibraryAdapter;
 } = {
   "svg-path-bbox": {
     func: svgPathBbox,

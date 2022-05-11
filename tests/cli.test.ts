@@ -8,7 +8,7 @@ const packageJson = JSON.parse(fs.readFileSync("package.json", "utf8"));
 
 const cliPath = path.resolve("src", "cli");
 
-type CliCases = [SysCallArgs, number, string, string][];
+type CliCases = [SysCallArgs, 0 | 1, string, string][];
 
 const cliParameterCases: CliCases = [
   [['"M5 10c3 0 3 3 0 3z"'], 0, "5 10 7.25 13\n", ""],
