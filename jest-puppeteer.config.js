@@ -9,6 +9,6 @@ module.exports = {
   },
   server: {
     command: `anywhere -s -p ${PORT} -d ${PAGE_DIR}`,
-    port,
+    port: PORT,
   },
 };
