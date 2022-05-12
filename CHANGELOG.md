@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## [1.2.1] - 2022-05-12
+
+- Fixed error computing cubic Bézier curves bounding boxes.
+
 ## [1.2.0] - 2022-05-07
 
 - Use default export for better interoperability.
