@@ -5,13 +5,6 @@ import type { BBox } from "../src";
 jest.retryTimes(3);
 jest.setTimeout(2000);
 
-const rounding = 5;
-
-const round = (num: number): number => {
-  const result = parseFloat(num.toFixed(rounding));
-  return result == 0 ? 0 : result;
-};
-
 describe("Consistency with browser's element.getBBox()", () => {
   beforeAll(async () => {
     await page.goto("http://localhost:8080");
@@ -22,28 +15,20 @@ describe("Consistency with browser's element.getBBox()", () => {
   test.each(cases)(
     "browserSvgPathBbox(%p) ⇢ %p",
     async (d: string, libBbox: BBox) => {
-      const browserBbox = await page.evaluate(
-        (d, rounding) => {
-          const round = (num: number): number =>
-            parseFloat(num.toFixed(rounding));
+      const browserBbox = await page.evaluate((d) => {
+        document.body.innerHTML =
+          `<svg width="800" height='800'>` +
+          `<path fill='black' d="${d}"/></svg>`;
+        const bbox = (
+          document.querySelector("path") as SVGPathElement
+        ).getBBox();
+        return [bbox.x, bbox.y, bbox.x + bbox.width, bbox.y + bbox.height];
+      }, d);
 
-          document.body.innerHTML =
-            `<svg width="800" height='800'>` +
-            `<path fill='black' d="${d}"/></svg>`;
-          const bbox = (
-            document.querySelector("path") as SVGPathElement
-          ).getBBox();
-          return [
-            round(bbox.x),
-            round(bbox.y),
-            round(bbox.x + bbox.width),
-            round(bbox.y + bbox.height),
-          ];
-        },
-        d,
-        rounding
-      );
-      expect(browserBbox).toEqual(libBbox.map((num) => round(num)));
+      expect(browserBbox[0]).toBeCloseTo(libBbox[0], 3);
+      expect(browserBbox[1]).toBeCloseTo(libBbox[1], 3);
+      expect(browserBbox[2]).toBeCloseTo(libBbox[2], 3);
+      expect(browserBbox[3]).toBeCloseTo(libBbox[3], 3);
     }
   );
 });

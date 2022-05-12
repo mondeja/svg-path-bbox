@@ -28,7 +28,7 @@ function minmaxC(A: [number, number, number, number]): minMax {
   // if the polynomial is (almost) quadratic and not cubic
   const K = A[0] - 3 * A[1] + 3 * A[2] - A[3];
 
-  if (K === 0 && A[0] === A[1] && A[0] === A[3]) {
+  if (A[0] === A[1] && A[0] === A[3]) {
     // no curve, point targeting same location
     return [A[0], A[3]];
   }
@@ -131,6 +131,7 @@ export default function svgPathBbox(d: string): BBox {
         }
         case "C": {
           const cxMinMax = minmaxC([x, seg[1], seg[3], seg[5]]);
+
           if (min[0] > cxMinMax[0]) {
             min[0] = cxMinMax[0];
           }
