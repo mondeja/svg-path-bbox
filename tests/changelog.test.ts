@@ -1,6 +1,6 @@
 import * as fs from "node:fs";
 
-test("Latest version has a CHANGELOG entry", () => {
+test("Current version has a CHANGELOG entry", () => {
   const changelog = fs.readFileSync("CHANGELOG.md", "utf8");
   const packageJson = JSON.parse(fs.readFileSync("package.json", "utf8"));
 
