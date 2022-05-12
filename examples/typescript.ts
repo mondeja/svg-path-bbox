@@ -1,17 +1,15 @@
+import { inspect } from "node:util";
 import svgPathBbox from "../src";
 import type { BBox } from "../src";
 
-type CasesTuple = Array<[string, BBox]>;
-
-const cases: CasesTuple = [["M0 0H3V6Z", [0, 0, 3, 6]]];
+const cases: [string, BBox][] = [["M0 0H3V6Z", [0, 0, 3, 6]]];
 
 for (const [path, expectedBbox] of cases) {
-  const result = svgPathBbox(path);
-  const stringResult = JSON.stringify(result);
-  if (stringResult !== JSON.stringify(expectedBbox)) {
-    console.error(`UNEXPECTED BBOX: ${result}`);
+  const bbox = svgPathBbox(path);
+  if (JSON.stringify(bbox) !== JSON.stringify(expectedBbox)) {
+    process.stderr.write(`UNEXPECTED BBOX: ${inspect(bbox)}\n`);
     process.exit(1);
   } else {
-    console.log(result);
+    process.stdout.write(`${inspect(bbox)}\n`);
   }
 }

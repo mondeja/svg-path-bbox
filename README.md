@@ -52,9 +52,7 @@ $ svg-path-bbox "M5 10c3 0 3 3 0 3z" "M2 8m5 5z"
 import svgPathBbox from "svg-path-bbox";
 import type { BBox } from "svg-path-bbox";
 
-type CasesTuple = Array<[string, BBox]>;
-
-const cases: CasesTuple = [["M0 0H3V6Z", [0, 0, 3, 6]]];
+const cases: [string, BBox][] = [["M0 0H3V6Z", [0, 0, 3, 6]]];
 console.log(svgPathBbox(cases[0]));
 ```
 
