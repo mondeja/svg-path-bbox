@@ -131,7 +131,6 @@ export default function svgPathBbox(d: string): BBox {
         }
         case "C": {
           const cxMinMax = minmaxC([x, seg[1], seg[3], seg[5]]);
-
           if (min[0] > cxMinMax[0]) {
             min[0] = cxMinMax[0];
           }
