@@ -158,3 +158,5 @@ export const pathologicalCases: CasesTuple = [
     // svg-path-bounding-box: [ 209.59, 339.91, 452.79, 896.1 ]
   ],
 ];
+
+export default [...linealCases, ...pathologicalCases];

@@ -1,16 +1,10 @@
-import { jest } from "@jest/globals";
-import { linealCases, pathologicalCases } from "./cases/bbox";
+import cases from "./cases/bbox";
 import type { BBox } from "../src";
-
-jest.retryTimes(3);
-jest.setTimeout(2000);
 
 describe("Consistency with browser's element.getBBox()", () => {
   beforeAll(async () => {
     await page.goto("http://localhost:8080");
   });
-
-  const cases = [...linealCases, ...pathologicalCases];
 
   test.each(cases)(
     "browserSvgPathBbox(%p) ⇢ %p",
