@@ -14,5 +14,6 @@
     "prettier",
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended"
-  ]
+  ],
+  "rules": { "no-console": ["error", { "allow": ["time", "timeEnd"] }] }
 }

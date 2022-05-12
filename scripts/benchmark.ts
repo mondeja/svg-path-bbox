@@ -1,3 +1,5 @@
+import { inspect } from "node:util";
+
 import svgPathBbox from "../src";
 import * as svgPathBoundingBox from "svg-path-bounding-box";
 import type { BBox } from "../src";
@@ -47,7 +49,7 @@ const runLibrariesBenchmark = (
         process.stdout.write(`${key} - `);
       }
 
-      console.log(`${pathSummary} (type ${pathType}) [${e} epochs]`);
+      process.stdout.write(`${pathSummary} (type ${pathType}) [${e} epochs]\n`);
       for (const library in LIBRARIES) {
         console.time(library);
         const func = LIBRARIES[library]["func"];
@@ -56,10 +58,12 @@ const runLibrariesBenchmark = (
         for (let r = 0; r < e; r++) {
           try {
             result = func(path);
-          } catch (Error) {
+          } catch (err) {
             if (!_errorRaised) {
-              console.error(`Error computing bbox with library ${library}:`);
-              console.error(Error);
+              process.stderr.write(
+                `Error computing bbox with library ${library}:\n`
+              );
+              process.stderr.write(`${err}\n`);
             }
             _errorRaised = true;
           }
@@ -72,10 +76,12 @@ const runLibrariesBenchmark = (
           result = resultParser(result as BoundingBoxView);
         }
         if (result) {
-          console.log("    + result:", result);
+          process.stdout.write(
+            `    + result: ${inspect(result, { colors: true })}\n`
+          );
         }
       }
-      console.log();
+      process.stdout.write("\n");
     }
   }
 };
