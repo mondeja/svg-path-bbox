@@ -16,9 +16,7 @@ describe("Consistency with browser's element.getBBox()", () => {
     "browserSvgPathBbox(%p) ⇢ %p",
     async (d: string, libBbox: BBox) => {
       const browserBbox = await page.evaluate((d) => {
-        document.body.innerHTML =
-          `<svg width="800" height='800'>` +
-          `<path fill='black' d="${d}"/></svg>`;
+        document.body.innerHTML = `<svg width="800" height="800"><path d="${d}"/></svg>`;
         const bbox = (
           document.querySelector("path") as SVGPathElement
         ).getBBox();
