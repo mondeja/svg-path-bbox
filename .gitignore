@@ -5,3 +5,4 @@ deps.txt
 emsdk
 *.wasm
 *.tgz
+/*.mjs

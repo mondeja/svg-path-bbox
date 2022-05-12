@@ -16,12 +16,12 @@ function minmaxQ(A) {
 }
 // https://github.com/kpym/SVGPathy/blob/acd1a50c626b36d81969f6e98e8602e128ba4302/lib/box.js#L127
 function minmaxC(A) {
-    // if the polynomial is (almost) quadratic and not cubic
-    var K = A[0] - 3 * A[1] + 3 * A[2] - A[3];
-    if (K === 0 && A[0] === A[1] && A[0] === A[3]) {
+    if (A[0] === A[1] && A[0] === A[3]) {
         // no curve, point targeting same location
         return [A[0], A[3]];
     }
+    // if the polynomial is (almost) quadratic and not cubic
+    var K = A[0] - 3 * A[1] + 3 * A[2] - A[3];
     if (Math.abs(K) < CBEZIER_MINMAX_EPSILON) {
         return minmaxQ([
             A[0],
