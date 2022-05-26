@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## [1.2.2] - 2022-05-26
+
+- Fixed edge case computing cubic Bézier curves bounding boxes.
+
 ## [1.2.1] - 2022-05-12
 
 - Fixed error computing cubic Bézier curves bounding boxes.
