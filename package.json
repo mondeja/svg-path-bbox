@@ -1,6 +1,6 @@
 {
   "name": "svg-path-bbox",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Compute bounding boxes of SVG paths.",
   "keywords": [
     "svg",
@@ -62,7 +62,7 @@
     "prettier": "2.6.2",
     "puppeteer": "14.0.0",
     "rimraf": "3.0.2",
-    "simple-icons": "6.21.0",
+    "simple-icons": "6.23.0",
     "svg-path-bounding-box": "1.0.4",
     "ts-jest": "28.0.2",
     "ts-node": "10.7.0",
