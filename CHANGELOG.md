@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## [1.2.3] - 2022-12-23
+
+- Fixed CLI not being executed in some versions of Node.js < v16.
+
 ## [1.2.2] - 2022-05-26
 
 - Fixed edge case computing cubic Bézier curves bounding boxes.
