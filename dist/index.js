@@ -76,6 +76,7 @@ function svgPathBbox(d) {
         .unshort()
         .iterate(function (seg, _, x, y) {
         switch (seg[0]) {
+            // The next cases are ordered based on simple-icons data
             case "M": {
                 if (min[0] > seg[1]) {
                     min[0] = seg[1];

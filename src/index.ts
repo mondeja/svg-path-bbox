@@ -98,6 +98,7 @@ export default function svgPathBbox(d: string): BBox {
     .unshort()
     .iterate((seg, _, x, y) => {
       switch (seg[0]) {
+        // The next cases are ordered based on simple-icons data
         case "M": {
           if (min[0] > seg[1]) {
             min[0] = seg[1];
