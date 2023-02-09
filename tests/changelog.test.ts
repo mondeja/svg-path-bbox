@@ -6,6 +6,6 @@ test("Current version has a CHANGELOG entry", () => {
 
   const changelogEntry = changelog
     .split("\n")
-    .find((line: string) => line.startsWith(`## [${packageJson.version}]`));
+    .find((line: string) => line.startsWith(`## ${packageJson.version}`));
   expect(changelogEntry).toBeDefined();
 });

@@ -1,6 +1,6 @@
 {
   "name": "svg-path-bbox",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Compute bounding boxes of SVG paths.",
   "keywords": [
     "svg",
@@ -18,9 +18,11 @@
   "scripts": {
     "coveralls": "cat ./tests/coverage/lcov.info | coveralls",
     "prebuild": "run-s lint:fix dist:prepare",
-    "build": "run-p build:ts build:cjs:wrapper",
+    "build": "run-s build:index build:ts:cjs:wrapper",
+    "build:index": "ts-node scripts/build/index.ts",
+    "build:ts:cjs:wrapper": "run-p build:ts build:cjs:wrapper",
     "build:ts": "tsc",
-    "build:cjs:wrapper": "ts-node scripts/build-cjs-wrapper.ts",
+    "build:cjs:wrapper": "ts-node scripts/build/cjs-wrapper.ts",
     "examples": "run-s example:*",
     "example:cjs": "node examples/common.js",
     "example:esm": "node examples/esm.mjs",
