@@ -8,12 +8,10 @@
     "sourceType": "module",
     "requireConfigFile": false
   },
-  "plugins": ["@typescript-eslint", "prettier"],
+  "plugins": ["@typescript-eslint"],
   "extends": [
     "eslint:recommended",
-    "prettier",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended"
+    "plugin:@typescript-eslint/recommended"
   ],
   "rules": { "no-console": ["error", { "allow": ["time", "timeEnd"] }] }
 }

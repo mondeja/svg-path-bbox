@@ -4,8 +4,8 @@
     "moduleResolution": "node",
     "strict": true,
     "declaration": true,
-    "outDir": "dist"
+    "outDir": "dist",
+    "skipLibCheck": true
   },
-  "include": ["./src/index.ts"],
-  "exclude": ["./node_modules"]
+  "include": ["./src/index.ts"]
 }
