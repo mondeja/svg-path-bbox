@@ -1,6 +1,6 @@
 {
   "name": "svg-path-bbox",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "Compute bounding boxes of SVG paths.",
   "keywords": [
     "svg",
@@ -32,7 +32,7 @@
     "dist:create": "mkdir dist",
     "dist:clean": "rimraf dist",
     "test": "jest",
-    "prepare": "is-ci || husky install"
+    "prepare": "is-ci || husky"
   },
   "author": {
     "name": "Álvaro Mondéjar Rubio",
@@ -55,7 +55,7 @@
     "eslint": "8.15.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-prettier": "4.0.0",
-    "husky": "8.0.1",
+    "husky": "9.0.11",
     "is-ci": "3.0.1",
     "jest": "28.1.0",
     "jest-puppeteer": "6.1.0",

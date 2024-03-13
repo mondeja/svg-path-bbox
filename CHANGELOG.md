@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.2.5 - 2024-03-13
+
+- Fixed error computing some quadratic Bézier curves cases.
+
 ## 1.2.4 - 2023-02-09
 
 - Optimized proccesing of segments based on [Simple Icons] data.
