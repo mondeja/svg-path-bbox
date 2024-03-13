@@ -1,4 +1,4 @@
-import * as icons from "simple-icons/icons";
+import * as icons from "simple-icons";
 import type { SimpleIcon } from "simple-icons";
 
 import runLibrariesBenchmark from "./benchmark";

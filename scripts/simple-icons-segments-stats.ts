@@ -3,7 +3,7 @@
  * simple-icons icons.
  */
 
-import * as icons from "simple-icons/icons";
+import * as icons from "simple-icons";
 
 export function getSimpleIconsSegmentsStats() {
   const segmentsStats = {
