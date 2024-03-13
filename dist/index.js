@@ -7,7 +7,7 @@ var CBEZIER_MINMAX_EPSILON = 0.00000001;
 // https://github.com/kpym/SVGPathy/blob/acd1a50c626b36d81969f6e98e8602e128ba4302/lib/box.js#L89
 function minmaxQ(A) {
     var min = Math.min(A[0], A[2]), max = Math.max(A[0], A[2]);
-    if (A[1] > A[0] ? A[2] >= A[1] : A[2] <= A[1]) {
+    if (A[1] >= A[0] ? A[2] >= A[1] : A[2] <= A[1]) {
         // if no extremum in ]0,1[
         return [min, max];
     }

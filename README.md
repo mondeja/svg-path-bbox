@@ -13,7 +13,7 @@ SVG paths bounding box calculator.
 
 ## Install
 
-```
+```sh
 npm install svg-path-bbox
 ```
 
@@ -58,7 +58,7 @@ console.log(svgPathBbox(cases[0]));
 
 ### Reference
 
-<a name="svgPathBbox" href="#svgPathBbox">#</a> <b>svgPathBbox</b>(d : <em>string</em>) ⇒ [minX: <em>number</em>, minY: <em>number</em>, maxX: <em>number</em>, maxY: <em>number</em>]
+<a name="svgPathBbox" href="#svgPathBbox">#</a> **svgPathBbox**(d : _string_) ⇒ [minX: _number_, minY: _number_, maxX: _number_, maxY: _number_]
 
 Computes the bounding box of SVG path following the [SVG 1.1 specification](https://www.w3.org/TR/SVG/paths.html).
 
