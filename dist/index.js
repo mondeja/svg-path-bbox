@@ -163,4 +163,4 @@ function svgPathBbox(d) {
     }, true);
     return [min[0], min[1], max[0], max[1]];
 }
-exports.default = svgPathBbox;
+module.exports = svgPathBbox;

@@ -42,7 +42,7 @@ if (require.main === module) {
     process.exit(1);
   }
 
-  const svgPathBbox = require("../dist/wrapper");
+  const svgPathBbox = require("../dist/index.js");
   for (let a = 0; a < args.length; a++) {
     console.log(svgPathBbox(args[a]).join(" "));
   }
