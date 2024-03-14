@@ -1,27 +1,45 @@
 {
   "name": "svg-path-bbox",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "Compute bounding boxes of SVG paths.",
   "keywords": [
     "svg",
     "path",
     "bbox"
   ],
-  "main": "dist/wrapper.js",
-  "browser": "dist/wrapper.js",
-  "module": "dist/wrapper.js",
-  "types": "dist/index.d.ts",
   "type": "commonjs",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/types.d.ts",
+        "default": "./dist/index.mjs"
+      },
+      "module": {
+        "types": "./dist/types.d.ts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types.d.ts",
+        "default": "./dist/index.js"
+      },
+      "default": {
+        "types": "./dist/types.d.ts",
+        "default": "./dist/index.js"
+      }
+    }
+  },
   "bin": {
     "svg-path-bbox": "src/cli.js"
   },
   "scripts": {
     "coveralls": "cat ./tests/coverage/lcov.info | coveralls",
     "prebuild": "run-s build:index lint:fix dist:prepare",
-    "build": "run-p build:ts build:cjs:wrapper",
+    "build": "run-p build:ts build:patch-dist-indexjs build:create-index-mjs build:copy-types",
     "build:index": "ts-node scripts/build/index.ts",
     "build:ts": "tsc",
-    "build:cjs:wrapper": "ts-node scripts/build/cjs-wrapper.ts",
+    "build:patch-dist-indexjs": "ts-node scripts/build/patch-dist-indexjs.ts",
+    "build:create-index-mjs": "ts-node scripts/build/create-index-mjs.ts",
+    "build:copy-types": "ts-node scripts/build/copy-types.ts",
     "examples": "run-s example:*",
     "example:cjs": "node examples/common.js",
     "example:esm": "node examples/esm.mjs",
