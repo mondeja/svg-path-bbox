@@ -27,7 +27,9 @@ jobs:
       - name: Build
         run: npm run build
       - name: Test
-        run: npm test
+        run: |
+          npx puppeteer browsers install chrome
+          npm test
       - name: Coverage
         uses: coverallsapp/github-action@v2
         with:
@@ -67,7 +69,9 @@ jobs:
       - name: Build
         run: npm run build
       - name: Test
-        run: npm test
+        run: |
+          npx puppeteer browsers install chrome
+          npm test
       - name: Deploy to NPM
         uses: JS-DevTools/npm-publish@v3
         with:
