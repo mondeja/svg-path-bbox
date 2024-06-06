@@ -1,5 +1,6 @@
 import { inspect } from "node:util";
-import svgPathBbox from "../src";
+import * as process from "node:process";
+import { svgPathBbox } from "../src";
 import type { BBox } from "../src";
 
 const cases: [string, BBox][] = [["M0 0H3V6Z", [0, 0, 3, 6]]];
