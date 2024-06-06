@@ -22,7 +22,7 @@ npm install svg-path-bbox
 ### Usage
 
 ```javascript
-> import svgPathBbox from "svg-path-bbox";
+> import { svgPathBbox } from "svg-path-bbox";
 > svgPathBbox("M5 10l2 3z")
 [ 5, 10, 7, 13 ]
 > svgPathBbox("M5 10c3 0 3 3 0 3z")
@@ -49,7 +49,7 @@ $ svg-path-bbox "M5 10c3 0 3 3 0 3z" "M2 8m5 5z"
 ### Typescript usage
 
 ```typescript
-import svgPathBbox from "svg-path-bbox";
+import { svgPathBbox } from "svg-path-bbox";
 import type { BBox } from "svg-path-bbox";
 
 const cases: [string, BBox][] = [["M0 0H3V6Z", [0, 0, 3, 6]]];

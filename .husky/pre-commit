@@ -3,5 +3,6 @@
 
 set -e
 
-run-s build test
-git add .
+npm run build
+npm t
+git add -u

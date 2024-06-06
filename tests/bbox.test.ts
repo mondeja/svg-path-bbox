@@ -1,4 +1,4 @@
-import svgPathBbox from "../src";
+import { svgPathBbox } from "../src";
 import { linealCases, pathologicalCases } from "./cases/bbox";
 
 describe("svgPathBbox(d) [Lineal cases]", () => {
