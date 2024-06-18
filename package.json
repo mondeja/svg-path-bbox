@@ -68,7 +68,7 @@
     "husky": "9.0.11",
     "jest": "29.7.0",
     "jest-puppeteer": "10.0.1",
-    "puppeteer": "22.4.1",
+    "puppeteer": "22.11.2",
     "rimraf": "5.0.5",
     "simple-icons": "11.8.0",
     "svg-path-bounding-box": "1.0.4",
