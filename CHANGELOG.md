@@ -119,6 +119,7 @@
 - Add changelog.
 - Basic functionalities finished.
 
+[2.1.0]: https://github.com/mondeja/svg-path-bbox/compare/v2.0.0...v2.1.0
 [2.0.0]: https://github.com/mondeja/svg-path-bbox/compare/v1.2.6...v2.0.0
 [1.2.6]: https://github.com/mondeja/svg-path-bbox/compare/v1.2.5...v1.2.6
 [1.2.5]: https://github.com/mondeja/svg-path-bbox/compare/v1.2.4...v1.2.5
