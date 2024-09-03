@@ -2,7 +2,8 @@
 
 ## [2.1.0] - 2024-09-04
 
-- Accept a `SvgPath` interface from [svgpath] as argument.
+- Accept a `SvgPath` interface from [svgpath] as argument. This makes
+  `svgPathBbox` x2 faster when using `SvgPath` instances.
 
 [svgpath]: https://www.npmjs.com/package/svgpath
 
