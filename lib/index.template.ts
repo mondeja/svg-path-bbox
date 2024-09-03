@@ -1,6 +1,6 @@
 "use strict";
 
-import * as svgPath from "svgpath";
+import * as SvgPath from "svgpath";
 
 type minMax = [min: number, max: number];
 export type BBox = [minX: number, minY: number, maxX: number, maxY: number];
@@ -84,13 +84,13 @@ function minmaxC(A: [number, number, number, number]): minMax {
 
 /**
  * Compute bounding boxes of SVG paths.
- * @param {String} d SVG path for which their bounding box will be computed.
+ * @param {String | typeof SvgPath} d SVG path for which their bounding box will be computed.
  * @returns {BBox}
  */
-export function svgPathBbox(d: string): BBox {
+export function svgPathBbox(d: string | typeof SvgPath): BBox {
   const min = [Infinity, Infinity],
     max = [-Infinity, -Infinity];
-  svgPath(d)
+  SvgPath.from(d)
     .abs()
     .unarc()
     .unshort()

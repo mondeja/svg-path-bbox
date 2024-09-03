@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [2.1.0] - 2024-09-04
+
+- Accept a `SvgPath` interface from [svgpath] as argument.
+
+[svgpath]: https://www.npmjs.com/package/svgpath
+
 ## [2.0.0] - 2024-06-06
 
 - No more default export. Now you have to import `svgPathBbox` function
