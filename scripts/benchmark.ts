@@ -10,7 +10,6 @@ type LibraryAdapter = {
   resultParser?: (result: BoundingBoxView) => BBox;
 };
 
-/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
 const LIBRARIES: {
   [key: string]: LibraryAdapter;
 } = {

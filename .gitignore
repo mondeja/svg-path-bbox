@@ -6,3 +6,4 @@ emsdk
 *.wasm
 *.tgz
 /*.mjs
+!/eslint.config.mjs
