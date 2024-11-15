@@ -5,8 +5,11 @@ import runLibrariesBenchmark from "./benchmark";
 
 const EPOCHS = [1000];
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const FILTER = (icon: SimpleIcon) => true;
+
+const FILTER = (
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  icon: SimpleIcon,
+) => true;
 
 if (require.main === module) {
   runLibrariesBenchmark(
