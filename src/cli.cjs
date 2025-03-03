@@ -11,7 +11,7 @@ function help() {
   Output is redirected to STDOUT.
 
 Usage:
-  ${packageJson.name} [-h] [-v] [path [path ...]]
+  ${packageJson.name} [-h] [-v] [path] [path] ...
 
 Options:
   -h, --help     Display this help text and exit.
@@ -23,7 +23,7 @@ if (require.main === module) {
   if (
     process.argv.indexOf(module.filename) > -1 ||
     require("path").basename(process.argv[1]) === "svg-path-bbox" ||
-    process.argv.indexOf(module.filename.slice(0, -3)) > -1 // rstrip '.js'
+    process.argv.indexOf(module.filename.slice(0, -4)) > -1 // rstrip '.cjs'
   ) {
     sliceN = 2;
   }

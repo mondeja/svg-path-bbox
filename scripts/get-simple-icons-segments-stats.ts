@@ -5,7 +5,8 @@
 
 import * as icons from "simple-icons";
 
-export function getSimpleIconsSegmentsStats() {
+export function getSimpleIconsSegmentsStats(): [string, number][] {
+  const varNames = Object.keys(icons).slice(1);
   const segmentsStats = {
     M: 0,
     V: 0,
@@ -14,18 +15,13 @@ export function getSimpleIconsSegmentsStats() {
     C: 0,
     Q: 0,
   };
-  Object.values(icons).map((icon) => {
+  for (const varName of varNames) {
+    const icon = icons[varName as keyof typeof icons];
     for (const segment in segmentsStats) {
       segmentsStats[segment as keyof typeof segmentsStats] +=
-        icon.path.split(segment).length - 0;
+        icon.path.split(segment).length;
     }
-  });
+  };
   return Object.entries(segmentsStats).sort(([, a], [, b]) => b - a);
 }
 
-if (require.main === module) {
-  const stats = getSimpleIconsSegmentsStats();
-  for (const [seg, occ] of stats) {
-    process.stdout.write(`${seg}: ${occ}\n`);
-  }
-}

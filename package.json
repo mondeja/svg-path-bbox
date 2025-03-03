@@ -7,7 +7,6 @@
     "path",
     "bbox"
   ],
-  "type": "commonjs",
   "main": "./dist/index.js",
   "module": "./dist/es2015/index.mjs",
   "types": "./src/types.d.ts",
@@ -24,26 +23,25 @@
     }
   },
   "bin": {
-    "svg-path-bbox": "src/cli.js"
+    "svg-path-bbox": "src/cli.cjs"
   },
   "scripts": {
     "coveralls": "cat ./tests/coverage/lcov.info | coveralls",
     "prebuild": "npm run build:index && npm run lint:fix && npm run dist:prepare",
     "build": "npm run build:ts && npm run build:ts:esm",
-    "build:index": "ts-node scripts/build/index.ts",
+    "build:index": "tsx scripts/build/index.ts",
     "build:ts": "tsc",
-    "build:ts:esm": "tsc --module es2015 --target es2015 --outDir dist/es2015 && ts-node scripts/build/patch-esm-dist.ts",
+    "build:ts:esm": "tsc --module es2015 --target es2015 --outDir dist/es2015 && tsx scripts/build/patch-esm-dist.ts",
     "examples": "npm run example:cjs && npm run example:esm && npm run example:ts",
-    "example:cjs": "node examples/common.js",
+    "example:cjs": "node examples/common.cjs",
     "example:esm": "node examples/esm.mjs",
-    "example:ts": "ts-node examples/typescript.ts",
+    "example:ts": "tsx examples/typescript.ts",
     "lint": "eslint --max-warnings 0 src/index.ts tests scripts examples/typescript.ts",
     "lint:fix": "npm run lint -- --fix",
-    "dist:prepare": "npm run dist:clean && npm run dist:create",
-    "dist:create": "mkdir dist",
-    "dist:clean": "rimraf dist",
+    "dist:prepare": "node -e \"f=require('fs/promises');f.rm('dist',{recursive:true,force:true}).then(()=>f.mkdir('dist'))\"",
     "test": "jest",
-    "prepare": "husky"
+    "prepare": "husky",
+    "bench:si": "tsx scripts/simple-icons-benchmark.cts"
   },
   "author": {
     "name": "Álvaro Mondéjar Rubio",
@@ -57,23 +55,22 @@
   "devDependencies": {
     "@types/jest": "29.5.14",
     "@types/jest-environment-puppeteer": "5.0.6",
-    "@types/node": "22.9.0",
+    "@types/node": "22.13.8",
     "@types/puppeteer": "5.4.7",
     "@types/svg-path-bounding-box": "1.0.2",
-    "@typescript-eslint/eslint-plugin": "8.14.0",
-    "@typescript-eslint/parser": "8.14.0",
+    "@typescript-eslint/eslint-plugin": "8.25.0",
+    "@typescript-eslint/parser": "8.25.0",
     "anywhere": "1.6.0",
     "coveralls": "3.1.1",
-    "eslint": "9.14.0",
-    "husky": "9.1.6",
+    "eslint": "9.21.0",
+    "husky": "9.1.7",
     "jest": "29.7.0",
-    "jest-puppeteer": "10.1.4",
-    "puppeteer": "23.8.0",
-    "rimraf": "5.0.5",
-    "simple-icons": "13.16.0",
+    "jest-puppeteer": "11.0.0",
+    "puppeteer": "24.3.0",
+    "simple-icons": "14.9.0",
     "svg-path-bounding-box": "1.0.4",
-    "ts-jest": "29.2.5",
-    "ts-node": "10.9.2",
+    "ts-jest": "29.2.6",
+    "tsx": "4.19.3",
     "typescript": "5.6.3"
   },
   "repository": {

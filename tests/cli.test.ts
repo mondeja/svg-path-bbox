@@ -6,7 +6,7 @@ import type { SysCallOutput, SysCallArgs } from "./utils/syscall";
 
 const packageJson = JSON.parse(fs.readFileSync("package.json", "utf8"));
 
-const cliPath = path.resolve("src", "cli");
+const cliPath = path.resolve("src", "cli.cjs");
 
 type CliCases = [SysCallArgs, 0 | 1, string, string][];
 

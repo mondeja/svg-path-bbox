@@ -5,5 +5,3 @@ deps.txt
 emsdk
 *.wasm
 *.tgz
-/*.mjs
-!/eslint.config.mjs
