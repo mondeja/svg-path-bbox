@@ -1,6 +1,6 @@
 import * as fs from "node:fs";
 import cases from "../../lib/cases";
-import { getSimpleIconsSegmentsStats } from "../simple-icons-segments-stats";
+import { getSimpleIconsSegmentsStats } from "../get-simple-icons-segments-stats";
 
 function buildIndexTs(indexTemplateTs: string): string {
   let indexTs = "";

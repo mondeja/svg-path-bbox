@@ -1,15 +1,14 @@
-const path = require("path");
+import process from 'node:process';
 
-const PAGE_DIR = path.join("tests", "browser");
 const PORT = 8080;
 
-module.exports = {
+export default {
   launch: {
     headless: process.env.TEST_HEADLESS !== "false",
     args: ['--no-sandbox', '--disable-setuid-sandbox'],
   },
   server: {
-    command: `anywhere -s -p ${PORT} -d ${PAGE_DIR}`,
+    command: `anywhere -s -p ${PORT} -d tests/browser`,
     port: PORT,
   },
 };

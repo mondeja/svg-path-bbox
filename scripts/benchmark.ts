@@ -1,7 +1,7 @@
 import { inspect } from "node:util";
 
 import { svgPathBbox } from "../src";
-import * as svgPathBoundingBox from "svg-path-bounding-box";
+import svgPathBoundingBox from "svg-path-bounding-box";
 import type { BBox } from "../src";
 import type { BoundingBoxView } from "svg-path-bounding-box";
 

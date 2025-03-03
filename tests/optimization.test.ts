@@ -1,11 +1,11 @@
 import * as fs from "node:fs";
-import { getSimpleIconsSegmentsStats } from "../scripts/simple-icons-segments-stats";
+import { getSimpleIconsSegmentsStats } from "../scripts/get-simple-icons-segments-stats";
 
 test("Segments parsing order switch is optimized", () => {
   // We use simple-icons data to compute segment stats
   const indexTs = fs.readFileSync("src/index.ts", "utf8");
   const siSegmentsByOccurrence = getSimpleIconsSegmentsStats().map(
-    ([seg]) => seg
+    ([seg]: [string, number]) => seg
   );
 
   const swithCasesSegmentByLines = indexTs
