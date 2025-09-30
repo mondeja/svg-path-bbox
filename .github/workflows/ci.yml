@@ -15,11 +15,11 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [18.x, 20.x, 22.x]
+        node-version: [18, 20, 22, 24]
     steps:
-      - uses: actions/checkout@v4
-      - name: Use NodeJS v${{ matrix.node-version }}
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - name: Setup Node.js v${{ matrix.node-version }}
+        uses: actions/setup-node@v5
         with:
           node-version: ${{ matrix.node-version }}
       - name: Install
@@ -40,11 +40,11 @@ jobs:
     name: Lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Use NodeJS v22
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
         with:
-          node-version: 22.x
+          node-version: 24
       - name: Install
         run: npm ci --ignore-scripts --no-audit --no-fund
       - name: Lint
@@ -57,13 +57,16 @@ jobs:
       - lint
     name: NPM Package
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
-      - name: Use NodeJS v22
-        uses: actions/setup-node@v4
+        uses: actions/checkout@v5
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
         with:
-          node-version: 22.x
+          node-version: 24
       - name: Install dependencies
         run: |
           npm ci --ignore-scripts --no-audit --no-fund
@@ -73,16 +76,14 @@ jobs:
       - name: Test
         run: npm test
       - name: Deploy to NPM
-        uses: JS-DevTools/npm-publish@v3
-        with:
-          token: ${{ secrets.NPM_TOKEN }}
+        run: npm publish
 
   release:
     name: Release
     needs: npm
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Get tag metadata
         id: tag
         run: |
