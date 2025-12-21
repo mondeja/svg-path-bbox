@@ -60,7 +60,7 @@
     "@types/svg-path-bounding-box": "1.0.2",
     "@typescript-eslint/eslint-plugin": "8.25.0",
     "@typescript-eslint/parser": "8.25.0",
-    "anywhere": "1.6.0",
+    "anywhere": "1.7.0",
     "coveralls": "3.1.1",
     "eslint": "9.21.0",
     "husky": "9.1.7",
