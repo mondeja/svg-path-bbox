@@ -8,6 +8,9 @@ on:
 jobs:
   action-update-license-year:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v5
         with:
