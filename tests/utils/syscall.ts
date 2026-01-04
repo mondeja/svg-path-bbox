@@ -15,15 +15,21 @@ export default (args: SysCallArgs, program: SysCallProgram = "node") =>
     let exitCode: number | null = null;
     let stdoutEnded = false;
     let stderrEnded = false;
+    let hasExited = false;
 
     const maybeResolve = () => {
-      if (exitCode !== null && stdoutEnded && stderrEnded) {
-        resolve({ code: exitCode, stdout, stderr });
+      if (hasExited && stdoutEnded && stderrEnded) {
+        resolve({ code: exitCode ?? 1, stdout, stderr });
       }
     };
 
-    child.on("exit", (code: number) => {
+    child.on("error", (err) => {
+      reject(err);
+    });
+
+    child.on("exit", (code: number | null) => {
       exitCode = code;
+      hasExited = true;
       maybeResolve();
     });
 
