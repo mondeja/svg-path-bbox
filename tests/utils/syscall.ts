@@ -1,4 +1,4 @@
-import { exec } from "node:child_process";
+import { execFile } from "node:child_process";
 
 export type SysCallArgs = string[];
 export type SysCallOutput = { code: number; stdout: string; stderr: string };
@@ -6,7 +6,7 @@ export type SysCallProgram = "node" | "ts-node";
 
 export default (args: SysCallArgs, program: SysCallProgram = "node") =>
   new Promise((resolve, reject) => {
-    const child = exec(`${program} ${args.join(" ")}`);
+    const child = execFile(program, args);
 
     const stdoutChunks: string[] = [];
     const stderrChunks: string[] = [];
