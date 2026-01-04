@@ -10,10 +10,21 @@ export default (args: SysCallArgs, program: SysCallProgram = "node") =>
 
     const stdoutChunks: string[] = [];
     const stderrChunks: string[] = [];
-    let stdout: string;
-    let stderr: string;
+    let stdout = "";
+    let stderr = "";
+    let exitCode: number | null = null;
+    let stdoutEnded = false;
+    let stderrEnded = false;
+
+    const maybeResolve = () => {
+      if (exitCode !== null && stdoutEnded && stderrEnded) {
+        resolve({ code: exitCode, stdout, stderr });
+      }
+    };
+
     child.on("exit", (code: number) => {
-      resolve({ code, stdout, stderr });
+      exitCode = code;
+      maybeResolve();
     });
 
     if (child.stdout === null) {
@@ -24,6 +35,8 @@ export default (args: SysCallArgs, program: SysCallProgram = "node") =>
     });
     child.stdout.on("end", () => {
       stdout = stdoutChunks.join("");
+      stdoutEnded = true;
+      maybeResolve();
     });
 
     if (child.stderr === null) {
@@ -34,5 +47,7 @@ export default (args: SysCallArgs, program: SysCallProgram = "node") =>
     });
     child.stderr.on("end", () => {
       stderr = stderrChunks.join("");
+      stderrEnded = true;
+      maybeResolve();
     });
   });
