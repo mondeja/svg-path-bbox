@@ -17,6 +17,9 @@ jobs:
       matrix:
         node-version: [18, 20, 22]
       fail-fast: false
+    permissions:
+      contents: read
+      checks: write
     steps:
       - uses: actions/checkout@v5
       - name: Setup Node.js v${{ matrix.node-version }}
@@ -40,6 +43,8 @@ jobs:
   lint:
     name: Lint
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v5
       - name: Setup Node.js
@@ -83,6 +88,8 @@ jobs:
     name: Release
     needs: npm
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v5
       - name: Get tag metadata
